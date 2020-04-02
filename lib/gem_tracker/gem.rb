@@ -264,6 +264,9 @@ module GemTracker
       rescue => e
         statuses << {:success => nil, :message => "Status Error: #{e.message}"}
       end
+      if statuses.empty?
+        statuses << {name: name, success: nil, message: "no truffleruby travis jobs found"}
+      end
       statuses
     end
   end

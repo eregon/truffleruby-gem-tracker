@@ -22,4 +22,16 @@ gems:
     ci: travis
   - name: socketry/async-io
     ci: traviscom
-  
+  - name: ffi/ffi
+    ci: travis
+#  - name: rspec/rspec-core
+#    ci: travis
+#  - name: rspec/rspec-support
+#    ci: travis
+#  - name: rubygems/rubygems
+#    ci: github
+#    workflows: # the following are a subset of rubygems workflows
+#      - ubuntu.yml
+#      - macos.yml
+#  - name: Shopify/bootsnap
+#    ci: travis
