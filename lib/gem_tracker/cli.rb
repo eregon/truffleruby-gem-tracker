@@ -8,18 +8,14 @@ module GemTracker
 
     def statuses()
       say "STATUSES"
-      longest_name_size = GemTracker::GEMS.values.max_by { |g| g.repo_name.size }.repo_name.size
-      GemTracker::GEMS.each_value do |gem|
-        print_statuses(gem, longest_name_size)
-      end
+      print_statuses_of_gems(GemTracker::GEMS.values)
     end
 
     desc "status NAME", "Gets the status of a gem"
 
     def status(name)
-      gem = GemTracker::GEMS[name]
-      raise "unkown name `#{name}`" unless gem
-      print_statuses(gem, gem.repo_name.size)
+      gem = GemTracker::GEMS.fetch(name) { raise "unkown name `#{name}`" }
+      print_statuses_of_gems([gem])
     end
 
     desc "log NAME", "Prints the log for the latest build"
@@ -32,8 +28,16 @@ module GemTracker
 
     private
 
-    def print_statuses(gem, first_column_size)
-      statuses = gem.latest_ci_statuses
+    def print_statuses_of_gems(gems)
+      longest_name_size = gems.max_by { |g| g.repo_name.size }.repo_name.size
+      gems.map { |gem|
+        [gem, gem.latest_ci_statuses]
+      }.each do |gem, statuses|
+        print_statuses(gem, statuses, longest_name_size)
+      end
+    end
+
+    def print_statuses(gem, statuses, first_column_size)
       statuses.each do |status|
         say gem.repo_name.ljust(first_column_size + 1), nil, false
         if status[:success] == true
