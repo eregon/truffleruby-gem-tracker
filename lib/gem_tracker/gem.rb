@@ -81,8 +81,22 @@ module GemTracker
       #puts "log_url: #{log_url.inspect}"
       log_download_url = get_github_log_location(log_url)
       #puts "log_download_url: #{log_download_url.inspect}"
-      response = Net::HTTP.get(URI(log_download_url))
-      puts response
+      uri = URI(log_download_url)
+      Net::HTTP.start(uri.host, uri.port,
+                      :use_ssl => uri.scheme == 'https',
+                      ) do |http|
+
+        request = Net::HTTP::Get.new uri.request_uri
+
+        user, token = get_github_auth("github logs")
+        request.basic_auth user, token
+
+
+        response = http.request request # Net::HTTPResponse object
+
+        puts response.body
+      end
+
     end
 
     def get_github_auth(feature)
