@@ -8,7 +8,7 @@ module GemTracker
 
     def statuses()
       say "STATUSES"
-      longest_name_size = GemTracker::GEMS.values.max { |g, h| g.repo_name.size <=> h.repo_name.size }.repo_name.size
+      longest_name_size = GemTracker::GEMS.values.max_by { |g| g.repo_name.size }.repo_name.size
       GemTracker::GEMS.each_value do |gem|
         print_statuses(gem, longest_name_size)
       end
