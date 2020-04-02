@@ -30,7 +30,7 @@ module GemTracker
 
     def print_statuses_of_gems(gems)
       longest_name_size = gems.max_by { |g| g.repo_name.size }.repo_name.size
-      gems.map { |gem|
+      gems.lazy.map { |gem|
         [gem, gem.latest_ci_statuses]
       }.each do |gem, statuses|
         print_statuses(gem, statuses, longest_name_size)
