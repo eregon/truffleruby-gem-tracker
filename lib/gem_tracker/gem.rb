@@ -148,18 +148,42 @@ module GemTracker
     end
 
     def get_run_jobs(jobs_url)
-      response = Net::HTTP.get(URI(jobs_url))
-      json = JSON.parse(response)
-      json["jobs"]
+      uri = URI(jobs_url)
+      Net::HTTP.start(uri.host, uri.port,
+                      :use_ssl => uri.scheme == 'https',
+                      ) do |http|
+
+        request = Net::HTTP::Get.new uri.request_uri
+
+        user, token = get_github_auth("github get_run_jobs")
+        request.basic_auth user, token
+
+        response = http.request request # Net::HTTPResponse object
+
+        json = JSON.parse(response.body)
+        json.fetch("jobs") { pp json; raise "Couldn't find runs jobs" }
+      end
     end
 
     def get_workflow_runs(workflow)
       # https://api.github.com/repos/rack/rack/actions/workflows/development.yml/runs
       url = "https://api.github.com/repos/#{name}/actions/workflows/#{workflow}/runs"
       # puts "workflow runs url: #{url}"
-      response = Net::HTTP.get(URI(url))
-      json = JSON.parse(response)
-      json.fetch("workflow_runs") { pp json; raise "Couldn't find workflow_runs" }
+      uri = URI(url)
+      Net::HTTP.start(uri.host, uri.port,
+                      :use_ssl => uri.scheme == 'https',
+                      ) do |http|
+
+        request = Net::HTTP::Get.new uri.request_uri
+
+        user, token = get_github_auth("github get_run_jobs")
+        request.basic_auth user, token
+
+        response = http.request request # Net::HTTPResponse object
+
+        json = JSON.parse(response.body)
+        json.fetch("workflow_runs") { pp json; raise "Couldn't find workflow runs jobs" }
+      end
     end
 
     def get_travis_com_auth(feature)
