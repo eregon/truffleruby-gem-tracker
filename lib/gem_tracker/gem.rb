@@ -15,6 +15,10 @@ module GemTracker
       g
     end
 
+    def repo_name
+      name.split('/').last
+    end
+
     def latest_ci_log
       case ci
       when "travis"
