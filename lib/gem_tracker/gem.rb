@@ -1,5 +1,6 @@
 require 'travis/client'
 require 'net/http'
+require 'net/https'
 require 'json'
 
 module GemTracker
@@ -23,6 +24,8 @@ module GemTracker
       case ci
       when "travis"
         travis_ci_log
+      when "github"
+        github_ci_log
       else
         [{name: name, success: nil, message: "unsupported log ci: #{ci}"}]
       end
@@ -38,6 +41,81 @@ module GemTracker
         github_ci_statuses
       else
         [{name: name, success: nil, message: "unknown ci: #{ci}"}]
+      end
+    end
+
+    def github_ci_log
+      statuses = []
+      if workflows
+        workflows.each do |w|
+          runs = get_workflow_runs(w)
+          runs.each do |r|
+            if r["head_branch"] == "master"
+              jobs = get_run_jobs(r["jobs_url"])
+              jobs.each do |j|
+                if j["name"].include?("truffleruby")
+                  url = j["html_url"]
+                  success = j["conclusion"] == "success"
+                  statuses << {name: name, success: success, version: j["name"], url: url, job_url: j["url"] }
+                end
+              end
+              break
+            end
+          end
+        end
+      else
+        puts "no workflows configured for #{name}"
+      end
+      if statuses.empty?
+        puts "no github run jobs logs found, workflows: #{workflows.inspect}"
+      end
+      statuses.each do |s|
+        puts "LOG: version: #{s[:version]}, success: #{s[:success]}, url: #{s[:url]}"
+        print_github_log(s[:job_url])
+        puts "LOG: version: #{s[:version]}, success: #{s[:success]}, url: #{s[:url]}"
+      end
+    end
+
+    def print_github_log(job_url)
+      log_url = "#{job_url}/logs"
+      #puts "log_url: #{log_url.inspect}"
+      log_download_url = get_github_log_location(log_url)
+      #puts "log_download_url: #{log_download_url.inspect}"
+      response = Net::HTTP.get(URI(log_download_url))
+      puts response
+    end
+
+    def get_github_auth(feature)
+      auth = ENV['GEM_TRACKER_GITHUB_AUTH']
+      unless auth
+        raise "#{feature} requires GEM_TRACKER_GITHUB_AUTH environment variable set to github_user:token, See documentation to create tokens: https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line"
+      end
+      auth.split(':')
+    end
+
+    def get_github_log_location(log_url)
+      # https://api.github.com/repos/puma/puma/actions/jobs/550162360/logs
+      # https://developer.github.com/v3/actions/workflow_jobs/#list-workflow-job-logs
+      # :verify_mode => OpenSSL::SSL::VERIFY_NONE
+      uri = URI(log_url)
+      Net::HTTP.start(uri.host, uri.port,
+                      :use_ssl => uri.scheme == 'https',
+                      ) do |http|
+
+        request = Net::HTTP::Get.new uri.request_uri
+
+        user, token = get_github_auth("github logs")
+        request.basic_auth user, token
+
+
+        response = http.request request # Net::HTTPResponse object
+
+        #puts "response code #{response.code}"
+        if response.code != "302"
+          raise "Error getting log location: #{response.body}"
+        else
+          response['Location']
+        end
       end
     end
 
@@ -70,7 +148,6 @@ module GemTracker
     end
 
     def get_run_jobs(jobs_url)
-      # https://api.github.com/repos/rack/rack/actions/runs/53810299/jobs
       response = Net::HTTP.get(URI(jobs_url))
       json = JSON.parse(response)
       json["jobs"]
