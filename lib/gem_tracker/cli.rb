@@ -37,11 +37,11 @@ module GemTracker
       statuses.each do |status|
         say gem.repo_name.ljust(first_column_size + 1), nil, false
         if status[:success] == true
-          say "\u2713 ", :green, false
+          say "✓ ", :green, false
         elsif status[:success].nil?
           say "? ", nil, false
         else
-          say "\u2717 ", :red, false
+          say "✗ ", :red, false
         end
         if status[:version]
           say "#{status[:version]} ", nil, false
