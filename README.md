@@ -1,36 +1,20 @@
 # GemTracker
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/gem_tracker`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+The Gem Tracker is designed to track the status of Gems from external CI systems.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+After checking out the repo, run `bin/setup` to install dependencies. 
 
-```ruby
-gem 'gem_tracker'
-```
-
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install gem_tracker
+To install this gem onto your local machine, run `bundle exec rake install`.
 
 ## Usage
 
-TODO: Write usage instructions here
+*list latest gem statuses*
+`bundle exec exe/gem_tracker statuses`
 
-## Development
+*list latest single gem status*
+`bundle exec exe/gem_tracker status ruby-concurrency/concurrent-ruby`
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/gem_tracker.
-
+*print latest job log*
+`bundle exec exe/gem_tracker log ruby-concurrency/concurrent-ruby`

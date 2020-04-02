@@ -1,0 +1,25 @@
+---
+gems:
+  - name: flori/json
+    ci: travis
+  - name: ged/ruby-pg
+    ci: travis
+  - name: ruby/rake
+    ci: github
+    workflows:
+      - test.yml
+      - macos.yml
+      - windows.yml
+  - name: rack/rack
+    ci: github
+    workflows:
+      - development.yml
+  - name: puma/puma
+    ci: github
+    workflows:
+      - ruby.yml
+  - name: ruby-concurrency/concurrent-ruby
+    ci: travis
+    # - name: socketry/async-io
+    #   ci: traviscom
+  

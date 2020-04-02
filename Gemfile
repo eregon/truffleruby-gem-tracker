@@ -1,7 +1,8 @@
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in gem_tracker.gemspec
-gemspec
+gem "thor"
 
 gem "rake", "~> 12.0"
 gem "rspec", "~> 3.0"
+
+gem 'travis', '~> 1.8', '>= 1.8.12'
