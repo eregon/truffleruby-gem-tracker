@@ -18,3 +18,8 @@ To install this gem onto your local machine, run `bundle exec rake install`.
 
 *print latest job log*
 `bundle exec exe/gem_tracker log ruby-concurrency/concurrent-ruby`
+
+
+## Documentation
+
+* Travis Ruby Library - https://github.com/travis-ci/travis.rb#ruby-library

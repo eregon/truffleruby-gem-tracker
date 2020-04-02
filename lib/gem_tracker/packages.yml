@@ -20,6 +20,6 @@ gems:
       - ruby.yml
   - name: ruby-concurrency/concurrent-ruby
     ci: travis
-    # - name: socketry/async-io
-    #   ci: traviscom
+  - name: socketry/async-io
+    ci: traviscom
   

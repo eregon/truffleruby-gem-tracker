@@ -162,13 +162,21 @@ module GemTracker
       json["workflow_runs"]
     end
 
+    def get_travis_com_auth(feature)
+      auth = ENV['GEM_TRACKER_TRAVIS_COM_AUTH']
+      unless auth
+        raise "#{feature} requires GEM_TRACKER_TRAVIS_COM_AUTH environment variable set to token, visit your settings page at travis-ci.com to get your token"
+      end
+      auth
+    end
+
     def travis_ci_log(org = true)
       puts "LOGS"
       begin
         client = if org
                    Travis::Client.new
                  else
-                   Travis::Client.new(:uri => Travis::Client::COM_URI)
+                   Travis::Client.new(:uri => Travis::Client::COM_URI, :access_token => get_travis_com_auth("travis-ci.com logs"))
                  end
         repo = client.find_one(Travis::Client::Repository, name) # E.g. 'rails/rails'
         branch = repo.last_on_branch('master')
@@ -193,7 +201,13 @@ module GemTracker
         client = if org
                    Travis::Client.new
                  else
-                   Travis::Client.new(:uri => Travis::Client::COM_URI)
+                   begin
+                     auth = get_travis_com_auth("travis-ci.com statuses")
+                     Travis::Client.new(:uri => Travis::Client::COM_URI, :access_token => auth)
+                   rescue => e
+                     statuses << {:success => nil, :message => "Status Error: #{e.message}"}
+                     return statuses
+                   end
                  end
         repo = client.find_one(Travis::Client::Repository, name) # E.g. 'rails/rails'
         branch = repo.last_on_branch('master')
