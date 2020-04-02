@@ -121,28 +121,33 @@ module GemTracker
 
     def github_ci_statuses
       statuses = []
-      if workflows
-        workflows.each do |w|
-          runs = get_workflow_runs(w)
-          runs.each do |r|
-            if r["head_branch"] == "master"
-              jobs = get_run_jobs(r["jobs_url"])
-              jobs.each do |j|
-                if j["name"].include?("truffleruby")
-                  url = j["html_url"]
-                  success = j["conclusion"] == "success"
-                  statuses << {name: name, success: success, version: j["name"], url: url}
+      begin
+        if workflows
+          workflows.each do |w|
+            runs = get_workflow_runs(w)
+            runs.each do |r|
+              if r["head_branch"] == "master"
+                jobs = get_run_jobs(r["jobs_url"])
+                jobs.each do |j|
+                  if j["name"].include?("truffleruby")
+                    url = j["html_url"]
+                    success = j["conclusion"] == "success"
+                    statuses << {name: name, success: success, version: j["name"], url: url}
+                  end
                 end
+                break
               end
-              break
             end
           end
+        else
+          statuses << {name: name, success: nil, message: "no workflows configured for #{name}"}
         end
-      else
-        statuses << {name: name, success: nil, message: "no workflows configured for #{name}"}
-      end
-      if statuses.empty?
-        statuses << {name: name, success: nil, message: "no github run jobs found, workflows: #{workflows.inspect}"}
+        if statuses.empty?
+          statuses << {name: name, success: nil, message: "no github run jobs found, workflows: #{workflows.inspect}"}
+        end
+      rescue => e
+        statuses << {:success => nil, :message => "Statuses Error: #{e.message}"}
+        return statuses
       end
       statuses
     end
