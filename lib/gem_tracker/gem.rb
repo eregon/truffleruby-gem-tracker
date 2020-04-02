@@ -159,7 +159,7 @@ module GemTracker
       # puts "workflow runs url: #{url}"
       response = Net::HTTP.get(URI(url))
       json = JSON.parse(response)
-      json["workflow_runs"]
+      json.fetch("workflow_runs") { pp json; raise "Couldn't find workflow_runs" }
     end
 
     def get_travis_com_auth(feature)
