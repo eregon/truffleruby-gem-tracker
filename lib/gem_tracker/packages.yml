@@ -24,6 +24,8 @@ gems:
     ci: traviscom
   - name: ffi/ffi
     ci: travis
+  - name: Shopify/bootsnap
+    ci: travis
 #  - name: rspec/rspec-core
 #    ci: travis
 #  - name: rspec/rspec-support
@@ -33,5 +35,4 @@ gems:
 #    workflows: # the following are a subset of rubygems workflows
 #      - ubuntu.yml
 #      - macos.yml
-#  - name: Shopify/bootsnap
-#    ci: travis
+
