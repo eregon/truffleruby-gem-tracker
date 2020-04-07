@@ -6,3 +6,4 @@ gem "rake", "~> 12.0"
 gem "rspec", "~> 3.0"
 
 gem 'travis', '~> 1.8', '>= 1.8.12'
+gem "dotenv"

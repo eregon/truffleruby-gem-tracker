@@ -1,4 +1,5 @@
 /.bundle/
+/.idea/
 /.yardoc
 /_yardoc/
 /coverage/
@@ -7,5 +8,4 @@
 /spec/reports/
 /tmp/
 
-# rspec failure tracking
-.rspec_status
+/.env

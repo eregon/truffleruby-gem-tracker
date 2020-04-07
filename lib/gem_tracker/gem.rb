@@ -1,3 +1,4 @@
+require 'dotenv/load'
 require 'travis/client'
 require 'net/http'
 require 'net/https'
