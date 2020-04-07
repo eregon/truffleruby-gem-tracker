@@ -18,7 +18,7 @@ module GemTracker
     end
 
     def repo_name
-      name.split('/').last
+      File.basename(name)
     end
 
     def latest_ci_log

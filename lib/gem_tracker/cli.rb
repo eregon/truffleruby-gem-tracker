@@ -13,18 +13,32 @@ module GemTracker
 
     desc "status NAME", "Gets the status of a gem"
     def status(name)
-      gem = GemTracker::GEMS.fetch(name) { raise "unkown name `#{name}`" }
+      gem = find_gem(name)
       print_statuses_of_gems([gem])
     end
 
     desc "log NAME", "Prints the log for the latest build"
     def log(name)
-      gem = GemTracker::GEMS[name]
-      raise "unkown name `#{name}`" unless gem
+      gem = find_gem(name)
       gem.latest_ci_log
     end
 
     private
+
+    def find_gem(name)
+      if name.include? '/'
+        GemTracker::GEMS.fetch(name) { raise NameError, "unknown gem `#{name}`" }
+      else
+        gems = GemTracker::GEMS.values.select { |gem| gem.repo_name == name }
+        if gems.empty?
+          raise NameError, "unknown gem `#{name}`"
+        elsif gems.size == 1
+          gems.first
+        else
+          raise "Multiple gems matching #{name}: #{gems}"
+        end
+      end
+    end
 
     def print_statuses_of_gems(gems)
       parallel = options[:parallel]
