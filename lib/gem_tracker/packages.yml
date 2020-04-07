@@ -23,7 +23,9 @@ gems:
   - name: socketry/async-io
     ci: traviscom
   - name: ffi/ffi
-    ci: travis
+    ci: github
+    workflows:
+      - ci.yml
   - name: Shopify/bootsnap
     ci: travis
 #  - name: rspec/rspec-core
