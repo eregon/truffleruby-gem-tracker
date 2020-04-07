@@ -37,6 +37,8 @@ module GemTracker
       end
     end
 
+    LONGEST_JOB_NAME = 40
+
     def print_statuses(gem, statuses, first_column_size)
       statuses.each do |status|
         say gem.repo_name.ljust(first_column_size + 1), nil, false
@@ -47,8 +49,9 @@ module GemTracker
         else
           say "✗ ", :red, false
         end
+
         if status[:version]
-          say "#{status[:version]} ", nil, false
+          say "#{status[:version].ljust(LONGEST_JOB_NAME)} ", nil, false
         end
         if status[:message]
           say status[:message], nil, false
