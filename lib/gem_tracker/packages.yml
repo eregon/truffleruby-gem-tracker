@@ -22,11 +22,29 @@ gems:
     ci: travis
   - name: socketry/async-io
     ci: traviscom
+  - name: socketry/nio4r
+    ci: github
+    workflows:
+      - workflow.yml
   - name: ffi/ffi
     ci: github
     workflows:
       - ci.yml
   - name: Shopify/bootsnap
+    ci: travis
+  - name: mikel/mail
+    ci: travis
+  - name: sporkmonger/addressable
+    ci: travis
+  - name: freerange/mocha
+    ci: travis
+  - name: copiousfreetime/launchy
+    ci: travis
+  - name: guard/listen
+    ci: travis
+  - name: floehopper/metaclass
+    ci: travis
+  - name: datawraith/ascii85gem
     ci: travis
 #  - name: rspec/rspec-core
 #    ci: travis
