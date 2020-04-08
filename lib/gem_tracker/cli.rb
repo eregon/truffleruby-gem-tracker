@@ -86,9 +86,24 @@ module GemTracker
     end
 
     def parallel_map(enum)
-      enum.map { |e|
-        Thread.new { yield(e) }
-      }.map(&:value)
+      done = 0
+      threads = enum.map { |e|
+        Thread.new {
+          result = yield(e)
+          done += 1
+          result
+        }
+      }
+      progress_thread = Thread.new {
+        while done < enum.size
+          print "\r#{done}/#{enum.size}"
+          sleep 0.1
+        end
+        puts "\r#{done}/#{enum.size}\n"
+      }
+      values = threads.map(&:value)
+      progress_thread.join
+      values
     end
   end
 end
