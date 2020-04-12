@@ -40,8 +40,9 @@ gems:
     ci: travis
   - name: sporkmonger/addressable
     ci: travis
-  - name: freerange/mocha
-    ci: travis
+  # too slow with 60+ jobs each needing one request
+  # - name: freerange/mocha
+  #   ci: travis
   - name: copiousfreetime/launchy
     ci: travis
   - name: guard/listen
