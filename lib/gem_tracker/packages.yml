@@ -10,6 +10,10 @@ gems:
       - test.yml
       - macos.yml
       - windows.yml
+  - name: ruby/ostruct
+    ci: github
+    workflows:
+      - test.yml
   - name: rack/rack
     ci: github
     workflows:
