@@ -19,6 +19,12 @@ To install this gem onto your local machine, run `bundle exec rake install`.
 *print latest job log*
 `bundle exec exe/gem_tracker log ruby-concurrency/concurrent-ruby`
 
+## Tokens
+
+You should set these environment variables in the `.env` file:
+
+* `GEM_TRACKER_TRAVIS_COM_AUTH`: visit your settings page at travis-ci.com to get your token
+* `GEM_TRACKER_GITHUB_AUTH`: see https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line
 
 ## Documentation
 
