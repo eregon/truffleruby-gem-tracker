@@ -51,6 +51,8 @@ gems:
     ci: travis
   - name: datawraith/ascii85gem
     ci: travis
+  - name: whitequark/parser
+    ci: travis
 #  - name: rspec/rspec-core
 #    ci: travis
 #  - name: rspec/rspec-support
