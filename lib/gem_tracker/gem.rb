@@ -28,7 +28,7 @@ module GemTracker
       when "github"
         github_ci_log
       else
-        [{name: name, success: nil, message: "unsupported log ci: #{ci}"}]
+        [{name: name, status: nil, message: "unsupported log ci: #{ci}"}]
       end
     end
 
@@ -41,7 +41,7 @@ module GemTracker
       when "github"
         github_ci_statuses
       else
-        [{name: name, success: nil, message: "unknown ci: #{ci}"}]
+        [{name: name, status: nil, message: "unknown ci: #{ci}"}]
       end
     end
 
@@ -56,8 +56,8 @@ module GemTracker
               jobs.each do |j|
                 if j["name"].include?("truffleruby")
                   url = j["html_url"]
-                  success = j["conclusion"] == "success"
-                  statuses << {name: name, success: success, version: j["name"], url: url, job_url: j["url"] }
+                  status = j["conclusion"] == "success"
+                  statuses << {name: name, status: status, version: j["name"], url: url, job_url: j["url"] }
                 end
               end
               break
@@ -71,9 +71,9 @@ module GemTracker
         puts "no github run jobs logs found, workflows: #{workflows.inspect}"
       end
       statuses.each do |s|
-        puts "LOG: version: #{s[:version]}, success: #{s[:success]}, url: #{s[:url]}"
+        puts "LOG: version: #{s[:version]}, status: #{s[:status]}, url: #{s[:url]}"
         print_github_log(s[:job_url])
-        puts "LOG: version: #{s[:version]}, success: #{s[:success]}, url: #{s[:url]}"
+        puts "LOG: version: #{s[:version]}, status: #{s[:status]}, url: #{s[:url]}"
       end
     end
 
@@ -146,8 +146,8 @@ module GemTracker
                 jobs.each do |j|
                   if j["name"].include?("truffleruby")
                     url = j["html_url"]
-                    success = j["conclusion"] == "success"
-                    statuses << {name: name, success: success, version: j["name"], url: url}
+                    status = j["conclusion"] == "success"
+                    statuses << {name: name, status: status, version: j["name"], url: url}
                   end
                 end
                 break
@@ -155,13 +155,13 @@ module GemTracker
             end
           end
         else
-          statuses << {name: name, success: nil, message: "no workflows configured for #{name}"}
+          statuses << {name: name, status: nil, message: "no workflows configured for #{name}"}
         end
         if statuses.empty?
-          statuses << {name: name, success: nil, message: "no github run jobs found, workflows: #{workflows.inspect}"}
+          statuses << {name: name, status: nil, message: "no github run jobs found, workflows: #{workflows.inspect}"}
         end
       rescue => e
-        statuses << {:success => nil, :message => "Statuses Error: #{e.message}"}
+        statuses << {status: nil, message: "Statuses Error: #{e.message}"}
         return statuses
       end
       statuses
@@ -228,9 +228,9 @@ module GemTracker
         branch.jobs.each do |j|
           if j.config.include?("rvm") && j.config["rvm"].is_a?(String) && j.config["rvm"].include?('truffleruby')
             url = "https://travis-ci.org/#{name}/jobs/#{j.id}"
-            puts "LOG: version: #{j.config["rvm"]}, success: #{j.successful?}, url: #{url}"
+            puts "LOG: version: #{j.config["rvm"]}, status: #{j.color}, url: #{url}"
             puts j.log.colorized_body
-            puts "LOG: version: #{j.config["rvm"]}, success: #{j.successful?}, url: #{url}"
+            puts "LOG: version: #{j.config["rvm"]}, status: #{j.color}, url: #{url}"
           end
         end
       rescue => e
@@ -242,31 +242,31 @@ module GemTracker
     def travis_ci_statuses(org = true)
       statuses = []
       begin
-        client = if org
-                   Travis::Client.new
-                 else
-                   begin
-                     auth = get_travis_com_auth("travis-ci.com statuses")
-                     Travis::Client.new(:uri => Travis::Client::COM_URI, :access_token => auth)
-                   rescue => e
-                     statuses << {:success => nil, :message => "Status Error: #{e.message}"}
-                     return statuses
-                   end
-                 end
+        if org
+          client = Travis::Client.new
+        else
+          begin
+            auth = get_travis_com_auth("travis-ci.com statuses")
+            client = Travis::Client.new(:uri => Travis::Client::COM_URI, :access_token => auth)
+          rescue => e
+            statuses << {status: nil, message: "Status Error: #{e.message}"}
+            return statuses
+          end
+        end
         repo = client.find_one(Travis::Client::Repository, name) # E.g. 'rails/rails'
         branch = repo.last_on_branch('master')
 
         branch.jobs.each do |j|
           if j.config.include?("rvm") && j.config["rvm"].is_a?(String) && j.config["rvm"].include?('truffleruby')
             url = "https://travis-ci.org/#{name}/jobs/#{j.id}"
-            statuses << {:success => j.successful?, :version => j.config["rvm"], :url => url}
+            statuses << {:status => j.color, :version => j.config["rvm"], :url => url}
           end
         end
       rescue => e
-        statuses << {:success => nil, :message => "Status Error: #{e.message}"}
+        statuses << {status: nil, message: "Status Error: #{e.message}"}
       end
       if statuses.empty?
-        statuses << {name: name, success: nil, message: "no truffleruby travis jobs found"}
+        statuses << {name: name, status: nil, message: "no truffleruby travis jobs found"}
       end
       statuses
     end

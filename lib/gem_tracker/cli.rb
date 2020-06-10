@@ -56,12 +56,15 @@ module GemTracker
     def print_statuses(gem, statuses, first_column_size)
       statuses.each do |status|
         say gem.repo_name.ljust(first_column_size + 1), nil, false
-        if status[:success] == true
+        case status[:status]
+        when true, 'green'
           say "✓ ", :green, false
-        elsif status[:success].nil?
-          say "? ", nil, false
-        else
+        when 'yellow'
+          say "⌛ ", :yellow, false
+        when false, 'red'
           say "✗ ", :red, false
+        else
+          say "? ", nil, false
         end
 
         if status[:version]
