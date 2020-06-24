@@ -57,6 +57,10 @@ gems:
     ci: github
     workflows:
       - ci.yml
+  - name: rom-rb/rom
+    ci: github
+    workflows:
+      - ci.yml
 #  - name: rspec/rspec-core
 #    ci: travis
 #  - name: rspec/rspec-support
