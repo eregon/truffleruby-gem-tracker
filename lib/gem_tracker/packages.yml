@@ -53,6 +53,10 @@ gems:
     ci: travis
   - name: whitequark/parser
     ci: travis
+  - name: halostatue/diff-lcs
+    ci: github
+    workflows:
+      - ci.yml
 #  - name: rspec/rspec-core
 #    ci: travis
 #  - name: rspec/rspec-support
