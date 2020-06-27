@@ -61,6 +61,10 @@ gems:
     ci: github
     workflows:
       - ci.yml
+  - name: ruby/mspec
+    ci: github
+    workflows:
+      - ci.yml
 #  - name: rspec/rspec-core
 #    ci: travis
 #  - name: rspec/rspec-support
@@ -70,4 +74,3 @@ gems:
 #    workflows: # the following are a subset of rubygems workflows
 #      - ubuntu.yml
 #      - macos.yml
-
