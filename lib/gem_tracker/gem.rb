@@ -140,18 +140,17 @@ module GemTracker
         if workflows
           workflows.each do |w|
             runs = get_workflow_runs(w)
+            runs = runs.select { |r| r["head_branch"] == "master" }
             runs.each do |r|
-              if r["head_branch"] == "master"
-                jobs = get_run_jobs(r["jobs_url"])
-                jobs.each do |j|
-                  if j["name"].include?("truffleruby")
-                    url = j["html_url"]
-                    status = j["conclusion"] == "success"
-                    statuses << {name: name, status: status, version: j["name"], url: url}
-                  end
+              jobs = get_run_jobs(r["jobs_url"])
+              jobs.each do |j|
+                if j["name"].include?("truffleruby")
+                  url = j["html_url"]
+                  status = j["conclusion"] == "success"
+                  statuses << {name: name, status: status, version: j["name"], url: url}
                 end
-                break
               end
+              break
             end
           end
         else
@@ -169,10 +168,7 @@ module GemTracker
 
     def get_run_jobs(jobs_url)
       uri = URI(jobs_url)
-      Net::HTTP.start(uri.host, uri.port,
-                      :use_ssl => uri.scheme == 'https',
-                      ) do |http|
-
+      Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
         request = Net::HTTP::Get.new uri.request_uri
 
         user, token = get_github_auth("github get_run_jobs")
