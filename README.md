@@ -11,13 +11,13 @@ To install this gem onto your local machine, run `bundle exec rake install`.
 ## Usage
 
 *list latest gem statuses*
-`bundle exec exe/gem_tracker statuses`
+`bin/gem_tracker statuses [--parallel]`
 
 *list latest single gem status*
-`bundle exec exe/gem_tracker status ruby-concurrency/concurrent-ruby`
+`bin/gem_tracker status ruby-concurrency/concurrent-ruby`
 
 *print latest job log*
-`bundle exec exe/gem_tracker log ruby-concurrency/concurrent-ruby`
+`bin/gem_tracker log ruby-concurrency/concurrent-ruby`
 
 ## Tokens
 
