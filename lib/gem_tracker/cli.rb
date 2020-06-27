@@ -59,7 +59,7 @@ module GemTracker
         case status[:status]
         when true, 'green'
           say "✓ ", :green, false
-        when 'yellow'
+        when :in_progress, 'yellow'
           say "⌛ ", :yellow, false
         when false, 'red'
           say "✗ ", :red, false

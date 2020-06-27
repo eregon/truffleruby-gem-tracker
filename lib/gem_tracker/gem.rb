@@ -146,7 +146,13 @@ module GemTracker
               jobs.each do |j|
                 if j["name"].include?("truffleruby")
                   url = j["html_url"]
-                  status = j["conclusion"] == "success"
+                  status = if j["status"] == "in_progress"
+                    :in_progress
+                  elsif j["status"] == "completed"
+                    j["conclusion"] == "success"
+                  else
+                    nil
+                  end
                   statuses << {name: name, status: status, version: j["name"], url: url}
                 end
               end
