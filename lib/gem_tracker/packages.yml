@@ -65,12 +65,14 @@ gems:
     ci: github
     workflows:
       - ci.yml
+  - name: rubygems/rubygems
+    ci: github
+    workflows:
+      - daily.yml
 #  - name: rspec/rspec-core
 #    ci: travis
 #  - name: rspec/rspec-support
 #    ci: travis
-#  - name: rubygems/rubygems
-#    ci: github
 #    workflows: # the following are a subset of rubygems workflows
 #      - ubuntu.yml
 #      - macos.yml
