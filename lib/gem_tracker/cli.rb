@@ -61,6 +61,15 @@ module GemTracker
     LONGEST_JOB_NAME = 40
 
     def print_statuses(gem, statuses, first_column_size)
+      if statuses.size > 1 and statuses.map { |s| s[:status] }.uniq.size == 1
+        versions = statuses.map { |s| s[:version] }
+        first = versions.first
+        prefix = first.size.downto(0).find { |i| versions.all? { |v| v.start_with?(first[0...i]) } }
+        suffix = first.size.downto(1).find { |i| versions.all? { |v| v.end_with?(first[-i..-1]) } }
+        summary = "#{first[0...prefix]}...#{first[-suffix..-1] if suffix}"
+        statuses = [statuses.first.dup.tap { |s| s[:version] = summary }]
+      end
+
       statuses.each do |status|
         say gem.repo_name.ljust(first_column_size + 1), nil, false
         case status[:status]
