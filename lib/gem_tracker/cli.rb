@@ -2,6 +2,13 @@ require 'thor'
 require 'gem_tracker/data'
 require 'gem_tracker/gem'
 
+# Always #say in color
+class Thor::Shell::Color
+  def can_display_colors?
+    true
+  end
+end
+
 module GemTracker
   class CLI < Thor
     desc "statuses", "Gets the statuses of all gems"
