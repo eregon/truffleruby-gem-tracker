@@ -1,4 +1,0 @@
-#!/usr/bin/env ruby
-
-require "gem_tracker/cli"
-GemTracker::CLI.start
