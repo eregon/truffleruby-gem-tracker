@@ -14,6 +14,5 @@ module GemTracker
   end
 
   GEMS = convert_to_gems(DATA['gems'])
-
 end
 

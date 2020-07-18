@@ -5,7 +5,6 @@ require 'net/https'
 require 'json'
 
 module GemTracker
-
   class Gem
     attr_accessor :name, :ci, :workflows
 
@@ -83,15 +82,11 @@ module GemTracker
       log_download_url = get_github_log_location(log_url)
       #puts "log_download_url: #{log_download_url.inspect}"
       uri = URI(log_download_url)
-      Net::HTTP.start(uri.host, uri.port,
-                      :use_ssl => uri.scheme == 'https',
-                      ) do |http|
-
+      Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
         request = Net::HTTP::Get.new uri.request_uri
 
         user, token = get_github_auth("github logs")
         request.basic_auth user, token
-
 
         response = http.request request # Net::HTTPResponse object
 
@@ -113,15 +108,11 @@ module GemTracker
       # https://developer.github.com/v3/actions/workflow_jobs/#list-workflow-job-logs
       # :verify_mode => OpenSSL::SSL::VERIFY_NONE
       uri = URI(log_url)
-      Net::HTTP.start(uri.host, uri.port,
-                      :use_ssl => uri.scheme == 'https',
-                      ) do |http|
-
+      Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
         request = Net::HTTP::Get.new uri.request_uri
 
         user, token = get_github_auth("github logs")
         request.basic_auth user, token
-
 
         response = http.request request # Net::HTTPResponse object
 
@@ -192,9 +183,7 @@ module GemTracker
       url = "https://api.github.com/repos/#{name}/actions/workflows/#{workflow}/runs"
       # puts "workflow runs url: #{url}"
       uri = URI(url)
-      Net::HTTP.start(uri.host, uri.port,
-                      :use_ssl => uri.scheme == 'https',
-                      ) do |http|
+      Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
 
         request = Net::HTTP::Get.new uri.request_uri
 

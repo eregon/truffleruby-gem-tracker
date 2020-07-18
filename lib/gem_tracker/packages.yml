@@ -73,6 +73,3 @@ gems:
 #    ci: travis
 #  - name: rspec/rspec-support
 #    ci: travis
-#    workflows: # the following are a subset of rubygems workflows
-#      - ubuntu.yml
-#      - macos.yml
