@@ -69,6 +69,13 @@ gems:
     ci: github
     workflows:
       - daily.yml
+
+  - name: eregon/nokogiri
+    branch: truffleruby
+    ci: github
+    workflows:
+      - truffleruby.yml
+
 #  - name: rspec/rspec-core
 #    ci: travis
 #  - name: rspec/rspec-support

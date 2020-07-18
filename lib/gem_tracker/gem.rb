@@ -6,13 +6,14 @@ require 'json'
 
 module GemTracker
   class Gem
-    attr_accessor :name, :ci, :workflows
+    attr_accessor :name, :ci, :workflows, :branch
 
     def self.from_hash(hash)
       g = Gem.new
       g.name = hash["name"]
       g.ci = hash["ci"]
       g.workflows = hash["workflows"]
+      g.branch = hash["branch"] || "master"
       g
     end
 
@@ -50,7 +51,7 @@ module GemTracker
         workflows.each do |w|
           runs = get_workflow_runs(w)
           runs.each do |r|
-            if r["head_branch"] == "master"
+            if r["head_branch"] == branch
               jobs = get_run_jobs(r["jobs_url"])
               jobs.each do |j|
                 if j["name"].include?("truffleruby")
@@ -131,7 +132,7 @@ module GemTracker
         if workflows
           workflows.each do |w|
             runs = get_workflow_runs(w)
-            runs = runs.select { |r| r["head_branch"] == "master" }
+            runs = runs.select { |r| r["head_branch"] == branch }
             runs.each do |r|
               jobs = get_run_jobs(r["jobs_url"])
               jobs.each do |j|
@@ -214,7 +215,7 @@ module GemTracker
                    Travis::Client.new(:uri => Travis::Client::COM_URI, :access_token => get_travis_com_auth("travis-ci.com logs"))
                  end
         repo = client.find_one(Travis::Client::Repository, name) # E.g. 'rails/rails'
-        branch = repo.last_on_branch('master')
+        branch = repo.last_on_branch(self.branch)
 
         branch.jobs.each do |j|
           if j.config.include?("rvm") && j.config["rvm"].is_a?(String) && j.config["rvm"].include?('truffleruby')
@@ -245,7 +246,7 @@ module GemTracker
           end
         end
         repo = client.find_one(Travis::Client::Repository, name) # E.g. 'rails/rails'
-        branch = repo.last_on_branch('master')
+        branch = repo.last_on_branch(self.branch)
 
         branch.jobs.each do |j|
           if j.config.include?("rvm") && j.config["rvm"].is_a?(String) && j.config["rvm"].include?('truffleruby')
