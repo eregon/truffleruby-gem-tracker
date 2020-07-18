@@ -69,6 +69,10 @@ gems:
     ci: github
     workflows:
       - daily.yml
+  - name: socketry/async-container
+    ci: github
+    workflows:
+      - development.yml
 
   - name: eregon/nokogiri
     branch: truffleruby
