@@ -51,11 +51,14 @@ module GemTracker
       parallel = options[:parallel]
 
       longest_name_size = gems.max_by { |g| g.repo_name.size }.repo_name.size
+      failing = []
       map(gems, parallel) { |gem|
         [gem, gem.latest_ci_statuses]
       }.each do |gem, statuses|
-        print_statuses(gem, statuses, longest_name_size)
+        failing << gem.name unless print_statuses(gem, statuses, longest_name_size)
       end
+
+      abort "Failing CIs: #{failing.join(', ')}" unless failing.empty?
     end
 
     LONGEST_JOB_NAME = 40
@@ -70,6 +73,7 @@ module GemTracker
         statuses = [statuses.first.dup.tap { |s| s[:version] = summary }]
       end
 
+      ok = true
       statuses.each do |status|
         say gem.repo_name.ljust(first_column_size + 1), nil, false
         case status[:status]
@@ -78,7 +82,13 @@ module GemTracker
         when :in_progress, 'yellow'
           say "⌛ ", :yellow, false
         when false, 'red'
-          say "✗ ", :red, false
+          color = if gem.expect == :fail
+                    :blue
+                  else
+                    ok = false
+                    :red
+                  end
+          say "✗ ", color, false
         else
           say "? ", nil, false
         end
@@ -94,6 +104,7 @@ module GemTracker
         end
         say "\n"
       end
+      ok
     end
 
     def map(enum, parallel, &block)

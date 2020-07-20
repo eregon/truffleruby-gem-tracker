@@ -6,7 +6,7 @@ require 'json'
 
 module GemTracker
   class Gem
-    attr_accessor :name, :ci, :workflows, :branch
+    attr_accessor :name, :ci, :workflows, :branch, :expect
 
     def self.from_hash(hash)
       g = Gem.new
@@ -14,6 +14,7 @@ module GemTracker
       g.ci = hash["ci"]
       g.workflows = hash["workflows"]
       g.branch = hash["branch"] || "master"
+      g.expect = (hash["expect"] || :pass).to_sym
       g
     end
 

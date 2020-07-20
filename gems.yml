@@ -24,6 +24,7 @@ gems:
       - puma.yml
   - name: ruby-concurrency/concurrent-ruby
     ci: travis
+    expect: fail
   - name: socketry/async-io
     ci: traviscom
   - name: socketry/nio4r
@@ -38,6 +39,7 @@ gems:
     ci: travis
   - name: mikel/mail
     ci: travis
+    expect: fail
   - name: sporkmonger/addressable
     ci: travis
   # too slow with 60+ jobs each needing one request
@@ -47,6 +49,7 @@ gems:
     ci: travis
   - name: guard/listen
     ci: travis
+    expect: fail
   - name: floehopper/metaclass
     ci: travis
   - name: datawraith/ascii85gem
@@ -75,6 +78,7 @@ gems:
       - development.yml
 
   - name: eregon/nokogiri
+    expect: fail
     branch: truffleruby
     ci: github
     workflows:
