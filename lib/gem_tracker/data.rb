@@ -2,7 +2,7 @@ require 'yaml'
 require 'gem_tracker/gem'
 
 module GemTracker
-  DATA = YAML.load_file(File.join(__dir__, 'packages.yml'))
+  DATA = YAML.load_file(File.expand_path('../../gems.yml', __dir__))
 
   def self.convert_to_gems(gems_data)
     h = {}

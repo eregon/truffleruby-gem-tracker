@@ -29,4 +29,4 @@ You should set these environment variables in the `.env` file:
 
 ## Contributing
 
-The list of gems is maintained in [lib/gem_tracker/packages.yml](lib/gem_tracker/packages.yml).
+The list of gems is maintained in [gems.yml](gems.yml).
