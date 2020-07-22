@@ -148,7 +148,7 @@ module GemTracker
                   statuses << {name: name, status: status, version: j["name"], url: url, time: Time.iso8601(j["started_at"])}
                 end
               end
-              break
+              break unless statuses.empty?
             end
           end
         else
