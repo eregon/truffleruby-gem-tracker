@@ -76,6 +76,14 @@ gems:
     ci: github
     workflows:
       - development.yml
+  - name: ruby-next/ruby-next
+    ci: github
+    workflows:
+      - truffle-test.yml
+  - name: ttasanen/atomic_counter
+    ci: github
+    workflows:
+      - ruby.yml
 
   - name: eregon/nokogiri
     expect: fail
