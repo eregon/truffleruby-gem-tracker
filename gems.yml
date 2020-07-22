@@ -71,7 +71,7 @@ gems:
   - name: rubygems/rubygems
     ci: github
     workflows:
-      - daily.yml
+      - daily-rubygems.yml
   - name: socketry/async-container
     ci: github
     workflows:
