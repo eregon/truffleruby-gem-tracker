@@ -27,6 +27,11 @@ You should set these environment variables in the `.env` file:
 
 * Travis Ruby Library - https://github.com/travis-ci/travis.rb#ruby-library
 
+## GitHub Searches
+
+* [GitHub Actions](https://github.com/search?q=truffleruby-head+language%3AYAML+path%3A.github&type=Code)
+* [.travis.yml](https://github.com/search?q=truffleruby-head+filename%3A.travis.yml+path%3A%2F&type=Code)
+
 ## Contributing
 
 The list of gems is maintained in [gems.yml](gems.yml).

@@ -84,6 +84,11 @@ gems:
     ci: github
     workflows:
       - ruby.yml
+  - name: clowne-rb/clowne
+    ci: travis
+    expect: fail
+  - name: meineerde/rackstash
+    ci: travis
 
   - name: eregon/nokogiri
     expect: fail
