@@ -93,6 +93,9 @@ module GemTracker
           say "? ", nil, false
         end
 
+        if status[:time]
+          say "#{status[:time].strftime('%d-%m-%Y')} ", nil, false
+        end
         if status[:version]
           say "#{status[:version].ljust(LONGEST_JOB_NAME)} ", nil, false
         end

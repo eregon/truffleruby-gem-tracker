@@ -107,8 +107,7 @@ module GemTracker
 
     def get_github_log_location(log_url)
       # https://api.github.com/repos/puma/puma/actions/jobs/550162360/logs
-      # https://developer.github.com/v3/actions/workflow_jobs/#list-workflow-job-logs
-      # :verify_mode => OpenSSL::SSL::VERIFY_NONE
+      # https://docs.github.com/en/rest/reference/actions#download-job-logs-for-a-workflow-run
       uri = URI(log_url)
       Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
         request = Net::HTTP::Get.new uri.request_uri
@@ -146,7 +145,7 @@ module GemTracker
                   else
                     nil
                   end
-                  statuses << {name: name, status: status, version: j["name"], url: url}
+                  statuses << {name: name, status: status, version: j["name"], url: url, time: Time.iso8601(j["started_at"])}
                 end
               end
               break
@@ -252,7 +251,7 @@ module GemTracker
         branch.jobs.each do |j|
           if j.config.include?("rvm") && j.config["rvm"].is_a?(String) && j.config["rvm"].include?('truffleruby')
             url = "https://travis-ci.org/#{name}/jobs/#{j.id}"
-            statuses << {:status => j.color, :version => j.config["rvm"], :url => url}
+            statuses << {status: j.color, version: j.config["rvm"], url: url, time: j.started_at}
           end
         end
       rescue => e
