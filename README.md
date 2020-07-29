@@ -17,13 +17,13 @@ bin/gem_tracker statuses [--parallel]
 ### List latest single gem status
 
 ```bash
-bin/gem_tracker status ruby-concurrency/concurrent-ruby
+bin/gem_tracker status concurrent-ruby
 ```
 
 ### Print latest job log
 
 ```bash
-bin/gem_tracker log ruby-concurrency/concurrent-ruby
+bin/gem_tracker log concurrent-ruby
 ```
 
 ## Tokens
