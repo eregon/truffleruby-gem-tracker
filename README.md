@@ -2,19 +2,29 @@
 
 The TruffleRuby Gem Tracker is designed to track the status of gems CIs testing TruffleRuby.
 
+## Status
+
+See [GitHub Actions runs](https://github.com/eregon/truffleruby-gem-tracker/actions).
+
 ## Usage
 
-* List latest gem statuses
+### List latest gem statuses
 
-`bin/gem_tracker statuses [--parallel]`
+```bash
+bin/gem_tracker statuses [--parallel]
+```
 
-* List latest single gem status
+### List latest single gem status
 
-`bin/gem_tracker status ruby-concurrency/concurrent-ruby`
+```bash
+bin/gem_tracker status ruby-concurrency/concurrent-ruby
+```
 
-* Print latest job log
+### Print latest job log
 
-`bin/gem_tracker log ruby-concurrency/concurrent-ruby`
+```bash
+bin/gem_tracker log ruby-concurrency/concurrent-ruby
+```
 
 ## Tokens
 
