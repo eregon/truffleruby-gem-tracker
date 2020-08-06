@@ -6,7 +6,7 @@ require 'json'
 
 module GemTracker
   class Gem
-    attr_accessor :name, :ci, :workflows, :branch, :expect
+    attr_accessor :name, :ci, :workflows, :branch, :expect, :pattern
 
     def self.from_hash(hash)
       g = Gem.new
@@ -15,6 +15,7 @@ module GemTracker
       g.workflows = hash["workflows"]
       g.branch = hash["branch"] || "master"
       g.expect = (hash["expect"] || :pass).to_sym
+      g.pattern = hash["pattern"] || "truffleruby"
       g
     end
 
@@ -55,7 +56,7 @@ module GemTracker
             if r["head_branch"] == branch
               jobs = get_run_jobs(r["jobs_url"])
               jobs.each do |j|
-                if j["name"].include?("truffleruby")
+                if j["name"].include?(pattern)
                   url = j["html_url"]
                   status = j["conclusion"] == "success"
                   statuses << {name: name, status: status, version: j["name"], url: url, job_url: j["url"] }
@@ -136,7 +137,7 @@ module GemTracker
             runs.each do |r|
               jobs = get_run_jobs(r["jobs_url"])
               jobs.each do |j|
-                if j["name"] =~ /truffle/i
+                if j["name"].include?(pattern)
                   url = j["html_url"]
                   status = if j["status"] == "in_progress"
                     :in_progress
@@ -218,7 +219,7 @@ module GemTracker
         branch = repo.last_on_branch(self.branch)
 
         branch.jobs.each do |j|
-          if j.config.include?("rvm") && j.config["rvm"].is_a?(String) && j.config["rvm"].include?('truffleruby')
+          if j.config.include?("rvm") && j.config["rvm"].is_a?(String) && j.config["rvm"].include?(pattern)
             url = "https://travis-ci.org/#{name}/jobs/#{j.id}"
             puts "LOG: version: #{j.config["rvm"]}, status: #{j.color}, url: #{url}"
             puts j.log.colorized_body
@@ -249,7 +250,7 @@ module GemTracker
         branch = repo.last_on_branch(self.branch)
 
         branch.jobs.each do |j|
-          if j.config.include?("rvm") && j.config["rvm"].is_a?(String) && j.config["rvm"].include?('truffleruby')
+          if j.config.include?("rvm") && j.config["rvm"].is_a?(String) && j.config["rvm"].include?(pattern)
             url = "https://travis-ci.org/#{name}/jobs/#{j.id}"
             statuses << {status: j.color, version: j.config["rvm"], url: url, time: j.started_at}
           end

@@ -80,6 +80,7 @@ gems:
     ci: github
     workflows:
       - truffle-test.yml
+    pattern: truffle
   - name: ttasanen/atomic_counter
     ci: github
     workflows:
@@ -89,6 +90,9 @@ gems:
     expect: fail
   - name: meineerde/rackstash
     ci: travis
+  - name: test-unit/test-unit
+    ci: travis
+    pattern: truffleruby-head # only -head until release passes
 
   - name: eregon/nokogiri
     expect: fail
