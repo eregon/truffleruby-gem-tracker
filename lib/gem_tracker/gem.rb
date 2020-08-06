@@ -137,7 +137,7 @@ module GemTracker
             runs.each do |r|
               jobs = get_run_jobs(r["jobs_url"])
               jobs.each do |j|
-                if j["name"].include?(pattern)
+                if j["name"].include?(pattern) and j["conclusion"] != "cancelled"
                   url = j["html_url"]
                   status = if j["status"] == "in_progress"
                     :in_progress
