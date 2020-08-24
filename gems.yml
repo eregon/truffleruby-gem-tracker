@@ -102,6 +102,8 @@ gems:
       - truffleruby.yml
   - name: fxn/zeitwerk
     ci: traviscom 
+    expect: fail
+    pattern: truffleruby-head # only -head until release passes
 
 #  - name: rspec/rspec-core
 #    ci: travis
