@@ -27,6 +27,8 @@ module GemTracker
       case ci
       when "travis"
         travis_ci_log
+      when "traviscom"
+        travis_ci_log(false)
       when "github"
         github_ci_log
       else
@@ -217,10 +219,11 @@ module GemTracker
                  end
         repo = client.find_one(Travis::Client::Repository, name) # E.g. 'rails/rails'
         branch = repo.last_on_branch(self.branch)
+        base_url = org ? 'https://travis-ci.org' : 'https://travis-ci.com'
 
         branch.jobs.each do |j|
           if j.config.include?("rvm") && j.config["rvm"].is_a?(String) && j.config["rvm"].include?(pattern)
-            url = "https://travis-ci.org/#{name}/jobs/#{j.id}"
+            url = "#{base_url}/#{name}/jobs/#{j.id}"
             puts "LOG: version: #{j.config["rvm"]}, status: #{j.color}, url: #{url}"
             puts j.log.colorized_body
             puts "LOG: version: #{j.config["rvm"]}, status: #{j.color}, url: #{url}"
@@ -248,10 +251,11 @@ module GemTracker
         end
         repo = client.find_one(Travis::Client::Repository, name) # E.g. 'rails/rails'
         branch = repo.last_on_branch(self.branch)
+        base_url = org ? 'https://travis-ci.org' : 'https://travis-ci.com'
 
         branch.jobs.each do |j|
           if j.config.include?("rvm") && j.config["rvm"].is_a?(String) && j.config["rvm"].include?(pattern)
-            url = "https://travis-ci.org/#{name}/jobs/#{j.id}"
+            url = "#{base_url}/#{name}/jobs/#{j.id}"
             statuses << {status: j.color, version: j.config["rvm"], url: url, time: j.started_at}
           end
         end
