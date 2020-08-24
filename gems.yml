@@ -97,6 +97,9 @@ gems:
     ci: traviscom
     expect: fail
     pattern: truffleruby-head # only -head until release passes
+  - name: rubyzip/rubyzip
+    ci: travis
+    expect: fail
 
   # Forks
   - name: eregon/nokogiri
