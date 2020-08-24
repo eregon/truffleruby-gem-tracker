@@ -93,17 +93,18 @@ gems:
   - name: test-unit/test-unit
     ci: travis
     pattern: truffleruby-head # only -head until release passes
+  - name: fxn/zeitwerk
+    ci: traviscom
+    expect: fail
+    pattern: truffleruby-head # only -head until release passes
 
+  # Forks
   - name: eregon/nokogiri
     expect: fail
     branch: truffleruby
     ci: github
     workflows:
       - truffleruby.yml
-  - name: fxn/zeitwerk
-    ci: traviscom 
-    expect: fail
-    pattern: truffleruby-head # only -head until release passes
 
 #  - name: rspec/rspec-core
 #    ci: travis
