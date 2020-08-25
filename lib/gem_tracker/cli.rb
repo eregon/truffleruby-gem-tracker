@@ -13,12 +13,14 @@ module GemTracker
   class CLI < Thor
     desc "statuses", "Gets the statuses of all gems"
     option :parallel, :type => :boolean
+    option :aggregate, :type => :boolean, :default => true
     def statuses()
       say "STATUSES"
       print_statuses_of_gems(GemTracker::GEMS.values)
     end
 
     desc "status NAME", "Gets the status of a gem"
+    option :aggregate, :type => :boolean, :default => true
     def status(name)
       gem = find_gem(name)
       print_statuses_of_gems([gem])
@@ -64,7 +66,7 @@ module GemTracker
     LONGEST_JOB_NAME = 40
 
     def print_statuses(gem, statuses, first_column_size)
-      if statuses.size > 1 and statuses.map { |s| s[:status] }.uniq.size == 1
+      if options[:aggregate] and statuses.size > 1 and statuses.map { |s| s[:status] }.uniq.size == 1
         versions = statuses.map { |s| s[:version] }
         first = versions.first
         prefix = first.size.downto(0).find { |i| versions.all? { |v| v.start_with?(first[0...i]) } }
