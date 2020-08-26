@@ -101,6 +101,10 @@ gems:
   - name: rubyzip/rubyzip
     ci: travis
     expect: fail
+  - name: davishmcclurg/json_schemer
+    ci: github
+    workflows:
+      - ci.yml
 
   # Forks
   - name: eregon/nokogiri
