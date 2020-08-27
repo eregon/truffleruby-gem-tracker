@@ -43,15 +43,7 @@ class GemTracker::GitHubActions < GemTracker::CI
   end
 
   def get_run_jobs(jobs_url)
-    uri = URI(jobs_url)
-    Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
-      request = Net::HTTP::Get.new uri.request_uri
-
-      user, token = get_github_auth("github get_run_jobs")
-      request.basic_auth user, token
-
-      response = http.request request # Net::HTTPResponse object
-
+    request(jobs_url) do |response|
       json = JSON.parse(response.body)
       json.fetch("jobs") { pp json; raise "Couldn't find runs jobs" }
     end
@@ -60,17 +52,7 @@ class GemTracker::GitHubActions < GemTracker::CI
   def get_workflow_runs(workflow)
     # https://api.github.com/repos/rack/rack/actions/workflows/development.yml/runs
     url = "https://api.github.com/repos/#{gem.name}/actions/workflows/#{workflow}/runs"
-    # puts "workflow runs url: #{url}"
-    uri = URI(url)
-    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
-
-      request = Net::HTTP::Get.new uri.request_uri
-
-      user, token = get_github_auth("github get_run_jobs")
-      request.basic_auth user, token
-
-      response = http.request request # Net::HTTPResponse object
-
+    request(url) do |response|
       json = JSON.parse(response.body)
       json.fetch("workflow_runs") { pp json; raise "Couldn't find workflow runs jobs" }
     end
@@ -104,49 +86,44 @@ class GemTracker::GitHubActions < GemTracker::CI
     end
   end
 
-
   def print_github_log(job_url)
     log_url = "#{job_url}/logs"
     log_download_url = get_github_log_location(log_url)
-    uri = URI(log_download_url)
-    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
-      request = Net::HTTP::Get.new uri.request_uri
-
-      user, token = get_github_auth("github logs")
-      request.basic_auth(user, token)
-
-      response = http.request(request) # Net::HTTPResponse object
-
+    request(log_download_url) do |response|
       puts response.body
     end
-
-  end
-
-  def get_github_auth(feature)
-    auth = ENV['GEM_TRACKER_GITHUB_AUTH']
-    unless auth
-      raise "#{feature} requires GEM_TRACKER_GITHUB_AUTH environment variable set to github_user:token, See documentation to create tokens: https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line"
-    end
-    auth.split(':')
   end
 
   def get_github_log_location(log_url)
     # https://api.github.com/repos/puma/puma/actions/jobs/550162360/logs
     # https://docs.github.com/en/rest/reference/actions#download-job-logs-for-a-workflow-run
-    uri = URI(log_url)
-    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
-      request = Net::HTTP::Get.new uri.request_uri
-
-      user, token = get_github_auth("github logs")
-      request.basic_auth(user, token)
-
-      response = http.request(request) # Net::HTTPResponse object
-
+    request(log_url) do |response|
       if response.code != "302"
         raise "Error getting log location: #{response.body}"
       else
         response['Location']
       end
+    end
+  end
+
+  def get_github_auth
+    auth = ENV['GEM_TRACKER_GITHUB_AUTH']
+    unless auth
+      raise "GitHub Actions requires GEM_TRACKER_GITHUB_AUTH environment variable set to github_user:token, See documentation to create tokens: https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line"
+    end
+    auth.split(':')
+  end
+
+  # Yields a Net::HTTPResponse
+  def request(url, &block)
+    uri = URI(url)
+    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+      request = Net::HTTP::Get.new uri.request_uri
+
+      user, token = get_github_auth
+      request.basic_auth(user, token)
+
+      yield http.request(request)
     end
   end
 
