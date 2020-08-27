@@ -3,6 +3,6 @@
 require 'bundler/setup'
 
 $LOAD_PATH << File.expand_path('../lib', __dir__)
-require "gem_tracker/cli"
+require "gem_tracker"
 
 GemTracker::CLI.start

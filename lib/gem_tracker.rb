@@ -1,4 +1,4 @@
-require "gem_tracker/version"
-
 module GemTracker
 end
+
+require_relative "gem_tracker/cli"

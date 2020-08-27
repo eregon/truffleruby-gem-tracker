@@ -1,6 +1,5 @@
 require 'thor'
-require 'gem_tracker/data'
-require 'gem_tracker/gem'
+require_relative 'data'
 
 # Always #say in color
 class Thor::Shell::Color

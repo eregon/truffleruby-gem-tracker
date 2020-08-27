@@ -1,5 +1,6 @@
+require 'dotenv/load'
 require 'yaml'
-require 'gem_tracker/gem'
+require_relative 'gem'
 
 module GemTracker
   DATA = YAML.load_file(File.expand_path('../../gems.yml', __dir__))
