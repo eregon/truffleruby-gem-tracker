@@ -105,6 +105,19 @@ gems:
     ci: github
     workflows:
       - ci.yml
+  - name: ruby-gettext/gettext
+    ci: github
+    workflows:
+      - test.yml
+  - name: ruby-gettext/locale
+    ci: github
+    workflows:
+      - test.yml
+  - name: serradura/u-attributes
+    ci: traviscom
+    branch: main
+  - name: AvnerCohen/http-headers-verifier
+    ci: travis
 
   # Forks
   - name: eregon/nokogiri
