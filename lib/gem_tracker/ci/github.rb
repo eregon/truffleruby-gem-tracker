@@ -10,35 +10,29 @@ class GemTracker::GitHubActions < GemTracker::CI
 
   def latest_ci_statuses
     statuses = []
-    begin
-      gem.workflows.each do |w|
-        runs = get_workflow_runs(w)
-        runs = runs.select { |r| r["head_branch"] == gem.branch }
-        runs.each do |r|
-          jobs = get_run_jobs(r["jobs_url"])
-          jobs.each do |j|
-            if j["name"].include?(gem.pattern) and j["conclusion"] != "cancelled"
-              url = j["html_url"]
-              status = if j["status"] == "in_progress"
-                         :in_progress
-                       elsif j["status"] == "completed"
-                         j["conclusion"] == "success"
-                       else
-                         nil
-                       end
-              statuses << {name: gem.name, status: status, version: j["name"], url: url, time: Time.iso8601(j["started_at"])}
-            end
+    gem.workflows.each do |w|
+      runs = get_workflow_runs(w)
+      runs = runs.select { |r| r["head_branch"] == gem.branch }
+      runs.each do |r|
+        jobs = get_run_jobs(r["jobs_url"])
+        jobs.each do |j|
+          if j["name"].include?(gem.pattern) and j["conclusion"] != "cancelled"
+            url = j["html_url"]
+            result = if j["status"] == "in_progress"
+                       :in_progress
+                     elsif j["status"] == "completed"
+                       j["conclusion"] == "success" ? :success : :failure
+                     else
+                       :unknown
+                     end
+            statuses << GemTracker::Status.new(gem: gem, result: result, job_name: j["name"], url: url, time: Time.iso8601(j["started_at"]), job_url: j["url"])
           end
-          break unless statuses.empty?
         end
+        break unless statuses.empty?
       end
-      if statuses.empty?
-        statuses << {name: gem.name, status: nil, message: "no github run jobs found, workflows: #{gem.workflows.inspect}"}
-      end
-    rescue => e
-      statuses << {status: nil, message: "Statuses Error: #{e.message}"}
-      return statuses
     end
+
+    raise "no github run jobs found, workflows: #{gem.workflows.inspect}" if statuses.empty?
     statuses
   end
 
@@ -59,30 +53,13 @@ class GemTracker::GitHubActions < GemTracker::CI
   end
 
   def latest_ci_log
-    statuses = []
-    gem.workflows.each do |w|
-      runs = get_workflow_runs(w)
-      runs.each do |r|
-        if r["head_branch"] == gem.branch
-          jobs = get_run_jobs(r["jobs_url"])
-          jobs.each do |j|
-            if j["name"].include?(gem.pattern)
-              url = j["html_url"]
-              status = j["conclusion"] == "success"
-              statuses << {name: gem.name, status: status, version: j["name"], url: url, job_url: j["url"] }
-            end
-          end
-          break
-        end
-      end
-    end
-    if statuses.empty?
-      puts "no github run jobs logs found, workflows: #{workflows.inspect}"
-    end
+    statuses = latest_ci_statuses
+    raise "no github run jobs logs found, workflows: #{workflows.inspect}" if statuses.empty?
+
     statuses.each do |s|
-      puts "LOG: version: #{s[:version]}, status: #{s[:status]}, url: #{s[:url]}"
-      print_github_log(s[:job_url])
-      puts "LOG: version: #{s[:version]}, status: #{s[:status]}, url: #{s[:url]}"
+      puts "LOG: job: #{s.job_name}, result: #{s.result}, url: #{s.url}"
+      print_github_log(s.job_url)
+      puts "LOG: job: #{s.job_name}, result: #{s.result}, url: #{s.url}"
     end
   end
 

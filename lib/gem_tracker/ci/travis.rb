@@ -11,23 +11,18 @@ class GemTracker::Travis < GemTracker::CI
 
   def latest_ci_statuses
     statuses = []
-    begin
-      client = new_travis_client
-      repo = client.find_one(Travis::Client::Repository, gem.name)
-      branch = repo.last_on_branch(gem.branch)
+    client = new_travis_client
+    repo = client.find_one(Travis::Client::Repository, gem.name)
+    branch = repo.last_on_branch(gem.branch)
 
-      branch.jobs.each do |j|
-        if matching_config?(j.config)
-          url = "#{base_url}/#{@gem.name}/jobs/#{j.id}"
-          statuses << {status: j.color, version: j.config["rvm"], url: url, time: j.started_at}
-        end
+    branch.jobs.each do |j|
+      if matching_config?(j.config)
+        url = "#{base_url}/#{@gem.name}/jobs/#{j.id}"
+        statuses << GemTracker::Status.new(gem: gem, result: status_to_result(j), job_name: j.config["rvm"], url: url, time: j.started_at)
       end
-    rescue Travis::Client::Error => e
-      statuses << {status: nil, message: "Status Error: #{e.message}"}
     end
-    if statuses.empty?
-      statuses << {name: @gem.name, status: nil, message: "no truffleruby travis jobs found"}
-    end
+
+    raise "no truffleruby travis jobs found" if statuses.empty?
     statuses
   end
 
@@ -41,15 +36,19 @@ class GemTracker::Travis < GemTracker::CI
       branch.jobs.each do |j|
         if matching_config?(j.config)
           url = "#{base_url}/#{@gem.name}/jobs/#{j.id}"
-          puts "LOG: version: #{j.config["rvm"]}, status: #{j.color}, url: #{url}"
+          puts "LOG: job: #{j.config["rvm"]}, result: #{status_to_result(j)}, url: #{url}"
           puts j.log.colorized_body
-          puts "LOG: version: #{j.config["rvm"]}, status: #{j.color}, url: #{url}"
+          puts "LOG: job: #{j.config["rvm"]}, result: #{status_to_result(j)}, url: #{url}"
         end
       end
     rescue Travis::Client::Error => e
       puts "LOG ERROR:"
       puts e.message
     end
+  end
+
+  def status_to_result(job)
+    { green: :success, yellow: :in_progress, red: :failure }.fetch(job.color.to_sym)
   end
 
   def matching_config?(config)

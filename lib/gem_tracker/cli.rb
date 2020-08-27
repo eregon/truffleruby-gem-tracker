@@ -65,24 +65,24 @@ module GemTracker
     LONGEST_JOB_NAME = 40
 
     def print_statuses(gem, statuses, first_column_size)
-      if options[:aggregate] and statuses.size > 1 and statuses.map { |s| s[:status] }.uniq.size == 1
-        versions = statuses.map { |s| s[:version] }
+      if options[:aggregate] and statuses.size > 1 and statuses.map(&:result).uniq.size == 1
+        versions = statuses.map(&:job_name)
         first = versions.first
         prefix = first.size.downto(0).find { |i| versions.all? { |v| v.start_with?(first[0...i]) } }
         suffix = first.size.downto(1).find { |i| versions.all? { |v| v.end_with?(first[-i..-1]) } }
         summary = "#{first[0...prefix]}...#{first[-suffix..-1] if suffix}"
-        statuses = [statuses.first.dup.tap { |s| s[:version] = summary }]
+        statuses = [statuses.first.dup.tap { |s| s.job_name = summary }]
       end
 
       ok = true
       statuses.each do |status|
         say gem.repo_name.ljust(first_column_size + 1), nil, false
-        case status[:status]
-        when true, 'green'
+        case status.result
+        when :success
           say "✓ ", :green, false
-        when :in_progress, 'yellow'
+        when :in_progress
           say "⌛ ", :yellow, false
-        when false, 'red'
+        when :failure
           color = if gem.expect == :fail
                     :blue
                   else
@@ -94,17 +94,14 @@ module GemTracker
           say "? ", nil, false
         end
 
-        if status[:time]
-          say "#{status[:time].strftime('%d-%m-%Y')} ", nil, false
+        if status.time
+          say "#{status.time.strftime('%d-%m-%Y')} ", nil, false
         end
-        if status[:version]
-          say "#{status[:version].ljust(LONGEST_JOB_NAME)} ", nil, false
+        if status.job_name
+          say "#{status.job_name.ljust(LONGEST_JOB_NAME)} ", nil, false
         end
-        if status[:message]
-          say status[:message], nil, false
-        end
-        if status[:url]
-          say status[:url], nil, false
+        if status.url
+          say status.url, nil, false
         end
         say "\n"
       end

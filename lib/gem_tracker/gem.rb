@@ -1,3 +1,4 @@
+require_relative 'status'
 require_relative 'ci/ci'
 
 class GemTracker::Gem
