@@ -80,6 +80,7 @@ module GemTracker
         case status.result
         when :success
           say "✓ ", :green, false
+          warn_passing = true if gem.expect == :fail
         when :in_progress
           say "⌛ ", :yellow, false
         when :failure
@@ -104,6 +105,8 @@ module GemTracker
           say status.url, nil, false
         end
         say "\n"
+
+        say "WARNING: #{gem.name} was marked as failing but passed!" , [:bold, :magenta] if warn_passing
       end
       ok
     end
