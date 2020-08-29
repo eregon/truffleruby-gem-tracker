@@ -96,7 +96,6 @@ gems:
     pattern: truffleruby-head # only -head until release passes
   - name: fxn/zeitwerk
     ci: traviscom
-    expect: fail
     pattern: truffleruby-head # only -head until release passes
   - name: rubyzip/rubyzip
     ci: travis
