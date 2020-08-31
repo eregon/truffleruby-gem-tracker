@@ -117,6 +117,10 @@ gems:
     branch: main
   - name: AvnerCohen/http-headers-verifier
     ci: travis
+  - name: mime-types/ruby-mime-types
+    ci: travis
+  - name: jwt/ruby-jwt
+    ci: travis
 
   # Forks
   - name: eregon/nokogiri
