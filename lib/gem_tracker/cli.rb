@@ -70,7 +70,7 @@ module GemTracker
         first = versions.first
         prefix = first.size.downto(0).find { |i| versions.all? { |v| v.start_with?(first[0...i]) } }
         suffix = first.size.downto(1).find { |i| versions.all? { |v| v.end_with?(first[-i..-1]) } }
-        summary = "#{first[0...prefix]}...#{first[-suffix..-1] if suffix}"
+        summary = "#{first[0...prefix]}...#{first[-suffix..-1] if suffix and suffix != first.size}"
         statuses = [statuses.first.dup.tap { |s| s.job_name = summary }]
       end
 
