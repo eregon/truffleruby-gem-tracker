@@ -121,6 +121,8 @@ gems:
     ci: travis
   - name: jwt/ruby-jwt
     ci: travis
+  - name: ruby-grape/grape
+    ci: travis
 
   # Forks
   - name: eregon/nokogiri
