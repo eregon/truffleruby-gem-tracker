@@ -129,6 +129,7 @@ gems:
     ci: travis
   - name:  jeremyevans/sequel
     ci: travis
+    expect: fail
 
 
   # Forks
