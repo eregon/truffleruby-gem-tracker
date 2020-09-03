@@ -127,6 +127,8 @@ gems:
     ci: travis
   - name:  jeremyevans/roda
     ci: travis
+  - name:  jeremyevans/sequel
+    ci: travis
 
 
   # Forks
