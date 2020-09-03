@@ -125,6 +125,8 @@ gems:
     ci: travis
   - name: cyu/rack-cors
     ci: travis
+  - name:  jeremyevans/roda
+    ci: travis
 
 
   # Forks
