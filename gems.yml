@@ -130,6 +130,8 @@ gems:
   - name:  jeremyevans/sequel
     ci: travis
     expect: fail
+  - name:  febeling/rb-libsvm
+    ci: travis
 
 
   # Forks
