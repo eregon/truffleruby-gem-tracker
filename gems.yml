@@ -132,7 +132,7 @@ gems:
     expect: fail
   - name:  febeling/rb-libsvm
     ci: travis
-  - name:  asciidoctor/asciidoctor
+  - name:  namusyaka/gammo
     ci: travis
 
   # Forks
