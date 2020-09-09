@@ -134,6 +134,8 @@ gems:
     ci: travis
   - name:  namusyaka/gammo
     ci: travis
+  - name:  steveklabnik/request_store
+    ci: travis
 
   # Forks
   - name: eregon/nokogiri
