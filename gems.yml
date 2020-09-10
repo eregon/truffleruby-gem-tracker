@@ -136,6 +136,8 @@ gems:
     ci: travis
   - name:  steveklabnik/request_store
     ci: travis
+  - name:  omniauth/omniauth-oauth2
+    ci: travis
 
   # Forks
   - name: eregon/nokogiri
