@@ -138,6 +138,11 @@ gems:
     ci: travis
   - name:  omniauth/omniauth-oauth2
     ci: travis
+  - name: faker-ruby/faker
+    ci: github
+    workflows:
+      - ruby.yml
+  
 
   # Forks
   - name: eregon/nokogiri
