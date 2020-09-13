@@ -142,6 +142,8 @@ gems:
     ci: github
     workflows:
       - ruby.yml
+  - name: CanCanCommunity/cancancan
+    ci: travis
   
 
   # Forks
