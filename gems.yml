@@ -125,18 +125,18 @@ gems:
     ci: travis
   - name: cyu/rack-cors
     ci: travis
-  - name:  jeremyevans/roda
+  - name: jeremyevans/roda
     ci: travis
-  - name:  jeremyevans/sequel
+  - name: jeremyevans/sequel
     ci: travis
     expect: fail
-  - name:  febeling/rb-libsvm
+  - name: febeling/rb-libsvm
     ci: travis
-  - name:  namusyaka/gammo
+  - name: namusyaka/gammo
     ci: travis
-  - name:  steveklabnik/request_store
+  - name: steveklabnik/request_store
     ci: travis
-  - name:  omniauth/omniauth-oauth2
+  - name: omniauth/omniauth-oauth2
     ci: travis
   - name: faker-ruby/faker
     ci: github
