@@ -142,8 +142,9 @@ gems:
     ci: github
     workflows:
       - ruby.yml
-  - name: CanCanCommunity/cancancan
-    ci: travis
+# cancancan is not recognized, not sure why
+#  - name: CanCanCommunity/cancancan 
+#    ci: travis
   
 
   # Forks
