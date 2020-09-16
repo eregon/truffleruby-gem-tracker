@@ -22,7 +22,7 @@ class GemTracker::Travis < GemTracker::CI
       end
     end
 
-    raise "no truffleruby travis jobs found" if statuses.empty?
+    raise "no truffleruby travis jobs found for #{gem.name}" if statuses.empty?
     statuses
   end
 
