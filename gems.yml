@@ -142,10 +142,10 @@ gems:
     ci: github
     workflows:
       - ruby.yml
-# cancancan is not recognized, not sure why
-#  - name: CanCanCommunity/cancancan 
-#    ci: travis
-  
+  - name: CanCanCommunity/cancancan
+    ci: travis
+    branch: develop
+
 
   # Forks
   - name: eregon/nokogiri
