@@ -145,6 +145,8 @@ gems:
   - name: CanCanCommunity/cancancan
     ci: travis
     branch: develop
+  - name: asciidoctor/asciidoctor
+    ci: travis
 
 
   # Forks
