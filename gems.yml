@@ -149,6 +149,8 @@ gems:
     ci: travis
   - name:  BetterErrors/better_errors
     ci: travis
+  - name:  ms-ati/docile
+    ci: travis
 
 
   # Forks
