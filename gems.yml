@@ -147,6 +147,8 @@ gems:
     branch: develop
   - name: asciidoctor/asciidoctor
     ci: travis
+  - name:  BetterErrors/better_errors
+    ci: travis
 
 
   # Forks
