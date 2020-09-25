@@ -153,6 +153,8 @@ gems:
     ci: travis
   - name:  omniauth/omniauth
     ci: travis
+  - name:  athityakumar/colorls
+    ci: travis
 
 
   # Forks
