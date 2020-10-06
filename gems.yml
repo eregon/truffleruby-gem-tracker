@@ -155,6 +155,8 @@ gems:
     ci: travis
   - name:  athityakumar/colorls
     ci: travis
+  - name: codahale/bcrypt-ruby
+    ci: travis
 
 
   # Forks
