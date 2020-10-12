@@ -157,6 +157,8 @@ gems:
     ci: travis
   - name: codahale/bcrypt-ruby
     ci: travis
+  - name:  ahorek/terser-ruby
+    ci: travis
 
 
   # Forks
