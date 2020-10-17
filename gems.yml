@@ -159,7 +159,8 @@ gems:
     ci: travis
   - name: cgriego/active_attr 
     ci: travis
-
+  - name: moiristo/deep_cloneable
+    ci: travis
 
   # Forks
   - name: eregon/nokogiri
