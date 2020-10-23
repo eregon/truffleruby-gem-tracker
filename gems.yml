@@ -161,6 +161,8 @@ gems:
     ci: travis
   - name: moiristo/deep_cloneable
     ci: travis
+  - name: ambethia/recaptcha
+    ci: travis
 
   # Forks
   - name: eregon/nokogiri
