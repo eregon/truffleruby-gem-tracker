@@ -166,6 +166,10 @@ gems:
     ci: travis
   - name:  cedarcode/webauthn-ruby
     ci: travis
+  - name:  guard/listen
+    ci: github
+    workflows:
+      - development.yml
 
   # Forks
   - name: eregon/nokogiri
