@@ -164,6 +164,8 @@ gems:
     ci: travis
   - name: ambethia/recaptcha
     ci: travis
+  - name:  cedarcode/webauthn-ruby
+    ci: travis
 
   # Forks
   - name: eregon/nokogiri
