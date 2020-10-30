@@ -5,7 +5,11 @@ on:
     - cron: '0 2 * * *'
 jobs:
   run:
-    name: Check CIs
+    strategy:
+      fail-fast: false
+      matrix:
+        type: [release, head]
+    name: Check CIs for TruffleRuby ${{ matrix.type }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -13,7 +17,15 @@ jobs:
       with:
         ruby-version: 2.6
         bundler-cache: true
-    - run: bin/gem_tracker statuses --parallel
+
+    - run: bin/gem_tracker statuses --parallel --ruby=release
       env:
         GEM_TRACKER_TRAVIS_COM_AUTH: ${{ secrets.GEM_TRACKER_TRAVIS_COM_AUTH }}
         GEM_TRACKER_GITHUB_AUTH: ${{ secrets.GEM_TRACKER_GITHUB_AUTH }}
+      if: matrix.type == 'release'
+
+    - run: bin/gem_tracker statuses --parallel --ruby=head --days=30
+      env:
+        GEM_TRACKER_TRAVIS_COM_AUTH: ${{ secrets.GEM_TRACKER_TRAVIS_COM_AUTH }}
+        GEM_TRACKER_GITHUB_AUTH: ${{ secrets.GEM_TRACKER_GITHUB_AUTH }}
+      if: matrix.type == 'head'
