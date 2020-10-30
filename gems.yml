@@ -39,7 +39,6 @@ gems:
     ci: travis
   - name: mikel/mail
     ci: travis
-    expect: fail
   - name: sporkmonger/addressable
     ci: travis
   # too slow with 60+ jobs each needing one request
