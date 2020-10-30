@@ -13,7 +13,7 @@ module GemTracker
     desc "statuses", "Gets the statuses of all gems"
     option :parallel, :type => :boolean
     option :aggregate, :type => :boolean, :default => true
-    option :ruby, :type => :string, :default => 'all'
+    option :ruby, :type => :string, :default => nil
     option :days, :type => :numeric, :default => -1
     def statuses()
       say "STATUSES"
@@ -22,6 +22,8 @@ module GemTracker
 
     desc "status NAME", "Gets the status of a gem"
     option :aggregate, :type => :boolean, :default => true
+    option :ruby, :type => :string, :default => nil
+    option :days, :type => :numeric, :default => -1
     def status(name)
       gem = find_gem(name)
       print_statuses_of_gems([gem])
@@ -79,14 +81,14 @@ module GemTracker
 
       ok = true
       statuses.each do |status|
-        if options[:ruby] != 'both'
+        if options[:ruby]
           release, head = status.job_name.match?(/truffleruby(?!-head)/), status.job_name.include?('truffleruby-head')
           if options[:ruby] == 'head'
             next if release && !head
           elsif options[:ruby] == 'release'
             next if head && !release
           else
-            raise "Invalid ruby option: #{options[:ruby]}"
+            raise "Invalid ruby option: #{options[:ruby].inspect}"
           end
         end
 
