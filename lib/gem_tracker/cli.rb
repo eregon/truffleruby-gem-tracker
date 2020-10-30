@@ -13,6 +13,7 @@ module GemTracker
     desc "statuses", "Gets the statuses of all gems"
     option :parallel, :type => :boolean
     option :aggregate, :type => :boolean, :default => true
+    option :ruby, :type => :string, :default => 'all'
     def statuses()
       say "STATUSES"
       print_statuses_of_gems(GemTracker::GEMS.values)
@@ -56,7 +57,8 @@ module GemTracker
       map(gems, parallel) { |gem|
         [gem, gem.latest_ci_statuses]
       }.each do |gem, statuses|
-        failing << gem.name unless print_statuses(gem, statuses, longest_name_size)
+        success = print_statuses(gem, statuses, longest_name_size)
+        failing << gem.name unless success
       end
 
       abort "Failing CIs: #{failing.join(', ')}" unless failing.empty?
@@ -76,6 +78,17 @@ module GemTracker
 
       ok = true
       statuses.each do |status|
+        if options[:ruby] != 'both'
+          release, head = status.job_name.match?(/truffleruby(?!-head)/), status.job_name.include?('truffleruby-head')
+          if options[:ruby] == 'head'
+            next if release && !head
+          elsif options[:ruby] == 'release'
+            next if head && !release
+          else
+            raise "Invalid ruby option: #{options[:ruby]}"
+          end
+        end
+
         say gem.repo_name.ljust(first_column_size + 1), nil, false
         case status.result
         when :success
