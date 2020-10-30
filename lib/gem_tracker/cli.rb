@@ -14,6 +14,7 @@ module GemTracker
     option :parallel, :type => :boolean
     option :aggregate, :type => :boolean, :default => true
     option :ruby, :type => :string, :default => 'all'
+    option :days, :type => :numeric, :default => -1
     def statuses()
       say "STATUSES"
       print_statuses_of_gems(GemTracker::GEMS.values)
@@ -97,13 +98,14 @@ module GemTracker
         when :in_progress
           say "⌛ ", :yellow, false
         when :failure
-          color = if gem.expect == :fail
-                    :blue
-                  else
-                    ok = false
-                    :red
-                  end
-          say "✗ ", color, false
+          if gem.expect == :fail
+            say "✗ ", :blue, false
+          elsif options[:days] > 0 and status.time and ((Time.now - status.time) / 86400) > options[:days]
+            say "o ", :blue, false
+          else
+            ok = false
+            say "✗ ", :red, false
+          end
         else
           say "? ", nil, false
         end
