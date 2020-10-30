@@ -16,7 +16,7 @@ class GemTracker::Travis < GemTracker::CI
 
     attempts = 0
     repo.each_build do |build|
-      if build.commit.branch == gem.branch
+      if build.push? and build.commit.branch == gem.branch
         attempts += 1
 
         build.jobs.each do |j|
