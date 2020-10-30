@@ -147,6 +147,7 @@ gems:
     branch: develop
   - name: asciidoctor/asciidoctor
     ci: travis
+    search_last_n_builds: 10 # daily
   - name:  BetterErrors/better_errors
     ci: travis
   - name:  ms-ati/docile

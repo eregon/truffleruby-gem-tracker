@@ -13,13 +13,22 @@ class GemTracker::Travis < GemTracker::CI
     statuses = []
     client = new_travis_client
     repo = client.find_one(Travis::Client::Repository, gem.name)
-    branch = repo.last_on_branch(gem.branch)
 
-    branch.jobs.each do |j|
-      if matching_config?(j.config)
-        url = "#{base_url}/#{@gem.name}/jobs/#{j.id}"
-        statuses << GemTracker::Status.new(gem: gem, result: status_to_result(j), job_name: j.config["rvm"], url: url, time: j.started_at)
+    attempts = 0
+    repo.each_build do |build|
+      if build.commit.branch == gem.branch
+        attempts += 1
+
+        build.jobs.each do |j|
+          if matching_config?(j.config)
+            url = "#{base_url}/#{@gem.name}/jobs/#{j.id}"
+            statuses << GemTracker::Status.new(gem: gem, result: status_to_result(j), job_name: j.config["rvm"], url: url, time: j.started_at)
+          end
+        end
       end
+
+      break if attempts >= gem.search_last_n_builds
+      break unless statuses.empty?
     end
 
     raise "no truffleruby travis jobs found for #{gem.name}" if statuses.empty?
@@ -31,9 +40,9 @@ class GemTracker::Travis < GemTracker::CI
     begin
       client = new_travis_client
       repo = client.find_one(Travis::Client::Repository, @gem.name)
-      branch = repo.last_on_branch(gem.branch)
+      build = repo.last_on_branch(gem.branch)
 
-      branch.jobs.each do |j|
+      build.jobs.each do |j|
         if matching_config?(j.config)
           url = "#{base_url}/#{@gem.name}/jobs/#{j.id}"
           puts "LOG: job: #{j.config["rvm"]}, result: #{status_to_result(j)}, url: #{url}"
