@@ -170,6 +170,9 @@ gems:
     ci: github
     workflows:
       - development.yml
+  - name: fog/fog-google
+    ci: travis
+
 
   # Forks
   - name: eregon/nokogiri
