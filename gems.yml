@@ -172,10 +172,11 @@ gems:
       - development.yml
   - name: fog/fog-google
     ci: travis
-  - name: halostatue/minitar
-    ci: github
-    workflows:
-      - ci.yml
+    # not migrated to github yet
+    # - name: halostatue/minitar
+    # ci: github
+    # workflows:
+    #  - ci.yml
 
 
   # Forks
