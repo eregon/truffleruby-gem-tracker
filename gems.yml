@@ -172,6 +172,8 @@ gems:
       - development.yml
   - name: fog/fog-google
     ci: travis
+  - name: nahi/httpclient
+    ci: travis
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
