@@ -58,7 +58,15 @@ module GemTracker
       longest_name_size = gems.max_by { |g| g.repo_name.size }.repo_name.size
       failing = []
       map(gems, parallel) { |gem|
-        [gem, gem.latest_ci_statuses]
+        begin
+          latest_ci_statuses = gem.latest_ci_statuses
+        rescue => e
+          latest_ci_statuses = [
+            GemTracker::Status.new(gem: gem, job_name: "", result: e, url: nil, time: nil, job_url: nil)
+          ]
+        end
+
+        [gem, latest_ci_statuses]
       }.each do |gem, statuses|
         success = print_statuses(gem, statuses, longest_name_size)
         failing << gem.name unless success
@@ -109,7 +117,8 @@ module GemTracker
             say "✗ ", :red, false
           end
         else
-          say "? ", nil, false
+          ok = false
+          say "? #{status.result.inspect}", nil, false
         end
 
         if status.time

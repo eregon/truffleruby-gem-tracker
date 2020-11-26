@@ -5,7 +5,7 @@ class GemTracker::Status
   ALLOWED_RESULTS = [:success, :failure, :in_progress, :unknown]
 
   def initialize(gem:, job_name:, result:, url:, time:, job_url: nil)
-    raise "result must be one of #{ALLOWED_RESULTS}" unless ALLOWED_RESULTS.include?(result)
+    raise "result must be one of #{ALLOWED_RESULTS}" unless ALLOWED_RESULTS.include?(result) or Exception === result
     @gem = gem
     @job_name = job_name
     @result = result
