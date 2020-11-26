@@ -55,7 +55,9 @@ gems:
   - name: datawraith/ascii85gem
     ci: travis
   - name: whitequark/parser
-    ci: travis
+    ci: github
+    workflows:
+      - test.yml
   - name: halostatue/diff-lcs
     ci: github
     workflows:
