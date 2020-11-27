@@ -176,6 +176,8 @@ gems:
     ci: travis
   - name: nahi/httpclient
     ci: travis
+  - name:  joshbuddy/jsonpath
+    ci: travis
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
