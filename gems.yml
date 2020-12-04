@@ -182,6 +182,8 @@ gems:
     ci: travis
   - name: joshbuddy/jsonpath
     ci: travis
+  - name: geemus/shindo
+    ci: travis
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
