@@ -94,7 +94,7 @@ gems:
   - name: meineerde/rackstash
     ci: travis
   - name: test-unit/test-unit
-    ci: travis
+    ci: traviscom
     pattern: truffleruby-head # only -head until release passes
   - name: fxn/zeitwerk
     ci: traviscom
