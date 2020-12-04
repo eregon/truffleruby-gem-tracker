@@ -128,9 +128,13 @@ gems:
   - name: cyu/rack-cors
     ci: travis
   - name: jeremyevans/roda
-    ci: travis
+    ci: github
+    workflows:
+      - ci.yml
   - name: jeremyevans/sequel
-    ci: travis
+    ci: github
+    workflows:
+      - ci.yml
     expect: fail
   - name: febeling/rb-libsvm
     ci: travis
