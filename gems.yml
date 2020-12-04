@@ -154,13 +154,13 @@ gems:
   - name: asciidoctor/asciidoctor
     ci: travis
     search_last_n_builds: 10 # daily
-  - name:  BetterErrors/better_errors
+  - name: BetterErrors/better_errors
     ci: travis
-  - name:  ms-ati/docile
+  - name: ms-ati/docile
     ci: travis
-  - name:  omniauth/omniauth
+  - name: omniauth/omniauth
     ci: travis
-  - name:  athityakumar/colorls
+  - name: athityakumar/colorls
     ci: travis
   - name: codahale/bcrypt-ruby
     ci: travis
@@ -170,9 +170,9 @@ gems:
     ci: travis
   - name: ambethia/recaptcha
     ci: travis
-  - name:  cedarcode/webauthn-ruby
+  - name: cedarcode/webauthn-ruby
     ci: travis
-  - name:  guard/listen
+  - name: guard/listen
     ci: github
     workflows:
       - development.yml
@@ -180,7 +180,7 @@ gems:
     ci: travis
   - name: nahi/httpclient
     ci: travis
-  - name:  joshbuddy/jsonpath
+  - name: joshbuddy/jsonpath
     ci: travis
     # not migrated to github yet
     # - name: halostatue/minitar
