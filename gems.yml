@@ -156,7 +156,9 @@ gems:
     ci: travis
     search_last_n_builds: 10 # daily
   - name: BetterErrors/better_errors
-    ci: travis
+    ci: github
+    workflows:
+      - ci.yml
   - name: ms-ati/docile
     ci: travis
   - name: omniauth/omniauth
