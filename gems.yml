@@ -195,14 +195,7 @@ gems:
     #  - ci.yml
 
 
-  # Forks
-  - name: eregon/nokogiri
-    expect: fail
-    branch: truffleruby
-    ci: github
-    workflows:
-      - truffleruby.yml
-
+    # Not in CI yet
 #  - name: rspec/rspec-core
 #    ci: travis
 #  - name: rspec/rspec-support
