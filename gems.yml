@@ -151,6 +151,7 @@ gems:
   - name: CanCanCommunity/cancancan
     ci: travis
     branch: develop
+    expect: fail # until https://github.com/CanCanCommunity/cancancan/pull/664 is merged
   - name: asciidoctor/asciidoctor
     ci: travis
     search_last_n_builds: 10 # daily
@@ -166,6 +167,7 @@ gems:
     ci: travis
   - name: cgriego/active_attr 
     ci: travis
+    expect: fail # until https://github.com/cgriego/active_attr/pull/178 is merged
   - name: moiristo/deep_cloneable
     ci: travis
   - name: ambethia/recaptcha
