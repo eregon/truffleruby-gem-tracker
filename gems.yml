@@ -188,6 +188,9 @@ gems:
     ci: travis
   - name: geemus/shindo
     ci: travis
+  - name: ruby/irb
+    ci: traviscom
+
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
