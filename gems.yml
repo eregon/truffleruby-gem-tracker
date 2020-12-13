@@ -190,7 +190,8 @@ gems:
     ci: travis
   - name: ruby/irb
     ci: traviscom
-
+  - name: brianmario/charlock_holmes
+    ci: travis
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
