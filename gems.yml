@@ -192,6 +192,10 @@ gems:
     ci: traviscom
   - name: brianmario/charlock_holmes
     ci: travis
+  - name: ruby-git/ruby-git
+    ci: github
+    workflows:
+      - continuous_integration.yml
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
