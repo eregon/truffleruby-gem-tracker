@@ -169,8 +169,10 @@ gems:
   - name: codahale/bcrypt-ruby
     ci: travis
   - name: cgriego/active_attr 
-    ci: travis
-    expect: fail # until https://github.com/cgriego/active_attr/pull/178 is merged
+    ci: github
+    workflows:
+      - test.yaml
+    expect: fail # until https://github.com/cgriego/active_attr/pull/181 is merged
   - name: moiristo/deep_cloneable
     ci: travis
   - name: ambethia/recaptcha
