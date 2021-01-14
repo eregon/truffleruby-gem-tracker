@@ -199,6 +199,8 @@ gems:
     ci: github
     workflows:
       - continuous_integration.yml
+  - name: leejarvis/slop
+    ci: travis
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
