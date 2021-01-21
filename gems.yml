@@ -203,7 +203,7 @@ gems:
     ci: travis
   - name:  k0kubun/hamlit
     ci: github
-    workflow:
+    workflows:
       - test.yml
     # not migrated to github yet
     # - name: halostatue/minitar
