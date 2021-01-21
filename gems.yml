@@ -201,6 +201,10 @@ gems:
       - continuous_integration.yml
   - name: leejarvis/slop
     ci: travis
+  - name:  k0kubun/hamlit
+    ci: github
+    workflow:
+      - test.yml
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
