@@ -207,6 +207,10 @@ gems:
     ci: github
     workflows:
       - test.yml
+  - name:  ahorek/terser-ruby
+    ci: github
+    workflows:
+      - ruby.yml
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
