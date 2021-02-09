@@ -211,11 +211,14 @@ gems:
     ci: github
     workflows:
       - ruby.yml
-      
   - name:  ruby-ldap/ruby-net-ldap
     ci: github
     workflows:
       - test.yml
+  - name: rgrove/sanitize
+    ci: github
+    workflows:
+      - tests.yml
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
