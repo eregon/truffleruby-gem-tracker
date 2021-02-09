@@ -222,6 +222,10 @@ gems:
     branch: main
     workflows:
       - tests.yml
+  - name:  RubyCrypto/ed25519
+    ci: github
+    workflows:
+      - ci.yml
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
