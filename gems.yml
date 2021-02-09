@@ -226,6 +226,10 @@ gems:
     ci: github
     workflows:
       - ci.yml
+  - name:  jeremyevans/erubi
+    ci: github
+    workflows:
+      - ci.yml
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
