@@ -195,6 +195,10 @@ gems:
     ci: github
     workflows:
       - test.yml
+  - name: ruby/ruby2_keywords
+    ci: github
+    workflows:
+      - test.yml
   - name: brianmario/charlock_holmes
     ci: travis
   - name: ruby-git/ruby-git
