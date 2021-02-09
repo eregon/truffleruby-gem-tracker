@@ -135,7 +135,6 @@ gems:
     ci: github
     workflows:
       - ci.yml
-    expect: fail
   - name: febeling/rb-libsvm
     ci: travis
   - name: namusyaka/gammo
