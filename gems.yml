@@ -217,6 +217,7 @@ gems:
       - test.yml
   - name: rgrove/sanitize
     ci: github
+    branch: main
     workflows:
       - tests.yml
     # not migrated to github yet
