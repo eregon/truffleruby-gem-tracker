@@ -230,6 +230,10 @@ gems:
     ci: github
     workflows:
       - ci.yml
+  - name: brandonhilkert/sucker_punch
+    ci: github
+    workflows:
+      - build.yml
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
