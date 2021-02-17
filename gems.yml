@@ -205,15 +205,15 @@ gems:
       - continuous_integration.yml
   - name: leejarvis/slop
     ci: travis
-  - name:  k0kubun/hamlit
+  - name: k0kubun/hamlit
     ci: github
     workflows:
       - test.yml
-  - name:  ahorek/terser-ruby
+  - name: ahorek/terser-ruby
     ci: github
     workflows:
       - ruby.yml
-  - name:  ruby-ldap/ruby-net-ldap
+  - name: ruby-ldap/ruby-net-ldap
     ci: github
     workflows:
       - test.yml
@@ -222,11 +222,11 @@ gems:
     branch: main
     workflows:
       - tests.yml
-  - name:  RubyCrypto/ed25519
+  - name: RubyCrypto/ed25519
     ci: github
     workflows:
       - ci.yml
-  - name:  jeremyevans/erubi
+  - name: jeremyevans/erubi
     ci: github
     workflows:
       - ci.yml
