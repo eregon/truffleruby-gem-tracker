@@ -189,6 +189,10 @@ gems:
     ci: travis
   - name: geemus/shindo
     ci: travis
+  - name: ruby/io-console
+    ci: github
+    workflows:
+      - truffleruby.yml
   - name: ruby/irb
     ci: github
     workflows:
