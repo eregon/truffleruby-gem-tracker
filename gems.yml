@@ -241,7 +241,7 @@ gems:
   - name: rmosolgo/graphql-ruby
     ci: github
     workflows:
-      - ci.yml
+      - ci.yaml
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
