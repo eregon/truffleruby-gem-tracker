@@ -124,7 +124,9 @@ gems:
   - name: jwt/ruby-jwt
     ci: travis
   - name: ruby-grape/grape
-    ci: travis
+    ci: github
+    workflows:
+      - test.yml
   - name: cyu/rack-cors
     ci: travis
   - name: jeremyevans/roda
