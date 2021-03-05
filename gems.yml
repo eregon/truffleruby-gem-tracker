@@ -152,6 +152,7 @@ gems:
     workflows:
       - test.yml
     branch: develop
+    expect: fail # https://github.com/CanCanCommunity/cancancan/pull/682
   - name: asciidoctor/asciidoctor
     ci: travis
     search_last_n_builds: 10 # daily
