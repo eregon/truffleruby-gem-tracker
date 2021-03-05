@@ -114,9 +114,9 @@ gems:
     ci: github
     workflows:
       - test.yml
-  - name: serradura/u-attributes
-    ci: traviscom
-    branch: main
+  # - name: serradura/u-attributes
+  #   ci: traviscom
+  #   branch: main
   - name: AvnerCohen/http-headers-verifier
     ci: travis
   - name: mime-types/ruby-mime-types
