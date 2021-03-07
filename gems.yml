@@ -21,7 +21,7 @@ gems:
   - name: puma/puma
     ci: github
     workflows:
-      - puma.yml
+      - non_mri.yml
   - name: ruby-concurrency/concurrent-ruby
     ci: travis
     expect: fail
