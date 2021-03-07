@@ -14,8 +14,10 @@ class GemTracker::GitHubActions < GemTracker::CI
       runs = get_workflow_runs(w)
       runs = runs.select { |r| r["head_branch"] == gem.branch }
       runs.each do |r|
+        # p r['created_at']
         jobs = get_run_jobs(r["jobs_url"])
         jobs.each do |j|
+          # p j["name"]
           if j["name"].include?(gem.pattern) and j["conclusion"] != "cancelled"
             url = j["html_url"]
             result = if j["status"] == "in_progress"
@@ -36,10 +38,16 @@ class GemTracker::GitHubActions < GemTracker::CI
     statuses
   end
 
+  # https://docs.github.com/en/rest/reference/actions#list-jobs-for-a-workflow-run
   def get_run_jobs(jobs_url)
+    jobs_url = "#{jobs_url}?per_page=100"
     request(jobs_url) do |response|
       json = JSON.parse(response.body)
-      json.fetch("jobs") { pp json; raise "Couldn't find runs jobs" }
+      jobs = json.fetch("jobs") { pp json; raise "Couldn't find runs jobs" }
+      if jobs.size != json['total_count']
+        raise "request did not return all jobs: #{jobs.size} of #{json['total_count']}"
+      end
+      jobs
     end
   end
 
@@ -93,6 +101,7 @@ class GemTracker::GitHubActions < GemTracker::CI
 
   # Yields a Net::HTTPResponse
   def request(url, &block)
+    # puts url
     uri = URI(url)
     Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
       request = Net::HTTP::Get.new uri.request_uri
