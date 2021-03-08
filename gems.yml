@@ -246,6 +246,12 @@ gems:
     ci: github
     workflows:
       - ci.yaml
+  - name: bjfish/rails
+    ci: github
+    workflows:
+      - test.yml
+    expect: fail
+    branch: main
     # not migrated to github yet
     # - name: halostatue/minitar
     # ci: github
