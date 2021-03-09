@@ -7,21 +7,16 @@ gems:
     ci: travis
   - name: ruby/rake
     ci: github
-    workflows:
-      - test.yml
-      - macos.yml
+    workflows: [test.yml, macos.yml]
   - name: ruby/ostruct
     ci: github
-    workflows:
-      - test.yml
+    workflows: [test.yml]
   - name: rack/rack
     ci: github
-    workflows:
-      - development.yml
+    workflows: [development.yml]
   - name: puma/puma
     ci: github
-    workflows:
-      - non_mri.yml
+    workflows: [non_mri.yml]
   - name: ruby-concurrency/concurrent-ruby
     ci: travis
     expect: fail
@@ -29,12 +24,10 @@ gems:
     ci: traviscom
   - name: socketry/nio4r
     ci: github
-    workflows:
-      - workflow.yml
+    workflows: [workflow.yml]
   - name: ffi/ffi
     ci: github
-    workflows:
-      - ci.yml
+    workflows: [ci.yml]
   - name: Shopify/bootsnap
     ci: travis
   - name: mikel/mail
@@ -56,38 +49,29 @@ gems:
     ci: travis
   - name: whitequark/parser
     ci: github
-    workflows:
-      - test.yml
+    workflows: [test.yml]
   - name: halostatue/diff-lcs
     ci: github
-    workflows:
-      - ci.yml
+    workflows: [ci.yml]
   - name: rom-rb/rom
     ci: github
-    workflows:
-      - ci.yml
+    workflows: [ci.yml]
   - name: ruby/mspec
     ci: github
-    workflows:
-      - ci.yml
+    workflows: [ci.yml]
   - name: rubygems/rubygems
     ci: github
-    workflows:
-      - daily-rubygems.yml
-      - ubuntu-rubygems.yml
+    workflows: [daily-rubygems.yml, ubuntu-rubygems.yml]
   - name: socketry/async-container
     ci: github
-    workflows:
-      - development.yml
+    workflows: [development.yml]
   - name: ruby-next/ruby-next
     ci: github
-    workflows:
-      - truffle-test.yml
+    workflows: [truffle-test.yml]
     pattern: truffle
   - name: ttasanen/atomic_counter
     ci: github
-    workflows:
-      - ruby.yml
+    workflows: [ruby.yml]
   - name: clowne-rb/clowne
     ci: travis
     expect: fail
@@ -104,16 +88,13 @@ gems:
     expect: fail
   - name: davishmcclurg/json_schemer
     ci: github
-    workflows:
-      - ci.yml
+    workflows: [ci.yml]
   - name: ruby-gettext/gettext
     ci: github
-    workflows:
-      - test.yml
+    workflows: [test.yml]
   - name: ruby-gettext/locale
     ci: github
-    workflows:
-      - test.yml
+    workflows: [test.yml]
   # - name: serradura/u-attributes
   #   ci: traviscom
   #   branch: main
@@ -125,18 +106,15 @@ gems:
     ci: travis
   - name: ruby-grape/grape
     ci: github
-    workflows:
-      - test.yml
+    workflows: [test.yml]
   - name: cyu/rack-cors
     ci: travis
   - name: jeremyevans/roda
     ci: github
-    workflows:
-      - ci.yml
+    workflows: [ci.yml]
   - name: jeremyevans/sequel
     ci: github
-    workflows:
-      - ci.yml
+    workflows: [ci.yml]
     expect: fail # see https://github.com/oracle/truffleruby/issues/2230
   - name: febeling/rb-libsvm
     ci: travis
@@ -148,12 +126,10 @@ gems:
     ci: travis
   - name: faker-ruby/faker
     ci: github
-    workflows:
-      - ruby.yml
+    workflows: [ruby.yml]
   - name: CanCanCommunity/cancancan
     ci: github
-    workflows:
-      - test.yml
+    workflows: [test.yml]
     branch: develop
     expect: fail # https://github.com/CanCanCommunity/cancancan/pull/682
   - name: asciidoctor/asciidoctor
@@ -173,8 +149,7 @@ gems:
     ci: travis
   - name: cgriego/active_attr 
     ci: github
-    workflows:
-      - test.yaml
+    workflows: [test.yaml]
   - name: moiristo/deep_cloneable
     ci: travis
   - name: ambethia/recaptcha
@@ -183,8 +158,7 @@ gems:
     ci: travis
   - name: guard/listen
     ci: github
-    workflows:
-      - development.yml
+    workflows: [development.yml]
   - name: fog/fog-google
     ci: travis
   - name: nahi/httpclient
@@ -195,67 +169,53 @@ gems:
     ci: travis
   - name: ruby/io-console
     ci: github
-    workflows:
-      - truffleruby.yml
+    workflows: [truffleruby.yml]
   - name: ruby/irb
     ci: github
-    workflows:
-      - test.yml
+    workflows: [test.yml]
   - name: ruby/ruby2_keywords
     ci: github
-    workflows:
-      - test.yml
+    workflows: [test.yml]
   - name: brianmario/charlock_holmes
     ci: travis
   - name: ruby-git/ruby-git
     ci: github
-    workflows:
-      - continuous_integration.yml
+    workflows: [continuous_integration.yml]
   - name: leejarvis/slop
     ci: travis
   - name: k0kubun/hamlit
     ci: github
-    workflows:
-      - test.yml
+    workflows: [test.yml]
   - name: ahorek/terser-ruby
     ci: github
-    workflows:
-      - ruby.yml
+    workflows: [ruby.yml]
   - name: ruby-ldap/ruby-net-ldap
     ci: github
-    workflows:
-      - test.yml
+    workflows: [test.yml]
   - name: rgrove/sanitize
     ci: github
     branch: main
-    workflows:
-      - tests.yml
+    workflows: [tests.yml]
   - name: RubyCrypto/ed25519
     ci: github
-    workflows:
-      - ci.yml
+    workflows: [ci.yml]
   - name: jeremyevans/erubi
     ci: github
-    workflows:
-      - ci.yml
+    workflows: [ci.yml]
   - name: brandonhilkert/sucker_punch
     ci: github
-    workflows:
-      - build.yml
+    workflows: [build.yml]
   - name: rmosolgo/graphql-ruby
     ci: github
-    workflows:
-      - ci.yaml
+    workflows: [ci.yaml]
   - name: rubocop/rubocop-ast
     ci: github
-    workflows:
-      - rubocop.yml
+    workflows: [rubocop.yml]
 
   # Forks
   - name: bjfish/rails
     ci: github
-    workflows:
-      - test.yml
+    workflows: [test.yml]
     expect: fail
     branch: main
 
