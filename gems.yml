@@ -1,5 +1,6 @@
 ---
 gems:
+  # Source repos
   - name: flori/json
     ci: travis
   - name: ged/ruby-pg
@@ -159,10 +160,10 @@ gems:
   - name: asciidoctor/asciidoctor
     ci: travis
     search_last_n_builds: 10 # daily
-#  - name: BetterErrors/better_errors
-#    ci: github
-#    workflows:
-#      - ci.yml
+  # - name: BetterErrors/better_errors
+  #   ci: github
+  #   workflows:
+  #     - ci.yml
   - name: ms-ati/docile
     ci: travis
   - name: omniauth/omniauth
@@ -246,24 +247,27 @@ gems:
     ci: github
     workflows:
       - ci.yaml
+  - name: rubocop/rubocop-ast
+    ci: github
+    workflows:
+      - rubocop.yml
+
+  # Forks
   - name: bjfish/rails
     ci: github
     workflows:
       - test.yml
     expect: fail
     branch: main
-  - name: rubocop/rubocop-ast
-    ci: github
-    workflows:
-      - rubocop.yml
-    # not migrated to github yet
-    # - name: halostatue/minitar
-    # ci: github
-    # workflows:
-    #  - ci.yml
 
-    # Not in CI yet
-#  - name: rspec/rspec-core
-#    ci: travis
-#  - name: rspec/rspec-support
-#    ci: travis
+  # Not migrated to github yet
+  # - name: halostatue/minitar
+  # ci: github
+  # workflows:
+  #  - ci.yml
+
+  # Not in CI yet
+  # - name: rspec/rspec-core
+  #   ci: travis
+  # - name: rspec/rspec-support
+  #   ci: travis
