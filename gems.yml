@@ -211,6 +211,8 @@ gems:
   - name: rubocop/rubocop-ast
     ci: github
     workflows: [rubocop.yml]
+  - name: tpitale/mail_room
+    ci: travis
 
   # Forks
   - name: bjfish/rails
