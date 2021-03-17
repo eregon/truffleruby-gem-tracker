@@ -213,6 +213,9 @@ gems:
     workflows: [rubocop.yml]
   - name: tpitale/mail_room
     ci: travis
+  - name: savonrb/savon
+    ci: github
+    workflows: [ci.yml]
 
   # Forks
   - name: bjfish/rails
