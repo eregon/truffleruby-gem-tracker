@@ -25,6 +25,9 @@ gems:
   - name: socketry/nio4r
     ci: github
     workflows: [workflow.yml]
+  - name: socketry/console
+    ci: github
+    workflows: [development.yml]
   - name: ffi/ffi
     ci: github
     workflows: [ci.yml]
