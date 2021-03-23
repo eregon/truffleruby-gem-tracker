@@ -214,8 +214,6 @@ gems:
   - name: rubocop/rubocop-ast
     ci: github
     workflows: [rubocop.yml]
-  - name: tpitale/mail_room
-    ci: travis
   - name: savonrb/savon
     ci: github
     workflows: [ci.yml]
@@ -226,6 +224,11 @@ gems:
     workflows: [test.yml]
     expect: fail
     branch: main
+
+  # Does not have master branch builds 
+  # https://github.com/tpitale/mail_room/issues/124
+  # - name: tpitale/mail_room
+  #   ci: travis
 
   # Not migrated to github yet
   # - name: halostatue/minitar
