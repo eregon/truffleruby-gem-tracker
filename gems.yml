@@ -220,6 +220,8 @@ gems:
   - name: typhoeus/ethon
     ci: github
     workflows: [ruby.yml]
+  - name: typhoeus/typhoeus
+    ci: travis
 
   # Forks
   - name: bjfish/rails
