@@ -217,6 +217,9 @@ gems:
   - name: savonrb/savon
     ci: github
     workflows: [ci.yml]
+  - name: typhoeus/ethon
+    ci: github
+    workflows: [ruby.yml]
 
   # Forks
   - name: bjfish/rails
