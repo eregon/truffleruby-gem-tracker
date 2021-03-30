@@ -78,6 +78,21 @@ module GemTracker
     LONGEST_JOB_NAME = 40
 
     def print_statuses(gem, statuses, first_column_size)
+      statuses = statuses.select do |status|
+        if options[:ruby]
+          release, head = status.job_name.match?(/truffleruby(?!-head)/), status.job_name.include?('truffleruby-head')
+          if options[:ruby] == 'head'
+            !release || head
+          elsif options[:ruby] == 'release'
+            !head || release
+          else
+            raise "Invalid ruby option: #{options[:ruby].inspect}"
+          end
+        else
+          true
+        end
+      end
+
       if options[:aggregate] and statuses.size > 1 and statuses.map(&:result).uniq.size == 1
         versions = statuses.map(&:job_name)
         first = versions.first
@@ -89,17 +104,6 @@ module GemTracker
 
       ok = true
       statuses.each do |status|
-        if options[:ruby]
-          release, head = status.job_name.match?(/truffleruby(?!-head)/), status.job_name.include?('truffleruby-head')
-          if options[:ruby] == 'head'
-            next if release && !head
-          elsif options[:ruby] == 'release'
-            next if head && !release
-          else
-            raise "Invalid ruby option: #{options[:ruby].inspect}"
-          end
-        end
-
         say gem.repo_name.ljust(first_column_size + 1), nil, false
         case status.result
         when :success
