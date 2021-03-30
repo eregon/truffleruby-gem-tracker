@@ -4,7 +4,8 @@ gems:
   - name: flori/json
     ci: travis
   - name: ged/ruby-pg
-    ci: travis
+    ci: github
+    workflows: [source-gem.yml]
   - name: ruby/rake
     ci: github
     workflows: [test.yml, macos.yml]
