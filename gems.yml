@@ -223,6 +223,9 @@ gems:
     workflows: [ruby.yml]
   - name: typhoeus/typhoeus
     ci: travis
+  - name: discourse/mini_mime
+    ci: github
+    workflows: [ci.yml]
 
   # Forks
   - name: bjfish/rails
