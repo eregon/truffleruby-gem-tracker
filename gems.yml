@@ -226,6 +226,8 @@ gems:
   - name: discourse/mini_mime
     ci: github
     workflows: [ci.yml]
+  - name: tpitale/mail_room
+    ci: travis
   # See https://github.com/kwilczynski/ruby-magic/issues/15
   # - name: kwilczynski/ruby-magic
   #   ci: travis
@@ -236,11 +238,6 @@ gems:
     workflows: [test.yml]
     expect: fail
     branch: main
-
-  # Does not have master branch builds 
-  # https://github.com/tpitale/mail_room/issues/124
-  # - name: tpitale/mail_room
-  #   ci: travis
 
   # Not migrated to github yet
   # - name: halostatue/minitar
