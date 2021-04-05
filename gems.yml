@@ -226,6 +226,8 @@ gems:
   - name: discourse/mini_mime
     ci: github
     workflows: [ci.yml]
+  - name: kwilczynski/ruby-magic
+    ci: travis
 
   # Forks
   - name: bjfish/rails
