@@ -231,6 +231,8 @@ gems:
   - name: stripe/stripe-ruby
     ci: github
     workflows: [ci.yml]
+  - name: kamui/retriable 
+    ci: travis
   # See https://github.com/kwilczynski/ruby-magic/issues/15
   # - name: kwilczynski/ruby-magic
   #   ci: travis
