@@ -234,6 +234,9 @@ gems:
   - name: zzak/sdoc
     ci: github
     workflows: [test.yml]
+  - name: gazay/gon
+    ci: travis
+    
   # See https://github.com/kwilczynski/ruby-magic/issues/15
   # - name: kwilczynski/ruby-magic
   #   ci: travis
