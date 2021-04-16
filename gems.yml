@@ -236,6 +236,9 @@ gems:
     workflows: [test.yml]
   - name: gazay/gon
     ci: travis
+  - name: sparklemotion/mechanize
+    ci: github
+    workflows: [ci-test.yml]
     
   # See https://github.com/kwilczynski/ruby-magic/issues/15
   # - name: kwilczynski/ruby-magic
