@@ -149,12 +149,12 @@ gems:
     ci: travis
   - name: athityakumar/colorls
     ci: travis
-    expect: fail
+    expect: fail # needs to be re-run
   - name: codahale/bcrypt-ruby
     ci: travis
   - name: cgriego/active_attr 
     ci: github
-    expect: fail
+    expect: fail # needs to be re-run
     workflows: [test.yaml]
   - name: moiristo/deep_cloneable
     ci: travis
