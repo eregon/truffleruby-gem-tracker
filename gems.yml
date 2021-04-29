@@ -148,7 +148,6 @@ gems:
     ci: travis
   - name: athityakumar/colorls
     ci: travis
-    expect: fail # needs to be re-run
   - name: codahale/bcrypt-ruby
     ci: travis
   - name: cgriego/active_attr 
