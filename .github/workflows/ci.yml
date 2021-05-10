@@ -18,7 +18,7 @@ jobs:
         ruby-version: 2.6
         bundler-cache: true
 
-    - run: bin/gem_tracker statuses --parallel --ruby=release
+    - run: bin/gem_tracker statuses --parallel --ruby=release --days=60
       env:
         GEM_TRACKER_TRAVIS_COM_AUTH: ${{ secrets.GEM_TRACKER_TRAVIS_COM_AUTH }}
         GEM_TRACKER_GITHUB_AUTH: ${{ secrets.GEM_TRACKER_GITHUB_AUTH }}
