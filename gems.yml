@@ -240,6 +240,9 @@ gems:
     ci: github
     branch: main
     workflows: [ci-test.yml]
+  - name: thoughtbot/factory_bot
+    ci: github
+    workflows: [build.yml]
     
   # See https://github.com/kwilczynski/ruby-magic/issues/15
   # - name: kwilczynski/ruby-magic
