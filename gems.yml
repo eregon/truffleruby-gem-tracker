@@ -147,8 +147,9 @@ gems:
     ci: travis
   - name: athityakumar/colorls
     ci: travis
-  - name: codahale/bcrypt-ruby
-    ci: travis
+  - name: bcrypt-ruby/bcrypt-ruby
+    ci: github
+    workflows: [ruby.yml]
   - name: cgriego/active_attr 
     ci: github
     expect: fail # needs to be re-run
