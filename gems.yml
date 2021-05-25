@@ -87,8 +87,8 @@ gems:
     ci: traviscom
     pattern: truffleruby-head # only -head until release passes
   - name: rubyzip/rubyzip
-    ci: travis
-    expect: fail
+    ci: github
+    workflows: [tests.yml]
   - name: davishmcclurg/json_schemer
     ci: github
     workflows: [ci.yml]
