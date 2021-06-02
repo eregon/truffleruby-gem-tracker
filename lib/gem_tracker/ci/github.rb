@@ -18,7 +18,7 @@ class GemTracker::GitHubActions < GemTracker::CI
         jobs = get_run_jobs(r["jobs_url"])
         jobs.each do |j|
           # p j["name"]
-          if j["name"].include?(gem.pattern) and j["conclusion"] != "cancelled"
+          if j["name"].downcase.include?(gem.pattern) and j["conclusion"] != "cancelled"
             url = j["html_url"]
             result = if j["status"] == "in_progress"
                        :in_progress

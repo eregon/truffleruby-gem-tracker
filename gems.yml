@@ -81,8 +81,8 @@ gems:
   - name: meineerde/rackstash
     ci: travis
   - name: test-unit/test-unit
-    ci: traviscom
-    pattern: truffleruby-head # only -head until release passes
+    ci: github
+    workflows: [test.yml]
   - name: fxn/zeitwerk
     ci: traviscom
     pattern: truffleruby-head # only -head until release passes
