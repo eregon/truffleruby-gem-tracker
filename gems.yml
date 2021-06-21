@@ -57,9 +57,6 @@ gems:
   - name: halostatue/diff-lcs
     ci: github
     workflows: [ci.yml]
-  - name: rom-rb/rom
-    ci: github
-    workflows: [ci.yml]
   - name: ruby/mspec
     ci: github
     workflows: [ci.yml]
@@ -266,3 +263,9 @@ gems:
   #   ci: travis
   # - name: rspec/rspec-support
   #   ci: travis
+
+  # Disabled for slowness at https://github.com/rom-rb/rom/commit/4072824a7250b0599b7dee1d5b7d35d36ed604bd
+  # Might be enabled in a separate workflow
+  # - name: rom-rb/rom
+  #   ci: github
+  #   workflows: [ci.yml]
