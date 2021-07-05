@@ -38,7 +38,9 @@ gems:
     ci: travis
     expect: fail
   - name: sporkmonger/addressable
-    ci: travis
+    ci: github
+    workflows: [test.yml]
+    branch: main
   # too slow with 60+ jobs each needing one request
   # - name: freerange/mocha
   #   ci: travis
