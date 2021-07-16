@@ -19,8 +19,8 @@ gems:
     ci: github
     workflows: [non_mri.yml]
   - name: ruby-concurrency/concurrent-ruby
-    ci: travis
-    expect: fail
+    ci: github
+    workflows: [ci.yml]
   - name: socketry/async-io
     ci: traviscom
   - name: socketry/nio4r
