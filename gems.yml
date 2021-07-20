@@ -151,7 +151,6 @@ gems:
     workflows: [ruby.yml]
   - name: cgriego/active_attr 
     ci: github
-    expect: fail # needs to be re-run
     workflows: [test.yaml]
   - name: moiristo/deep_cloneable
     ci: travis
