@@ -23,7 +23,17 @@ class GemTracker::GitHubActions < GemTracker::CI
             result = if j["status"] == "in_progress"
                        :in_progress
                      elsif j["status"] == "completed"
-                       j["conclusion"] == "success" ? :success : :failure
+                       if j["conclusion"] == "success"
+                        # need to verify runs since continue-on-error status is success for errors
+                        annotations = get_annotations(j["check_run_url"])
+                        if annotations.any? { |a| a['annotation_level'] == 'failure' }
+                          :failure
+                        else
+                          :success
+                        end
+                       else
+                        :failure
+                       end
                      else
                        :unknown
                      end
@@ -36,6 +46,13 @@ class GemTracker::GitHubActions < GemTracker::CI
 
     raise "no github run jobs found, workflows: #{gem.workflows.inspect}" if statuses.empty?
     statuses
+  end
+
+  def get_annotations(check_run_url)
+    annotations_url = "#{check_run_url}/annotations"
+    request(annotations_url) do |response|
+      JSON.parse(response.body)
+    end  
   end
 
   # https://docs.github.com/en/rest/reference/actions#list-jobs-for-a-workflow-run
