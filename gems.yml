@@ -241,6 +241,8 @@ gems:
   - name: thoughtbot/factory_bot
     ci: github
     workflows: [build.yml]
+  - name: kubo/ruby-oci8
+    ci: traviscom
     
   # See https://github.com/kwilczynski/ruby-magic/issues/15
   # - name: kwilczynski/ruby-magic
