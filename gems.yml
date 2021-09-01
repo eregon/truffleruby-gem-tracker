@@ -243,6 +243,9 @@ gems:
     workflows: [build.yml]
   - name: kubo/ruby-oci8
     ci: traviscom
+  - name: floraison/fugit
+    ci: github
+    workflows: [test.yaml]
     
   # See https://github.com/kwilczynski/ruby-magic/issues/15
   # - name: kwilczynski/ruby-magic
