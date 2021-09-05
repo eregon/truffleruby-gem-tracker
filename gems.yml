@@ -246,6 +246,9 @@ gems:
   - name: floraison/fugit
     ci: github
     workflows: [test.yaml]
+  - name: aasm/aasm
+    ci: github
+    workflows: [build.yml]
     
   # See https://github.com/kwilczynski/ruby-magic/issues/15
   # - name: kwilczynski/ruby-magic
