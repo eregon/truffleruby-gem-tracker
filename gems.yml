@@ -249,6 +249,10 @@ gems:
   - name: aasm/aasm
     ci: github
     workflows: [build.yml]
+  - name: KineticCafe/marlowe
+    ci: github
+    workflows: [ruby.yml]
+    pattern: truffleruby-head # https://github.com/oracle/truffleruby/issues/2441
     
   # See https://github.com/kwilczynski/ruby-magic/issues/15
   # - name: kwilczynski/ruby-magic
