@@ -256,6 +256,7 @@ gems:
   - name: flavorjones/loofah
     ci: github
     workflows: [ci.yml]
+    branch: main
   - name: rails/rails-html-sanitizer
     ci: github
     workflows: [ci.yml]
