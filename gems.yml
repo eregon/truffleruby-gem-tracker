@@ -117,6 +117,7 @@ gems:
   - name: jeremyevans/sequel
     ci: github
     workflows: [ci.yml]
+    expect: fail
   - name: febeling/rb-libsvm
     ci: travis
   - name: namusyaka/gammo
@@ -270,9 +271,10 @@ gems:
   - name: rubysec/bundler-audit 
     ci: github
     workflows: [ruby.yml]
-  - name: halostatue/minitar
-    ci: github
-    workflows: [ci.yml]
+  #- name: halostatue/minitar
+   # ci: github
+   # workflows: [ci.yml]
+    
       
 
     
