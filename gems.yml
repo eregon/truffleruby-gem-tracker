@@ -270,6 +270,11 @@ gems:
   - name: rubysec/bundler-audit 
     ci: github
     workflows: [ruby.yml]
+  - name: halostatue/minitar
+    ci: github
+    workflows: [ci.yml]
+      
+
     
   # See https://github.com/kwilczynski/ruby-magic/issues/15
   # - name: kwilczynski/ruby-magic
@@ -281,12 +286,6 @@ gems:
     workflows: [test.yml]
     expect: fail
     branch: main
-
-  # Not migrated to github yet
-  # - name: halostatue/minitar
-  # ci: github
-  # workflows:
-  #  - ci.yml
 
   # Not in CI yet
   # - name: rspec/rspec-core
