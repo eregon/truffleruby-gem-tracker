@@ -117,7 +117,6 @@ gems:
   - name: jeremyevans/sequel
     ci: github
     workflows: [ci.yml]
-    expect: fail # see https://github.com/oracle/truffleruby/issues/2230
   - name: febeling/rb-libsvm
     ci: travis
   - name: namusyaka/gammo
