@@ -253,6 +253,24 @@ gems:
     ci: github
     workflows: [ruby.yml]
     pattern: truffleruby-head # https://github.com/oracle/truffleruby/issues/2441
+  - name: flavorjones/loofah
+    ci: github
+    workflows: [ci.yml]
+  - name: rails/rails-html-sanitizer
+    ci: github
+    workflows: [ci.yml]
+  - name: hsanson/asciidoctor-plantuml
+    ci: github
+    workflows: [ruby.yml]
+  - name: braze-inc/knapsack
+    ci: github
+    workflows: [ruby.yml]
+  - name: tinfoil/devise-two-factor
+    ci: github
+    workflows: [ci.yml]
+  - name: rubysec/bundler-audit 
+    ci: github
+    workflows: [ruby.yml]
     
   # See https://github.com/kwilczynski/ruby-magic/issues/15
   # - name: kwilczynski/ruby-magic
