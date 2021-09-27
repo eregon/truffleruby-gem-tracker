@@ -272,6 +272,10 @@ gems:
   - name: rubysec/bundler-audit 
     ci: github
     workflows: [ruby.yml]
+  - name: unixcharles/acme-client
+    ci: github
+    workflows: [test.yml]
+
   #- name: halostatue/minitar
    # ci: github
    # workflows: [ci.yml]
