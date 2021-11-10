@@ -11,8 +11,7 @@ class GemTracker::GitHubActions < GemTracker::CI
   def latest_ci_statuses
     statuses = []
     gem.workflows.each do |w|
-      runs = get_workflow_runs(w)
-      runs = runs.select { |r| r["head_branch"] == gem.branch }
+      runs = get_workflow_runs(w, gem.branch)
       runs.each do |r|
         # p r['created_at']
         jobs = get_run_jobs(r["jobs_url"])
@@ -68,9 +67,9 @@ class GemTracker::GitHubActions < GemTracker::CI
     end
   end
 
-  def get_workflow_runs(workflow)
+  def get_workflow_runs(workflow, branch)
     # https://api.github.com/repos/rack/rack/actions/workflows/development.yml/runs
-    url = "https://api.github.com/repos/#{gem.name}/actions/workflows/#{workflow}/runs"
+    url = "https://api.github.com/repos/#{gem.name}/actions/workflows/#{workflow}/runs?branch=#{branch}"
     request(url) do |response|
       json = JSON.parse(response.body)
       json.fetch("workflow_runs") { pp json; raise "Couldn't find workflow runs jobs" }
