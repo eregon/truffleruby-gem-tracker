@@ -275,6 +275,9 @@ gems:
   - name: unixcharles/acme-client
     ci: github
     workflows: [test.yml]
+  - name: emancu/toml-rb
+    ci: github
+    workflows: [ruby.yml]
 
   #- name: halostatue/minitar
    # ci: github
