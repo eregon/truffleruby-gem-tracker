@@ -278,6 +278,10 @@ gems:
   - name: emancu/toml-rb
     ci: github
     workflows: [ruby.yml]
+  - name: dazuma/toys
+    ci: github
+    workflows: [ci.yml]
+    branch: main
 
   #- name: halostatue/minitar
    # ci: github
