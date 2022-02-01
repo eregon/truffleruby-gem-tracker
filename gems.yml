@@ -47,8 +47,8 @@ gems:
   - name: copiousfreetime/launchy
     ci: travis
   - name: guard/listen
-    ci: travis
-    expect: fail
+    ci: github
+    workflows: [development.yml]
   - name: floehopper/metaclass
     ci: travis
   - name: datawraith/ascii85gem
