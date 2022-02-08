@@ -282,6 +282,10 @@ gems:
     ci: github
     workflows: [ci.yml]
     branch: main
+  - name: cucumber/cucumber-ruby
+    ci: github
+    workflows: [cucumber-ruby.yml]
+    branch: main
 
   #- name: halostatue/minitar
    # ci: github
