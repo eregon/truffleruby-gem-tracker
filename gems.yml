@@ -286,6 +286,9 @@ gems:
     ci: github
     workflows: [cucumber-ruby.yml]
     branch: main
+  - name: msgpack/msgpack-ruby
+    ci: github
+    workflows: [ci.yaml]
 
   #- name: halostatue/minitar
    # ci: github
