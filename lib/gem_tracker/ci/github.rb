@@ -10,8 +10,9 @@ class GemTracker::GitHubActions < GemTracker::CI
 
   def latest_ci_statuses
     statuses = []
+    repo = get_repository()
     gem.workflows.each do |w|
-      runs = get_workflow_runs(w, gem.branch)
+      runs = get_workflow_runs(w, repo["default_branch"])
       runs.each do |r|
         # p r['created_at']
         jobs = get_run_jobs(r["jobs_url"])
@@ -50,6 +51,13 @@ class GemTracker::GitHubActions < GemTracker::CI
   def get_annotations(check_run_url)
     annotations_url = "#{check_run_url}/annotations"
     request(annotations_url) do |response|
+      JSON.parse(response.body)
+    end  
+  end
+
+  def get_repository
+    repo_url = "https://api.github.com/repos/#{gem.name}"
+    request(repo_url) do |response|
       JSON.parse(response.body)
     end  
   end

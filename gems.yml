@@ -40,7 +40,6 @@ gems:
   - name: sporkmonger/addressable
     ci: github
     workflows: [test.yml]
-    branch: main
   # too slow with 60+ jobs each needing one request
   # - name: freerange/mocha
   #   ci: travis
@@ -132,7 +131,6 @@ gems:
   - name: CanCanCommunity/cancancan
     ci: github
     workflows: [test.yml]
-    branch: develop
   - name: asciidoctor/asciidoctor
     ci: travis
     search_last_n_builds: 10 # daily
@@ -196,7 +194,6 @@ gems:
     workflows: [test.yml]
   - name: rgrove/sanitize
     ci: github
-    branch: main
     workflows: [tests.yml]
   - name: RubyCrypto/ed25519
     ci: github
@@ -236,7 +233,6 @@ gems:
     ci: travis
   - name: sparklemotion/mechanize
     ci: github
-    branch: main
     workflows: [ci-test.yml]
   - name: thoughtbot/factory_bot
     ci: github
@@ -256,7 +252,6 @@ gems:
   - name: flavorjones/loofah
     ci: github
     workflows: [ci.yml]
-    branch: main
   - name: rails/rails-html-sanitizer
     ci: github
     workflows: [ci.yml]
@@ -281,11 +276,9 @@ gems:
   - name: dazuma/toys
     ci: github
     workflows: [ci.yml]
-    branch: main
   - name: cucumber/cucumber-ruby
     ci: github
     workflows: [cucumber-ruby.yml]
-    branch: main
   - name: msgpack/msgpack-ruby
     ci: github
     workflows: [ci.yaml]
@@ -309,7 +302,6 @@ gems:
     ci: github
     workflows: [test.yml]
     expect: fail
-    branch: main
 
   # Not in CI yet
   # - name: rspec/rspec-core
