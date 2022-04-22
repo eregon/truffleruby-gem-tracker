@@ -290,7 +290,7 @@ gems:
   # - name: halostatue/minitar
   #   ci: github
   #   workflows: [ci.yml]
-    
+
   # See https://github.com/kwilczynski/ruby-magic/issues/15
   # - name: kwilczynski/ruby-magic
   #   ci: travis
