@@ -52,14 +52,14 @@ class GemTracker::GitHubActions < GemTracker::CI
     annotations_url = "#{check_run_url}/annotations"
     request(annotations_url) do |response|
       JSON.parse(response.body)
-    end  
+    end
   end
 
   def get_repository
     repo_url = "https://api.github.com/repos/#{gem.name}"
     request(repo_url) do |response|
       JSON.parse(response.body)
-    end  
+    end
   end
 
   # https://docs.github.com/en/rest/reference/actions#list-jobs-for-a-workflow-run
