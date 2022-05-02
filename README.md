@@ -36,6 +36,7 @@ You should set these environment variables in the `.env` file:
 ## Documentation
 
 * Travis Ruby Library - https://github.com/travis-ci/travis.rb#ruby-library
+* GitHub API - https://docs.github.com/en/rest/actions/workflow-runs
 
 ## GitHub Searches
 
