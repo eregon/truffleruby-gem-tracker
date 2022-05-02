@@ -19,6 +19,9 @@ gems:
   - name: ruby/ruby2_keywords
     ci: github
     workflows: [test.yml]
+  - name: ruby/strscan
+    ci: github
+    workflows: [ci.yml]
 
   # Source repos
   - name: flori/json
