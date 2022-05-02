@@ -1,17 +1,31 @@
 ---
 gems:
+  # ruby/*
+  - name: ruby/io-console
+    ci: github
+    workflows: [truffleruby.yml]
+  - name: ruby/irb
+    ci: github
+    workflows: [test.yml]
+  - name: ruby/mspec
+    ci: github
+    workflows: [ci.yml]
+  - name: ruby/ostruct
+    ci: github
+    workflows: [test.yml]
+  - name: ruby/rake
+    ci: github
+    workflows: [test.yml, macos.yml]
+  - name: ruby/ruby2_keywords
+    ci: github
+    workflows: [test.yml]
+
   # Source repos
   - name: flori/json
     ci: travis
   - name: ged/ruby-pg
     ci: github
     workflows: [source-gem.yml]
-  - name: ruby/rake
-    ci: github
-    workflows: [test.yml, macos.yml]
-  - name: ruby/ostruct
-    ci: github
-    workflows: [test.yml]
   - name: rack/rack
     ci: github
     workflows: [development.yml]
@@ -57,9 +71,6 @@ gems:
     ci: github
     workflows: [test.yml]
   - name: halostatue/diff-lcs
-    ci: github
-    workflows: [ci.yml]
-  - name: ruby/mspec
     ci: github
     workflows: [ci.yml]
   - name: rubygems/rubygems
@@ -168,15 +179,6 @@ gems:
     ci: travis
   - name: geemus/shindo
     ci: travis
-  - name: ruby/io-console
-    ci: github
-    workflows: [truffleruby.yml]
-  - name: ruby/irb
-    ci: github
-    workflows: [test.yml]
-  - name: ruby/ruby2_keywords
-    ci: github
-    workflows: [test.yml]
   - name: brianmario/charlock_holmes
     ci: travis
   - name: ruby-git/ruby-git
