@@ -320,3 +320,7 @@ gems:
   # - name: rom-rb/rom
   #   ci: github
   #   workflows: [ci.yml]
+
+  - name: rsim/ruby-plsql
+    ci: github
+    workflows: [test.yml]
