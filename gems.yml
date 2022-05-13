@@ -324,3 +324,7 @@ gems:
   - name: rsim/ruby-plsql
     ci: github
     workflows: [test.yml]
+
+  - name: kubo/ruby-oci8
+    ci: github
+    workflows: [tests.yml]
