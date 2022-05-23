@@ -22,6 +22,9 @@ gems:
   - name: ruby/strscan
     ci: github
     workflows: [ci.yml]
+  - name: ruby/timeout
+    ci: github
+    workflows: [test.yml]
   - name: ruby/uri
     ci: github
     workflows: [test.yml]
