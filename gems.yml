@@ -10,6 +10,9 @@ gems:
   - name: ruby/mspec
     ci: github
     workflows: [ci.yml]
+  - name: ruby/net-pop
+    ci: github
+    workflows: [test.yml]
   - name: ruby/ostruct
     ci: github
     workflows: [test.yml]
