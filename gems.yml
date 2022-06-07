@@ -334,3 +334,7 @@ gems:
   - name: kubo/ruby-oci8
     ci: github
     workflows: [tests.yml]
+
+  - name: rsim/oracle-enhanced
+    ci: github
+    workflows: [test.yml]
