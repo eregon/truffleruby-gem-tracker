@@ -1,3 +1,4 @@
+require 'concurrent'
 require 'thor'
 require_relative 'data'
 
@@ -150,10 +151,13 @@ module GemTracker
     end
 
     def parallel_map(enum)
+      semaphore = Concurrent::Semaphore.new(20)
       queue = Queue.new
       threads = enum.map { |e|
         Thread.new {
+          semaphore.acquire
           queue << [Thread.current, yield(e)]
+          semaphore.release
         }
       }
 
