@@ -51,6 +51,7 @@ class GemTracker::GitHubActions < GemTracker::CI
   def get_annotations(check_run_url)
     annotations_url = "#{check_run_url}/annotations"
     request(annotations_url) do |response|
+      response.header.each_header {|key,value| puts "#{key} = #{value}" }
       JSON.parse(response.body)
     end
   end
@@ -58,6 +59,7 @@ class GemTracker::GitHubActions < GemTracker::CI
   def get_repository
     repo_url = "https://api.github.com/repos/#{gem.name}"
     request(repo_url) do |response|
+      response.header.each_header {|key,value| puts "#{key} = #{value}" }
       JSON.parse(response.body)
     end
   end
@@ -66,6 +68,7 @@ class GemTracker::GitHubActions < GemTracker::CI
   def get_run_jobs(jobs_url)
     jobs_url = "#{jobs_url}?per_page=100"
     request(jobs_url) do |response|
+      response.header.each_header {|key,value| puts "#{key} = #{value}" }
       json = JSON.parse(response.body)
       jobs = json.fetch("jobs") { pp json; raise "Couldn't find runs jobs" }
       if jobs.size != json['total_count']
@@ -79,6 +82,7 @@ class GemTracker::GitHubActions < GemTracker::CI
     # https://api.github.com/repos/rack/rack/actions/workflows/development.yml/runs
     url = "https://api.github.com/repos/#{gem.name}/actions/workflows/#{workflow}/runs?branch=#{branch}"
     request(url) do |response|
+      response.header.each_header {|key,value| puts "#{key} = #{value}" }
       json = JSON.parse(response.body)
       json.fetch("workflow_runs") { pp json; raise "Couldn't find workflow runs jobs" }
     end
@@ -99,6 +103,7 @@ class GemTracker::GitHubActions < GemTracker::CI
     log_url = "#{job_url}/logs"
     log_download_url = get_github_log_location(log_url)
     request(log_download_url) do |response|
+      response.header.each_header {|key,value| puts "#{key} = #{value}" }
       puts response.body
     end
   end
