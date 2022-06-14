@@ -151,7 +151,7 @@ module GemTracker
     end
 
     def parallel_map(enum)
-      semaphore = Concurrent::Semaphore.new(20)
+      semaphore = Concurrent::Semaphore.new(10)
       queue = Queue.new
       threads = enum.map { |e|
         Thread.new {
