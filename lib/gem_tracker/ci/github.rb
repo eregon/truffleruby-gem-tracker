@@ -12,7 +12,7 @@ class GemTracker::GitHubActions < GemTracker::CI
     statuses = []
     repo = get_repository()
     gem.workflows.each do |w|
-      runs = get_workflow_runs(w, repo["default_branch"])
+      runs = get_workflow_runs(w, gem.branch || repo["default_branch"])
       runs.each do |r|
         # p r['created_at']
         jobs = get_run_jobs(r["jobs_url"])

@@ -16,7 +16,7 @@ class GemTracker::Travis < GemTracker::CI
 
     attempts = 0
     repo.each_build do |build|
-      if build.push? and build.commit.branch == gem.branch
+      if build.push? and build.commit.branch == (gem.branch || 'master')
         attempts += 1
 
         build.jobs.each do |j|
@@ -40,7 +40,7 @@ class GemTracker::Travis < GemTracker::CI
     begin
       client = new_travis_client
       repo = client.find_one(Travis::Client::Repository, @gem.name)
-      build = repo.last_on_branch(gem.branch)
+      build = repo.last_on_branch((gem.branch || 'master'))
 
       build.jobs.each do |j|
         if matching_config?(j.config)

@@ -8,7 +8,7 @@ class GemTracker::Gem
     GemTracker::Gem.new(**hash.transform_keys(&:to_sym))
   end
 
-  def initialize(name:, ci:, workflows: nil, branch: 'master', expect: 'pass', pattern: 'truffleruby',
+  def initialize(name:, ci:, workflows: nil, branch: nil, expect: 'pass', pattern: 'truffleruby',
       search_last_n_builds: 1)
     @name = name
     @workflows = workflows
