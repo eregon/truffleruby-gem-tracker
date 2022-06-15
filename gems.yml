@@ -300,6 +300,10 @@ gems:
   - name: eregon/path
     ci: github
     workflows: [ci.yml]
+  - name: ronin-rb/ronin
+    branch: 2.0.0
+    ci: github
+    workflows: [ruby.yml]
 
   # - name: halostatue/minitar
   #   ci: github
