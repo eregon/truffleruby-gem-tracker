@@ -156,9 +156,12 @@ module GemTracker
       threads = enum.map { |e|
         Thread.new {
           semaphore.acquire
-          sleep rand(0.0..1.0)
-          queue << [Thread.current, yield(e)]
-          semaphore.release
+          begin
+            sleep rand(0.0..1.0)
+            queue << [Thread.current, yield(e)]
+          ensure
+            semaphore.release
+          end
         }
       }
 
