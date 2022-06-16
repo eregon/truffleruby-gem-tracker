@@ -157,7 +157,7 @@ module GemTracker
         Thread.new {
           semaphore.acquire
           begin
-            sleep rand(0.0..1.0)
+            sleep rand(1.0..2.0)
             queue << [Thread.current, yield(e)]
           ensure
             semaphore.release
