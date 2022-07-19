@@ -304,6 +304,9 @@ gems:
     branch: 2.0.0
     ci: github
     workflows: [ruby.yml]
+  - name: sinatra/mustermann
+    ci: github
+    workflows: [test.yml]
 
   # - name: halostatue/minitar
   #   ci: github
