@@ -307,6 +307,9 @@ gems:
   - name: sinatra/mustermann
     ci: github
     workflows: [test.yml]
+  - name: sinatra/sinatra
+    ci: github
+    workflows: [test.yml]
 
   # - name: halostatue/minitar
   #   ci: github
