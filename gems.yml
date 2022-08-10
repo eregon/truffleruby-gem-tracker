@@ -313,6 +313,9 @@ gems:
   - name: ohler55/oj
     ci: github
     workflows: [CI.yml]
+  - name: sparklemotion/nokogiri
+    ci: github
+    workflows: [truffle.yml]
 
   # - name: halostatue/minitar
   #   ci: github
