@@ -316,6 +316,9 @@ gems:
   - name: sparklemotion/nokogiri
     ci: github
     workflows: [truffle.yml]
+  - name: hellostealth/stealth
+    ci: github
+    workflows: [ci.yml]
 
   # - name: halostatue/minitar
   #   ci: github
