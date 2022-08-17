@@ -319,6 +319,9 @@ gems:
   - name: hellostealth/stealth
     ci: github
     workflows: [ci.yml]
+  - name: redis/redis-rb
+    ci: github
+    workflows: [test.yaml]
 
   # - name: halostatue/minitar
   #   ci: github
