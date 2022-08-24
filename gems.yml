@@ -322,6 +322,9 @@ gems:
   - name: redis/redis-rb
     ci: github
     workflows: [test.yaml]
+  - name: cookpad/grpc_kit
+    ci: github
+    workflows: [ci.yml]
 
   # - name: halostatue/minitar
   #   ci: github
