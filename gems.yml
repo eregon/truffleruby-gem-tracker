@@ -325,6 +325,9 @@ gems:
   - name: cookpad/grpc_kit
     ci: github
     workflows: [ci.yml]
+  - name: joeldrapper/phlex
+    ci: github
+    workflows: [ci.yml]
 
   # - name: halostatue/minitar
   #   ci: github
