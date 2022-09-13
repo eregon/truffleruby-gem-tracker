@@ -180,9 +180,6 @@ gems:
     ci: travis
   - name: cedarcode/webauthn-ruby
     ci: travis
-  - name: guard/listen
-    ci: github
-    workflows: [development.yml]
   - name: fog/fog-google
     ci: travis
   - name: nahi/httpclient
@@ -253,7 +250,14 @@ gems:
     ci: github
     workflows: [build.yml]
   - name: kubo/ruby-oci8
-    ci: traviscom
+    ci: github
+    workflows: [tests.yml]
+  - name: rsim/ruby-plsql
+    ci: github
+    workflows: [test.yml]
+  - name: rsim/oracle-enhanced
+    ci: github
+    workflows: [test.yml]
   - name: floraison/fugit
     ci: github
     workflows: [test.yaml]
@@ -328,10 +332,6 @@ gems:
   - name: joeldrapper/phlex
     ci: github
     workflows: [ci.yml]
-  - name: ruby-gettext/locale
-    ci: github
-    workflows: [test.yml]
-    expect: fail
 
   # - name: halostatue/minitar
   #   ci: github
@@ -358,15 +358,3 @@ gems:
   # - name: rom-rb/rom
   #   ci: github
   #   workflows: [ci.yml]
-
-  - name: rsim/ruby-plsql
-    ci: github
-    workflows: [test.yml]
-
-  - name: kubo/ruby-oci8
-    ci: github
-    workflows: [tests.yml]
-
-  - name: rsim/oracle-enhanced
-    ci: github
-    workflows: [test.yml]

@@ -9,6 +9,7 @@ module GemTracker
     h = {}
     gems_data.each do |g|
       gem = GemTracker::Gem.from_hash(g)
+      raise "Duplicate gem: #{gem.name}" if h.key?(gem.name)
       h[gem.name] = gem
     end
     h
