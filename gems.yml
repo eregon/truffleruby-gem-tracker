@@ -328,6 +328,10 @@ gems:
   - name: joeldrapper/phlex
     ci: github
     workflows: [ci.yml]
+  - name: ruby-gettext/locale
+    ci: github
+    workflows: [test.yml]
+    expect: fail
 
   # - name: halostatue/minitar
   #   ci: github
