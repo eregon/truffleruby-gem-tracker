@@ -336,6 +336,9 @@ gems:
   - name: joeldrapper/phlex
     ci: github
     workflows: [ci.yml]
+  - name: sparklemotion/sqlite3-ruby
+    ci: github
+    workflows: [sqlite3-ruby.yml]
 
   # - name: halostatue/minitar
   #   ci: github
