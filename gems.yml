@@ -323,7 +323,7 @@ gems:
     workflows: [CI.yml]
   - name: sparklemotion/nokogiri
     ci: github
-    workflows: [truffle.yml]
+    workflows: [ci.yml]
   - name: hellostealth/stealth
     ci: github
     workflows: [ci.yml]
