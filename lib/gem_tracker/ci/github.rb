@@ -64,15 +64,30 @@ class GemTracker::GitHubActions < GemTracker::CI
 
   # https://docs.github.com/en/rest/reference/actions#list-jobs-for-a-workflow-run
   def get_run_jobs(jobs_url)
-    jobs_url = "#{jobs_url}?per_page=100"
-    request(jobs_url) do |response|
-      json = JSON.parse(response.body)
-      jobs = json.fetch("jobs") { pp json; raise "Couldn't find runs jobs" }
-      if jobs.size != json['total_count']
-        raise "request did not return all jobs: #{jobs.size} of #{json['total_count']}"
+    jobs = []
+    total_count = nil
+    page = 1
+
+    while true do
+      url = "#{jobs_url}?per_page=100&page=#{page}"
+
+      request(url) do |response|
+        json = JSON.parse(response.body)
+
+        if json["jobs"].nil?
+          pp json
+          raise "Couldn't find runs jobs"
+        end
+
+        jobs += json["jobs"]
+        total_count ||= json["total_count"]
       end
-      jobs
+
+      break if jobs.size >= total_count
+      page += 1
     end
+
+    jobs
   end
 
   def get_workflow_runs(workflow, branch)
