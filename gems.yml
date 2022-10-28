@@ -336,6 +336,9 @@ gems:
   - name: sparklemotion/sqlite3-ruby
     ci: github
     workflows: [sqlite3-ruby.yml, gem-install.yml]
+  - name: ruby-syntax-tree/syntax_tree
+    ci: github
+    workflows: [main.yml]
 
   # - name: halostatue/minitar
   #   ci: github
