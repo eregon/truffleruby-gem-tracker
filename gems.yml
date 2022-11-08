@@ -28,6 +28,9 @@ gems:
   - name: ruby/timeout
     ci: github
     workflows: [test.yml]
+  - name: ruby/typeprof
+    ci: github
+    workflows: [main.yml]
   - name: ruby/uri
     ci: github
     workflows: [test.yml]
