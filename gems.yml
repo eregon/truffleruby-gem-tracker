@@ -356,6 +356,10 @@ gems:
     ci: github
     workflows: [test.yml]
     expect: fail
+  - name: eregon/hexapdf
+    ci: github
+    workflows: [ci.yml]
+    expect: fail
 
   # Not in CI yet
   # - name: rspec/rspec-core
