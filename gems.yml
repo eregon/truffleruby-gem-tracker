@@ -18,7 +18,7 @@ gems:
     workflows: [test.yml]
   - name: ruby/rake
     ci: github
-    workflows: [test.yml, macos.yml]
+    workflows: [test.yml]
   - name: ruby/ruby2_keywords
     ci: github
     workflows: [test.yml]
@@ -43,7 +43,7 @@ gems:
     workflows: [source-gem.yml]
   - name: rack/rack
     ci: github
-    workflows: [development.yml]
+    workflows: [test.yaml]
   - name: puma/puma
     ci: github
     workflows: [non_mri.yml]
@@ -57,7 +57,7 @@ gems:
     workflows: [workflow.yml]
   - name: socketry/console
     ci: github
-    workflows: [development.yml]
+    workflows: [test.yaml]
   - name: ffi/ffi
     ci: github
     workflows: [ci.yml]
@@ -93,7 +93,7 @@ gems:
     workflows: [daily-rubygems.yml, ubuntu-rubygems.yml]
   - name: socketry/async-container
     ci: github
-    workflows: [development.yml]
+    workflows: [test.yaml]
   - name: ruby-next/ruby-next
     ci: github
     workflows: [truffle-test.yml]
