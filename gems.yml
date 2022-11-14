@@ -342,6 +342,9 @@ gems:
   - name: ruby-syntax-tree/syntax_tree
     ci: github
     workflows: [main.yml]
+  - name: SeleniumHQ/selenium
+    ci: github
+    workflows: [ci-ruby.yml]
 
   # - name: halostatue/minitar
   #   ci: github
