@@ -12,6 +12,11 @@ class GemTracker::GitHubActions < GemTracker::CI
     statuses = []
     repo = get_repository()
     gem.workflows.each do |w|
+      workflow = get_workflow(w)
+      if workflow["state"] == "deleted"
+        raise "GitHub workflow #{w} is deleted"
+      end
+
       runs = get_workflow_runs(w, gem.branch || repo["default_branch"])
       runs.each do |r|
         # p r['created_at']
@@ -88,6 +93,14 @@ class GemTracker::GitHubActions < GemTracker::CI
     end
 
     jobs
+  end
+
+  def get_workflow(workflow_id)
+    # https://api.github.com/repos/rack/rack/actions/workflows/development.yml
+    url = "https://api.github.com/repos/#{gem.name}/actions/workflows/#{workflow_id}"
+    request(url) do |response|
+      JSON.parse(response.body)
+    end
   end
 
   def get_workflow_runs(workflow, branch)
