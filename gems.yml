@@ -345,6 +345,9 @@ gems:
   - name: SeleniumHQ/selenium
     ci: github
     workflows: [ci-ruby.yml]
+  - name: p0deje/rules_ruby
+    ci: github
+    workflows: [ci.yml]
 
   # - name: halostatue/minitar
   #   ci: github
