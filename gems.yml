@@ -1,6 +1,9 @@
 ---
 gems:
   # ruby/*
+  - name: ruby/iconv
+    ci: github
+    workflows: [test.yml]
   - name: ruby/io-console
     ci: github
     workflows: [truffleruby.yml]
