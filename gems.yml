@@ -318,6 +318,10 @@ gems:
     ci: github
     workflows: [ruby.yml]
     expect: fail # until 22.3 release
+  - name: ronin-rb/ronin-exploits
+    branch: 1.0.0
+    ci: github
+    workflows: [ruby.yml]
   - name: sinatra/mustermann
     ci: github
     workflows: [test.yml]
