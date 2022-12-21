@@ -355,6 +355,9 @@ gems:
   - name: p0deje/rules_ruby
     ci: github
     workflows: [ci.yml]
+  - name: rails/sprockets
+    ci: github
+    workflows: [ci.yml]
 
   # - name: halostatue/minitar
   #   ci: github
