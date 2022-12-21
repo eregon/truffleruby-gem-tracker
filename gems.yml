@@ -52,7 +52,7 @@ gems:
     workflows: [non_mri.yml]
   - name: ruby-concurrency/concurrent-ruby
     ci: github
-    workflows: [ci.yml]
+    workflows: [ci.yml, experimental.yml]
   - name: socketry/async-io
     ci: traviscom
   - name: socketry/nio4r
