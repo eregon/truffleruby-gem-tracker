@@ -137,7 +137,7 @@ gems:
     ci: travis
   - name: ruby-grape/grape
     ci: github
-    workflows: [test.yml]
+    workflows: [edge.yml]
   - name: cyu/rack-cors
     ci: travis
   - name: jeremyevans/roda
