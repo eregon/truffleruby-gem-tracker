@@ -93,7 +93,7 @@ gems:
     workflows: [ci.yml]
   - name: rubygems/rubygems
     ci: github
-    workflows: [daily-rubygems.yml, ubuntu-rubygems.yml]
+    workflows: [daily-rubygems.yml, rubygems.yml]
   - name: socketry/async-container
     ci: github
     workflows: [test.yaml]
