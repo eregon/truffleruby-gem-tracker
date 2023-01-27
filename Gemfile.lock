@@ -85,4 +85,4 @@ DEPENDENCIES
   travis (~> 1.8, >= 1.8.12)
 
 BUNDLED WITH
-   2.2.32
+   2.3.26
