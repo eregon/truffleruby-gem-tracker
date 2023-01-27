@@ -1,6 +1,9 @@
 ---
 gems:
   # ruby/*
+  - name: ruby/bigdecimal
+    ci: github
+    workflows: [ci.yml]
   - name: ruby/iconv
     ci: github
     workflows: [test.yml]
