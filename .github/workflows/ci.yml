@@ -20,12 +20,10 @@ jobs:
 
     - run: bin/gem_tracker statuses --ruby=release --days=60
       env:
-        GEM_TRACKER_TRAVIS_COM_AUTH: ${{ secrets.GEM_TRACKER_TRAVIS_COM_AUTH }}
         GEM_TRACKER_GITHUB_AUTH: ${{ secrets.GEM_TRACKER_GITHUB_AUTH }}
       if: matrix.type == 'release'
 
     - run: bin/gem_tracker statuses --ruby=head --days=30
       env:
-        GEM_TRACKER_TRAVIS_COM_AUTH: ${{ secrets.GEM_TRACKER_TRAVIS_COM_AUTH }}
         GEM_TRACKER_GITHUB_AUTH: ${{ secrets.GEM_TRACKER_GITHUB_AUTH }}
       if: matrix.type == 'head'

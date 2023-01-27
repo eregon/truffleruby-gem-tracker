@@ -30,18 +30,16 @@ bin/gem_tracker log concurrent-ruby
 
 You should set these environment variables in the `.env` file:
 
-* `GEM_TRACKER_TRAVIS_COM_AUTH`: visit your settings page at travis-ci.com to get your token
 * `GEM_TRACKER_GITHUB_AUTH`: see [GitHub Documentation](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
 
 ## Documentation
 
-* Travis Ruby Library - https://github.com/travis-ci/travis.rb#ruby-library
 * GitHub API - https://docs.github.com/en/rest/actions/workflow-runs
 
 ## GitHub Searches
 
 * [GitHub Actions](https://github.com/search?q=truffleruby-head+language%3AYAML+path%3A.github&type=Code)
-* [.travis.yml](https://github.com/search?q=truffleruby-head+filename%3A.travis.yml+path%3A%2F&type=Code)
+* [.travis.yml](https://github.com/search?q=truffleruby-head+path%3A.travis.yml&type=code)
 
 ## Contributing
 

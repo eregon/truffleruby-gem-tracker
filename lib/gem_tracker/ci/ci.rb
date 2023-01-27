@@ -25,4 +25,3 @@ class GemTracker::CI
 end
 
 require_relative 'github'
-require_relative 'travis'

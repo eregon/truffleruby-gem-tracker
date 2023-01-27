@@ -1,6 +1,7 @@
 require 'net/http'
 require 'net/https'
 require 'json'
+require 'time'
 
 class GemTracker::GitHubActions < GemTracker::CI
   def initialize(gem)
