@@ -43,7 +43,8 @@ gems:
 
   # Source repos
   - name: flori/json
-    ci: travis
+    ci: github
+    workflows: [ci.yml]
   - name: ged/ruby-pg
     ci: github
     workflows: [source-gem.yml]
@@ -57,7 +58,8 @@ gems:
     ci: github
     workflows: [ci.yml, experimental.yml]
   - name: socketry/async-io
-    ci: traviscom
+    ci: github
+    workflows: [development.yml]
   - name: socketry/nio4r
     ci: github
     workflows: [workflow.yml]
@@ -68,25 +70,24 @@ gems:
     ci: github
     workflows: [ci.yml]
   - name: Shopify/bootsnap
-    ci: travis
+    ci: github
+    workflows: [ci.yaml]
   - name: mikel/mail
     ci: github
     workflows: [test.yml]
   - name: sporkmonger/addressable
     ci: github
     workflows: [test.yml]
-  # too slow with 60+ jobs each needing one request
   # - name: freerange/mocha
-  #   ci: travis
-  - name: copiousfreetime/launchy
-    ci: travis
+  #   ci: circleci
+  # - name: copiousfreetime/launchy
+  #   ci: semaphore
   - name: guard/listen
     ci: github
     workflows: [development.yml]
-  - name: floehopper/metaclass
-    ci: travis
   - name: datawraith/ascii85gem
-    ci: travis
+    ci: github
+    workflows: [ruby.yml]
   - name: whitequark/parser
     ci: github
     workflows: [test.yml]
@@ -107,15 +108,18 @@ gems:
     ci: github
     workflows: [ruby.yml]
   - name: clowne-rb/clowne
-    ci: travis
-  - name: meineerde/rackstash
-    ci: travis
+    ci: github
+    workflows: [rspec-truffle.yml]
+    pattern: truffle
+  # - name: meineerde/rackstash
+  #   ci: github
+  #   workflows: [ci.yml] # no recent run, workflow disabled
   - name: test-unit/test-unit
     ci: github
     workflows: [test.yml]
-  - name: fxn/zeitwerk
-    ci: traviscom
-    pattern: truffleruby-head # only -head until release passes
+  # - name: fxn/zeitwerk
+  #   ci: github
+  #   workflows: [ci.yml] # no truffleruby
   - name: rubyzip/rubyzip
     ci: github
     workflows: [tests.yml]
@@ -129,19 +133,21 @@ gems:
     ci: github
     workflows: [test.yml]
   # - name: serradura/u-attributes
-  #   ci: traviscom
-  #   branch: main
-  - name: AvnerCohen/http-headers-verifier
-    ci: travis
+  #   ci: github
+  #   workflows: [ci.yml] # no truffleruby
+  # - name: AvnerCohen/http-headers-verifier
+  #   ci: none https://github.com/AvnerCohen/http-headers-verifier/issues/2
   - name: mime-types/ruby-mime-types
-    ci: travis
+    ci: github
+    workflows: [ci.yml]
   - name: jwt/ruby-jwt
-    ci: travis
+    ci: github
+    workflows: [test.yml]
   - name: ruby-grape/grape
     ci: github
     workflows: [edge.yml]
-  - name: cyu/rack-cors
-    ci: travis
+  # - name: cyu/rack-cors
+  #   ci: none https://github.com/cyu/rack-cors/issues/249
   - name: jeremyevans/roda
     ci: github
     workflows: [ci.yml]
@@ -149,14 +155,17 @@ gems:
     ci: github
     workflows: [ci.yml]
     expect: fail # see https://github.com/oracle/truffleruby/issues/2230
-  - name: febeling/rb-libsvm
-    ci: travis
-  - name: namusyaka/gammo
-    ci: travis
+  # - name: febeling/rb-libsvm
+  #   ci: none
+  # - name: namusyaka/gammo
+  #   ci: github
+  #   workflows: [test.yml] # no truffleruby
   - name: steveklabnik/request_store
-    ci: travis
+    ci: github
+    workflows: [ci.yml]
   - name: omniauth/omniauth-oauth2
-    ci: travis
+    ci: github
+    workflows: [main.yml]
   - name: faker-ruby/faker
     ci: github
     workflows: [ruby.yml]
@@ -164,18 +173,21 @@ gems:
     ci: github
     workflows: [test.yml]
   - name: asciidoctor/asciidoctor
-    ci: travis
-    search_last_n_builds: 10 # daily
+    ci: github
+    workflows: [ci.yml]
+    # search_last_n_builds: 10 # daily
   # - name: BetterErrors/better_errors
   #   ci: github
-  #   workflows:
-  #     - ci.yml
+  #   workflows: [ci.yml]
   - name: ms-ati/docile
-    ci: travis
+    ci: github
+    workflows: [main.yml]
   - name: omniauth/omniauth
-    ci: travis
+    ci: github
+    workflows: [truffle_ruby.yml]
   - name: athityakumar/colorls
-    ci: travis
+    ci: github
+    workflows: [ruby.yml]
   - name: bcrypt-ruby/bcrypt-ruby
     ci: github
     workflows: [ruby.yml]
@@ -183,26 +195,33 @@ gems:
     ci: github
     workflows: [test.yaml]
   - name: moiristo/deep_cloneable
-    ci: travis
+    ci: github
+    workflows: [ruby.yml]
   - name: ambethia/recaptcha
-    ci: travis
+    ci: github
+    workflows: [ci.yml]
   - name: cedarcode/webauthn-ruby
-    ci: travis
+    ci: github
+    workflows: [build.yml]
   - name: fog/fog-google
-    ci: travis
-  - name: nahi/httpclient
-    ci: travis
+    ci: github
+    workflows: [unit.yml]
+  # - name: nahi/httpclient
+  #   ci: none # https://github.com/nahi/httpclient/issues/452
   - name: joshbuddy/jsonpath
-    ci: travis
+    ci: github
+    workflows: [test.yml]
   - name: geemus/shindo
-    ci: travis
-  - name: brianmario/charlock_holmes
-    ci: travis
+    ci: github
+    workflows: [ruby.yml]
+  # - name: brianmario/charlock_holmes
+  #   ci: none
   - name: ruby-git/ruby-git
     ci: github
     workflows: [continuous_integration.yml]
   - name: leejarvis/slop
-    ci: travis
+    ci: github
+    workflows: [ci.yml]
   - name: k0kubun/hamlit
     ci: github
     workflows: [test.yml]
@@ -237,20 +256,21 @@ gems:
     ci: github
     workflows: [ruby.yml]
   - name: typhoeus/typhoeus
-    ci: travis
+    ci: github
+    workflows: [ci.yml]
   - name: discourse/mini_mime
     ci: github
     workflows: [ci.yml]
-  - name: tpitale/mail_room
-    ci: travis
+  # - name: tpitale/mail_room
+  #   ci: none
   - name: stripe/stripe-ruby
     ci: github
     workflows: [ci.yml]
   - name: zzak/sdoc
     ci: github
     workflows: [test.yml]
-  - name: gazay/gon
-    ci: travis
+  # - name: gazay/gon
+  #   ci: none
   - name: sparklemotion/mechanize
     ci: github
     workflows: [ci-test.yml]
@@ -360,14 +380,12 @@ gems:
   - name: rails/sprockets
     ci: github
     workflows: [ci.yml]
-
-  # - name: halostatue/minitar
-  #   ci: github
-  #   workflows: [ci.yml]
-
-  # See https://github.com/kwilczynski/ruby-magic/issues/15
+  - name: halostatue/minitar
+    ci: github
+    workflows: [ruby.yml]
   # - name: kwilczynski/ruby-magic
-  #   ci: travis
+  #   ci: none https://github.com/kwilczynski/ruby-magic/issues/15
+
 
   # Forks
   - name: bjfish/rails
@@ -381,9 +399,7 @@ gems:
 
   # Not in CI yet
   # - name: rspec/rspec-core
-  #   ci: travis
   # - name: rspec/rspec-support
-  #   ci: travis
 
   # Disabled for slowness at https://github.com/rom-rb/rom/commit/4072824a7250b0599b7dee1d5b7d35d36ed604bd
   # Might be enabled in a separate workflow
