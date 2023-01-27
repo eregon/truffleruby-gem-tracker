@@ -185,9 +185,9 @@ gems:
   - name: omniauth/omniauth
     ci: github
     workflows: [truffle_ruby.yml]
-  - name: athityakumar/colorls
-    ci: github
-    workflows: [ruby.yml]
+  # - name: athityakumar/colorls
+  #   ci: github
+  #   workflows: [ruby.yml] # no truffleruby
   - name: bcrypt-ruby/bcrypt-ruby
     ci: github
     workflows: [ruby.yml]
