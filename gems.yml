@@ -72,7 +72,6 @@ gems:
   - name: mikel/mail
     ci: github
     workflows: [test.yml]
-    expect: fail
   - name: sporkmonger/addressable
     ci: github
     workflows: [test.yml]
