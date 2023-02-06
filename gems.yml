@@ -385,6 +385,9 @@ gems:
     workflows: [ruby.yml]
   # - name: kwilczynski/ruby-magic
   #   ci: none https://github.com/kwilczynski/ruby-magic/issues/15
+  - name: piotrmurach/tty-option
+    ci: github
+    workflows: [ci.yml]
 
 
   # Forks
