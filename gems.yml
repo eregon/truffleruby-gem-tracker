@@ -333,17 +333,17 @@ gems:
     ci: github
     workflows: [ci.yml]
   - name: ronin-rb/ronin
-    branch: 2.0.0
     ci: github
     workflows: [ruby.yml]
+    expect: fail # Coverage.running?
   - name: ronin-rb/ronin-vulns
     ci: github
     workflows: [ruby.yml]
     expect: fail # until 22.3 release
   - name: ronin-rb/ronin-exploits
-    branch: 1.0.0
     ci: github
     workflows: [ruby.yml]
+    expect: fail # Coverage.running?
   - name: sinatra/mustermann
     ci: github
     workflows: [test.yml]
