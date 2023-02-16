@@ -1,6 +1,6 @@
 ---
 gems:
-  # ruby/*
+  # ruby/*, sorted alphabetically
   - name: ruby/bigdecimal
     ci: github
     workflows: [ci.yml]
@@ -17,6 +17,9 @@ gems:
     ci: github
     workflows: [ci.yml]
   - name: ruby/net-pop
+    ci: github
+    workflows: [test.yml]
+  - name: ruby/openssl
     ci: github
     workflows: [test.yml]
   - name: ruby/ostruct
