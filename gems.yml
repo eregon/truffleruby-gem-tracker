@@ -395,7 +395,10 @@ gems:
   - name: joeldrapper/phlex
     ci: github
     workflows: [ci.yml]
-
+  - name: open-telemetry/opentelemetry-ruby
+    ci: github
+    workflows: [ci.yml]
+    pattern: ubuntu-latest # https://github.com/open-telemetry/opentelemetry-ruby/blob/4cd4a523d41bbe513b23e3121678a8aa4d51e408/.github/workflows/ci.yml#L59
 
   # Forks
   - name: bjfish/rails
