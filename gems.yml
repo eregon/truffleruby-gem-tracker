@@ -149,8 +149,9 @@ gems:
   - name: ruby-grape/grape
     ci: github
     workflows: [edge.yml]
-  # - name: cyu/rack-cors
-  #   ci: none https://github.com/cyu/rack-cors/issues/249
+  - name: cyu/rack-cors
+    ci: github
+    workflows: [ci.yaml]
   - name: jeremyevans/roda
     ci: github
     workflows: [ci.yml]
