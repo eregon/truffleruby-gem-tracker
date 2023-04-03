@@ -270,7 +270,7 @@ gems:
   - name: stripe/stripe-ruby
     ci: github
     workflows: [ci.yml]
-  - name: zzak/sdoc
+  - name: rails/sdoc
     ci: github
     workflows: [test.yml]
   # - name: gazay/gon
