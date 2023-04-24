@@ -100,6 +100,13 @@ class GemTracker::GitHubActions < GemTracker::CI
     # https://api.github.com/repos/rack/rack/actions/workflows/development.yml
     url = "https://api.github.com/repos/#{gem.name}/actions/workflows/#{workflow_id}"
     request(url) do |response|
+      # When the workflow file is renamed (or deleted) GitHub still returns
+      # workflow and its runs for some time. Later it will respond with 404
+      # HTTP error
+      unless response.code.start_with?("20") # expect 20x status
+        raise "HTTP Error (#{response.code}) getting GitHub workflow #{workflow_id}: #{response.body}"
+      end
+
       JSON.parse(response.body)
     end
   end
@@ -108,6 +115,10 @@ class GemTracker::GitHubActions < GemTracker::CI
     # https://api.github.com/repos/rack/rack/actions/workflows/development.yml/runs
     url = "https://api.github.com/repos/#{gem.name}/actions/workflows/#{workflow}/runs?branch=#{branch}"
     request(url) do |response|
+      unless response.code.start_with?("20") # expect 20x status
+        raise "HTTP Error (#{response.code}) getting GitHub workflow (#{workflow_id}) runs: #{response.body}"
+      end
+
       json = JSON.parse(response.body)
       json.fetch("workflow_runs") { pp json; raise "Couldn't find workflow runs jobs" }
     end
