@@ -56,7 +56,7 @@ gems:
     workflows: [test.yaml]
   - name: puma/puma
     ci: github
-    workflows: [non_mri.yml]
+    workflows: [tests.yaml]
   - name: ruby-concurrency/concurrent-ruby
     ci: github
     workflows: [ci.yml, experimental.yml]
