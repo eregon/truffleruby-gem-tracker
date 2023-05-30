@@ -243,7 +243,6 @@ gems:
     expect: fail # Coverage.running?
   - name: ronin-rb/ronin-vulns
     workflows: [ruby.yml]
-    expect: fail # until 22.3 release
   - name: ronin-rb/ronin-exploits
     workflows: [ruby.yml]
     expect: fail # Coverage.running?
