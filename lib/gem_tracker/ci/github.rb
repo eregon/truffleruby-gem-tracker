@@ -12,13 +12,19 @@ class GemTracker::GitHubActions < GemTracker::CI
   def latest_ci_statuses
     statuses = []
     repo = get_repository()
+    branch = gem.branch || repo.fetch("default_branch")
+
     gem.workflows.each do |w|
       workflow = get_workflow(w)
+      workflow_path = workflow.fetch("path")
+      unless repo_file_exists?(workflow_path, branch)
+        raise "GitHub workflow #{w} no longer exists on #{branch}"
+      end
       if workflow["state"] == "deleted"
         raise "GitHub workflow #{w} is deleted"
       end
 
-      runs = get_workflow_runs(w, gem.branch || repo["default_branch"])
+      runs = get_workflow_runs(w, branch)
       runs.each do |r|
         # p r['created_at']
         jobs = get_run_jobs(r["jobs_url"])
@@ -94,6 +100,14 @@ class GemTracker::GitHubActions < GemTracker::CI
     end
 
     jobs
+  end
+
+  def repo_file_exists?(path, branch)
+    # https://docs.github.com/en/rest/repos/contents#get-repository-content
+    url = "https://api.github.com/repos/#{gem.name}/contents/#{path}?ref=#{branch}"
+    request(url) do |response|
+      response.code == "200"
+    end
   end
 
   def get_workflow(workflow_id)
