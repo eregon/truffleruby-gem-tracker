@@ -11,6 +11,8 @@ gems:
     workflows: [test.yml]
   - name: ruby/io-console
     workflows: [truffleruby.yml]
+  - name: ruby/io-nonblock
+    workflows: [test.yml]
   - name: ruby/irb
     workflows: [test.yml]
   - name: ruby/mspec
