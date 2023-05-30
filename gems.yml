@@ -10,7 +10,7 @@ gems:
   - name: ruby/iconv
     workflows: [test.yml]
   - name: ruby/io-console
-    workflows: [truffleruby.yml]
+    workflows: [test.yml]
   - name: ruby/io-nonblock
     workflows: [test.yml]
   - name: ruby/irb
