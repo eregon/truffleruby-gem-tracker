@@ -4,6 +4,12 @@ gems:
   - name: ruby/bigdecimal
     ci: github
     workflows: [ci.yml]
+  - name: ruby/cgi
+    ci: github
+    workflows: [test.yml]
+  - name: ruby/etc
+    ci: github
+    workflows: [test.yml]
   - name: ruby/iconv
     ci: github
     workflows: [test.yml]
