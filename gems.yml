@@ -2,417 +2,290 @@
 gems:
   # ruby/*, sorted alphabetically
   - name: ruby/bigdecimal
-    ci: github
     workflows: [ci.yml]
   - name: ruby/cgi
-    ci: github
     workflows: [test.yml]
   - name: ruby/etc
-    ci: github
     workflows: [test.yml]
   - name: ruby/iconv
-    ci: github
     workflows: [test.yml]
   - name: ruby/io-console
-    ci: github
     workflows: [truffleruby.yml]
   - name: ruby/irb
-    ci: github
     workflows: [test.yml]
   - name: ruby/mspec
-    ci: github
     workflows: [ci.yml]
   - name: ruby/net-pop
-    ci: github
     workflows: [test.yml]
   - name: ruby/openssl
-    ci: github
     workflows: [test.yml]
   - name: ruby/ostruct
-    ci: github
     workflows: [test.yml]
   - name: ruby/rake
-    ci: github
     workflows: [test.yml]
   - name: ruby/ruby2_keywords
-    ci: github
     workflows: [test.yml]
   - name: ruby/strscan
-    ci: github
     workflows: [ci.yml]
   - name: ruby/timeout
-    ci: github
     workflows: [test.yml]
   - name: ruby/typeprof
-    ci: github
     workflows: [main.yml]
   - name: ruby/uri
-    ci: github
     workflows: [test.yml]
 
   # Source repos
   - name: flori/json
-    ci: github
     workflows: [ci.yml]
   - name: ged/ruby-pg
-    ci: github
     workflows: [source-gem.yml]
   - name: rack/rack
-    ci: github
     workflows: [test.yaml]
   - name: puma/puma
-    ci: github
     workflows: [tests.yaml]
   - name: ruby-concurrency/concurrent-ruby
-    ci: github
     workflows: [ci.yml, experimental.yml]
   - name: socketry/async-io
-    ci: github
     workflows: [development.yml]
   - name: socketry/nio4r
-    ci: github
     workflows: [workflow.yml]
   - name: socketry/console
-    ci: github
     workflows: [test.yaml]
   - name: ffi/ffi
-    ci: github
     workflows: [ci.yml]
   - name: Shopify/bootsnap
-    ci: github
     workflows: [ci.yaml]
   - name: mikel/mail
-    ci: github
     workflows: [test.yml]
   - name: sporkmonger/addressable
-    ci: github
     workflows: [test.yml]
   # - name: freerange/mocha
   #   ci: circleci
   # - name: copiousfreetime/launchy
   #   ci: semaphore
   - name: guard/listen
-    ci: github
     workflows: [development.yml]
   - name: datawraith/ascii85gem
-    ci: github
     workflows: [ruby.yml]
   - name: whitequark/parser
-    ci: github
     workflows: [test.yml]
   - name: halostatue/diff-lcs
-    ci: github
     workflows: [ci.yml]
   - name: rubygems/rubygems
-    ci: github
     workflows: [daily-rubygems.yml, rubygems.yml]
   - name: socketry/async-container
-    ci: github
     workflows: [test.yaml]
   - name: ruby-next/ruby-next
-    ci: github
     workflows: [truffle-test.yml]
     pattern: truffle
   - name: ttasanen/atomic_counter
-    ci: github
     workflows: [ruby.yml]
   - name: clowne-rb/clowne
-    ci: github
     workflows: [rspec-truffle.yml]
     pattern: truffle
   # - name: meineerde/rackstash
-  #   ci: github
   #   workflows: [ci.yml] # no recent run, workflow disabled
   - name: test-unit/test-unit
-    ci: github
     workflows: [test.yml]
   # - name: fxn/zeitwerk
-  #   ci: github
   #   workflows: [ci.yml] # no truffleruby
   - name: rubyzip/rubyzip
-    ci: github
     workflows: [tests.yml]
   - name: davishmcclurg/json_schemer
-    ci: github
     workflows: [ci.yml]
   - name: ruby-gettext/gettext
-    ci: github
     workflows: [test.yml]
   - name: ruby-gettext/locale
-    ci: github
     workflows: [test.yml]
   # - name: serradura/u-attributes
-  #   ci: github
   #   workflows: [ci.yml] # no truffleruby
   # - name: AvnerCohen/http-headers-verifier
   #   ci: none https://github.com/AvnerCohen/http-headers-verifier/issues/2
   - name: mime-types/ruby-mime-types
-    ci: github
     workflows: [ci.yml]
   - name: jwt/ruby-jwt
-    ci: github
     workflows: [test.yml]
   - name: ruby-grape/grape
-    ci: github
     workflows: [edge.yml]
   - name: cyu/rack-cors
-    ci: github
     workflows: [ci.yaml]
   - name: jeremyevans/roda
-    ci: github
     workflows: [ci.yml]
   - name: jeremyevans/sequel
-    ci: github
     workflows: [ci.yml]
     expect: fail # see https://github.com/oracle/truffleruby/issues/2230
   # - name: febeling/rb-libsvm
   #   ci: none
   # - name: namusyaka/gammo
-  #   ci: github
   #   workflows: [test.yml] # no truffleruby
   - name: steveklabnik/request_store
-    ci: github
     workflows: [ci.yml]
   - name: omniauth/omniauth-oauth2
-    ci: github
     workflows: [main.yml]
   - name: faker-ruby/faker
-    ci: github
     workflows: [ruby.yml]
   - name: CanCanCommunity/cancancan
-    ci: github
     workflows: [test.yml]
   - name: asciidoctor/asciidoctor
-    ci: github
     workflows: [ci.yml]
     # search_last_n_builds: 10 # daily
   # - name: BetterErrors/better_errors
-  #   ci: github
   #   workflows: [ci.yml]
   - name: ms-ati/docile
-    ci: github
     workflows: [main.yml]
   - name: omniauth/omniauth
-    ci: github
     workflows: [truffle_ruby.yml]
   # - name: athityakumar/colorls
-  #   ci: github
   #   workflows: [ruby.yml] # no truffleruby
   - name: bcrypt-ruby/bcrypt-ruby
-    ci: github
     workflows: [ruby.yml]
   - name: cgriego/active_attr
-    ci: github
     workflows: [test.yaml]
   - name: moiristo/deep_cloneable
-    ci: github
     workflows: [ruby.yml]
   - name: ambethia/recaptcha
-    ci: github
     workflows: [ci.yml]
   - name: cedarcode/webauthn-ruby
-    ci: github
     workflows: [build.yml]
   - name: fog/fog-google
-    ci: github
     workflows: [unit.yml]
   # - name: nahi/httpclient
   #   ci: none # https://github.com/nahi/httpclient/issues/452
   - name: joshbuddy/jsonpath
-    ci: github
     workflows: [test.yml]
   - name: geemus/shindo
-    ci: github
     workflows: [ruby.yml]
   # - name: brianmario/charlock_holmes
   #   ci: none
   - name: ruby-git/ruby-git
-    ci: github
     workflows: [continuous_integration.yml]
   - name: leejarvis/slop
-    ci: github
     workflows: [ci.yml]
   - name: k0kubun/hamlit
-    ci: github
     workflows: [test.yml]
   - name: ahorek/terser-ruby
-    ci: github
     workflows: [ruby.yml]
   - name: ruby-ldap/ruby-net-ldap
-    ci: github
     workflows: [test.yml]
   - name: rgrove/sanitize
-    ci: github
     workflows: [tests.yml]
   - name: RubyCrypto/ed25519
-    ci: github
     workflows: [ci.yml]
   - name: jeremyevans/erubi
-    ci: github
     workflows: [ci.yml]
   - name: brandonhilkert/sucker_punch
-    ci: github
     workflows: [build.yml]
   - name: rmosolgo/graphql-ruby
-    ci: github
     workflows: [ci.yaml]
   - name: rubocop/rubocop-ast
-    ci: github
     workflows: [rubocop.yml]
   - name: savonrb/savon
-    ci: github
     workflows: [ci.yml]
   - name: typhoeus/ethon
-    ci: github
     workflows: [ruby.yml]
   - name: typhoeus/typhoeus
-    ci: github
     workflows: [ci.yml]
   - name: discourse/mini_mime
-    ci: github
     workflows: [ci.yml]
   # - name: tpitale/mail_room
   #   ci: none
   - name: stripe/stripe-ruby
-    ci: github
     workflows: [ci.yml]
   - name: rails/sdoc
-    ci: github
     workflows: [test.yml]
   # - name: gazay/gon
   #   ci: none
   - name: sparklemotion/mechanize
-    ci: github
     workflows: [ci-test.yml]
   - name: thoughtbot/factory_bot
-    ci: github
     workflows: [build.yml]
   - name: kubo/ruby-oci8
-    ci: github
     workflows: [tests.yml]
   - name: rsim/ruby-plsql
-    ci: github
     workflows: [test.yml]
   - name: rsim/oracle-enhanced
-    ci: github
     workflows: [test.yml]
   - name: floraison/fugit
-    ci: github
     workflows: [test.yaml]
   - name: aasm/aasm
-    ci: github
     workflows: [build.yml]
   - name: KineticCafe/marlowe
-    ci: github
     workflows: [ruby.yml]
     pattern: truffleruby-head # https://github.com/oracle/truffleruby/issues/2441
   - name: flavorjones/loofah
-    ci: github
     workflows: [ci.yml]
   - name: rails/rails-html-sanitizer
-    ci: github
     workflows: [ci.yml]
   - name: hsanson/asciidoctor-plantuml
-    ci: github
     workflows: [ruby.yml]
   - name: braze-inc/knapsack
-    ci: github
     workflows: [ruby.yml]
   - name: tinfoil/devise-two-factor
-    ci: github
     workflows: [ci.yml]
   - name: rubysec/bundler-audit
-    ci: github
     workflows: [ruby.yml]
   - name: unixcharles/acme-client
-    ci: github
     workflows: [test.yml]
   - name: emancu/toml-rb
-    ci: github
     workflows: [ruby.yml]
   - name: dazuma/toys
-    ci: github
     workflows: [ci.yml]
   - name: cucumber/cucumber-ruby
-    ci: github
     workflows: [cucumber-ruby.yml]
   - name: msgpack/msgpack-ruby
-    ci: github
     workflows: [ci.yaml]
   - name: eregon/path
-    ci: github
     workflows: [ci.yml]
   - name: ronin-rb/ronin
-    ci: github
     workflows: [ruby.yml]
     expect: fail # Coverage.running?
   - name: ronin-rb/ronin-vulns
-    ci: github
     workflows: [ruby.yml]
     expect: fail # until 22.3 release
   - name: ronin-rb/ronin-exploits
-    ci: github
     workflows: [ruby.yml]
     expect: fail # Coverage.running?
   - name: sinatra/mustermann
-    ci: github
     workflows: [test.yml]
   - name: sinatra/sinatra
-    ci: github
     workflows: [test.yml]
   - name: ohler55/oj
-    ci: github
     workflows: [CI.yml]
   - name: sparklemotion/nokogiri
-    ci: github
     workflows: [ci.yml]
   - name: hellostealth/stealth
-    ci: github
     workflows: [ci.yml]
   - name: redis/redis-rb
-    ci: github
     workflows: [test.yaml]
   - name: cookpad/grpc_kit
-    ci: github
     workflows: [ci.yml]
   - name: sparklemotion/sqlite3-ruby
-    ci: github
     workflows: [sqlite3-ruby.yml, gem-install.yml]
   - name: ruby-syntax-tree/syntax_tree
-    ci: github
     workflows: [main.yml]
   - name: SeleniumHQ/selenium
-    ci: github
     workflows: [ci-ruby.yml]
   - name: p0deje/rules_ruby
-    ci: github
     workflows: [ci.yml]
   - name: rails/sprockets
-    ci: github
     workflows: [ci.yml]
   - name: halostatue/minitar
-    ci: github
     workflows: [ruby.yml]
   # - name: kwilczynski/ruby-magic
   #   ci: none https://github.com/kwilczynski/ruby-magic/issues/15
   - name: piotrmurach/tty-option
-    ci: github
     workflows: [ci.yml]
   - name: phlex-ruby/phlex
-    ci: github
     workflows: [ci.yml]
   - name: open-telemetry/opentelemetry-ruby
-    ci: github
     workflows: [ci.yml]
     pattern: ubuntu-latest # https://github.com/open-telemetry/opentelemetry-ruby/blob/4cd4a523d41bbe513b23e3121678a8aa4d51e408/.github/workflows/ci.yml#L59
 
   # Forks
   - name: bjfish/rails
-    ci: github
     workflows: [test.yml]
     expect: fail
   - name: eregon/hexapdf
-    ci: github
     workflows: [ci.yml]
     expect: fail
 
@@ -423,5 +296,4 @@ gems:
   # Disabled for slowness at https://github.com/rom-rb/rom/commit/4072824a7250b0599b7dee1d5b7d35d36ed604bd
   # Might be enabled in a separate workflow
   # - name: rom-rb/rom
-  #   ci: github
   #   workflows: [ci.yml]
