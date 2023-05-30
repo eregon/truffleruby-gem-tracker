@@ -106,6 +106,8 @@ module GemTracker
       ok = true
       statuses.each do |status|
         say gem.repo_name.ljust(first_column_size + 1), nil, false
+        old_build = options[:days] > 0 && status.time && ((Time.now - status.time) / 86400) > options[:days]
+
         case status.result
         when :success
           say "✓ ", :green, false
@@ -115,7 +117,7 @@ module GemTracker
         when :failure
           if gem.expect == :fail
             say "✗ ", :blue, false
-          elsif options[:days] > 0 and status.time and ((Time.now - status.time) / 86400) > options[:days]
+          elsif old_build
             say "o ", :blue, false
           else
             ok = false
@@ -137,7 +139,8 @@ module GemTracker
         end
         say "\n"
 
-        say "WARNING: #{gem.name} was marked as failing but passed!" , [:bold, :magenta] if warn_passing
+        say "WARNING: the last build of #{gem.name} (#{status.time.strftime('%d-%m-%Y')}) is older than #{options[:days]} days, maybe the workflow was renamed?", [:bold, :blue] if old_build
+        say "WARNING: #{gem.name} was marked as failing but passed!", [:bold, :magenta] if warn_passing
       end
       ok
     end
