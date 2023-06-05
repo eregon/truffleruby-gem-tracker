@@ -125,9 +125,9 @@ class GemTracker::GitHubActions < GemTracker::CI
     end
   end
 
-  def get_workflow_runs(workflow, branch)
+  def get_workflow_runs(workflow_id, branch)
     # https://api.github.com/repos/rack/rack/actions/workflows/development.yml/runs
-    url = "https://api.github.com/repos/#{gem.name}/actions/workflows/#{workflow}/runs?branch=#{branch}"
+    url = "https://api.github.com/repos/#{gem.name}/actions/workflows/#{workflow_id}/runs?branch=#{branch}"
     request(url) do |response|
       unless response.code.start_with?("20") # expect 20x status
         raise "HTTP Error (#{response.code}) getting GitHub workflow (#{workflow_id}) runs: #{response.body}"
