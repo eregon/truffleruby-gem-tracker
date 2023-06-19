@@ -48,7 +48,7 @@ gems:
   - name: ruby-concurrency/concurrent-ruby
     workflows: [ci.yml, experimental.yml]
   - name: socketry/async-io
-    workflows: [development.yml]
+    workflows: [test.yaml]
   - name: socketry/nio4r
     workflows: [workflow.yml]
   - name: socketry/console
