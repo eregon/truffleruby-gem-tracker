@@ -222,7 +222,7 @@ gems:
     workflows: [ruby.yml]
   - name: braze-inc/knapsack
     workflows: [ruby.yml]
-  - name: tinfoil/devise-two-factor
+  - name: devise-two-factor/devise-two-factor
     workflows: [ci.yml]
   - name: rubysec/bundler-audit
     workflows: [ruby.yml]
