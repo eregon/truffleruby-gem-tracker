@@ -70,6 +70,11 @@ class GemTracker::GitHubActions < GemTracker::CI
   def get_repository
     repo_url = "https://api.github.com/repos/#{gem.name}"
     request(repo_url) do |response|
+      # detect a case when e.g. a repository is moved into another organization/user account
+      unless response.code.start_with?("20") # expect 20x status
+        raise "HTTP Error (#{response.code}) getting GitHub repository #{gem.name}: #{response.body}"
+      end
+
       JSON.parse(response.body)
     end
   end
