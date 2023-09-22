@@ -35,6 +35,8 @@ gems:
     workflows: [main.yml]
   - name: ruby/uri
     workflows: [test.yml]
+  - name: ruby/zlib
+    workflows: [test.yml]
 
   # Source repos
   - name: flori/json
