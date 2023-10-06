@@ -195,8 +195,9 @@ gems:
   #   ci: none
   - name: stripe/stripe-ruby
     workflows: [ci.yml]
-  - name: rails/sdoc
-    workflows: [test.yml]
+  # Removed in https://github.com/rails/sdoc/pull/314
+  # - name: rails/sdoc
+  #   workflows: [test.yml]
   # - name: gazay/gon
   #   ci: none
   - name: sparklemotion/mechanize
