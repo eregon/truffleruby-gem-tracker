@@ -236,7 +236,7 @@ gems:
   - name: dazuma/toys
     workflows: [ci.yml]
   - name: cucumber/cucumber-ruby
-    workflows: [cucumber-ruby.yml]
+    workflows: [test.yaml]
   - name: msgpack/msgpack-ruby
     workflows: [ci.yaml]
   - name: eregon/path
