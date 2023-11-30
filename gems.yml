@@ -27,6 +27,8 @@ gems:
     workflows: [test.yml]
   - name: ruby/ruby2_keywords
     workflows: [test.yml]
+  - name: ruby/stringio
+    workflows: [ubuntu.yml]
   - name: ruby/strscan
     workflows: [ci.yml]
   - name: ruby/timeout
