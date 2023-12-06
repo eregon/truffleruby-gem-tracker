@@ -5,6 +5,8 @@ gems:
     workflows: [ci.yml]
   - name: ruby/cgi
     workflows: [test.yml]
+  - name: ruby/debug
+    workflows: [truffleruby.yml]
   - name: ruby/etc
     workflows: [test.yml]
   - name: ruby/iconv
