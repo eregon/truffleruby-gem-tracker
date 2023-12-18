@@ -273,7 +273,7 @@ gems:
     workflows: [main.yml]
   - name: SeleniumHQ/selenium
     workflows: [ci-ruby.yml]
-  - name: p0deje/rules_ruby
+  - name: bazel-contrib/rules_ruby
     workflows: [ci.yml]
   - name: rails/sprockets
     workflows: [ci.yml]
