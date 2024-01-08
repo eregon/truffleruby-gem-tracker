@@ -50,7 +50,7 @@ gems:
   - name: rack/rack
     workflows: [test.yaml]
   - name: puma/puma
-    workflows: [tests.yaml]
+    workflows: [tests.yml]
   - name: ruby-concurrency/concurrent-ruby
     workflows: [ci.yml, experimental.yml]
   - name: socketry/async-io
