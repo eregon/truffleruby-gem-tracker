@@ -294,6 +294,8 @@ gems:
     workflows: [ci.yml]
   - name: Shopify/yjit-bench
     workflows: [test.yml]
+  - name: Shopify/liquid-c
+    workflows: [liquid.yml]
 
   # Forks
   - name: bjfish/rails
