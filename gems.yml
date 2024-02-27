@@ -270,7 +270,7 @@ gems:
   - name: cookpad/grpc_kit
     workflows: [ci.yml]
   - name: sparklemotion/sqlite3-ruby
-    workflows: [sqlite3-ruby.yml, gem-install.yml]
+    workflows: [ci.yml]
   - name: ruby-syntax-tree/syntax_tree
     workflows: [main.yml]
   - name: SeleniumHQ/selenium
