@@ -298,6 +298,8 @@ gems:
     workflows: [test.yml]
   - name: Shopify/liquid-c
     workflows: [liquid.yml]
+  - name: simplecov-ruby/simplecov
+    workflows: [stable.yml, unstable.yml]
 
   # Forks
   - name: bjfish/rails
