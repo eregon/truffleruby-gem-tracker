@@ -209,7 +209,7 @@ gems:
   # - name: gazay/gon
   #   ci: none
   - name: sparklemotion/mechanize
-    workflows: [ci-test.yml]
+    workflows: [ci.yml, upstream.yml]
   - name: thoughtbot/factory_bot
     workflows: [build.yml]
   - name: kubo/ruby-oci8
