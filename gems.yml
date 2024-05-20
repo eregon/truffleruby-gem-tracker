@@ -60,7 +60,7 @@ gems:
   - name: socketry/async-io
     workflows: [test.yaml]
   - name: socketry/nio4r
-    workflows: [workflow.yml]
+    workflows: [test.yaml]
   - name: socketry/console
     workflows: [test.yaml]
   - name: ffi/ffi
