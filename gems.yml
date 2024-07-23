@@ -231,7 +231,7 @@ gems:
     workflows: [ci.yml]
   - name: hsanson/asciidoctor-plantuml
     workflows: [ruby.yml]
-  - name: braze-inc/knapsack
+  - name: KnapsackPro/knapsack
     workflows: [ruby.yml]
   - name: devise-two-factor/devise-two-factor
     workflows: [ci.yml]
