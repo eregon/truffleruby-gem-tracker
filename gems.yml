@@ -9,6 +9,8 @@ gems:
     workflows: [truffleruby.yml]
   - name: ruby/etc
     workflows: [test.yml]
+  - name: ruby/fiddle
+    workflows: [ci.yml]
   - name: ruby/iconv
     workflows: [test.yml]
   - name: ruby/io-console
@@ -37,6 +39,8 @@ gems:
     workflows: [ubuntu.yml]
   - name: ruby/strscan
     workflows: [ci.yml]
+  - name: ruby/singleton
+    workflows: [test.yml]
   - name: ruby/timeout
     workflows: [test.yml]
   - name: ruby/typeprof
