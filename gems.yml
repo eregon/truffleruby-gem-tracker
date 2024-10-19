@@ -51,7 +51,7 @@ gems:
     workflows: [test.yml]
 
   # Source repos
-  - name: flori/json
+  - name: ruby/json
     workflows: [ci.yml]
   - name: ged/ruby-pg
     workflows: [source-gem.yml]
