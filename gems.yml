@@ -19,6 +19,8 @@ gems:
     workflows: [test.yml]
   - name: ruby/irb
     workflows: [test.yml]
+  - name: ruby/json
+    workflows: [ci.yml]
   - name: ruby/mspec
     workflows: [ci.yml]
   - name: ruby/net-pop
@@ -50,29 +52,69 @@ gems:
   - name: ruby/zlib
     workflows: [test.yml]
 
-  # Source repos
-  - name: ruby/json
+  # Key libraries used by many applications or gems
+  - name: rubygems/rubygems
+    workflows: [daily-rubygems.yml, rubygems.yml]
+  - name: ruby-concurrency/concurrent-ruby
+    workflows: [ci.yml, experimental.yml]
+  - name: ffi/ffi
     workflows: [ci.yml]
-  - name: ged/ruby-pg
-    workflows: [source-gem.yml]
+  - name: halostatue/diff-lcs
+    workflows: [ci.yml]
+
+  # Rails dependencies
   - name: rack/rack
     workflows: [test.yaml]
   - name: puma/puma
     workflows: [tests.yml]
-  - name: ruby-concurrency/concurrent-ruby
-    workflows: [ci.yml, experimental.yml]
-  - name: socketry/async-io
-    workflows: [test.yaml]
   - name: socketry/nio4r
     workflows: [test.yaml]
-  - name: socketry/console
-    workflows: [test.yaml]
-  - name: ffi/ffi
+  - name: jeremyevans/erubi
+    workflows: [ci.yml]
+  - name: fxn/zeitwerk
     workflows: [ci.yml]
   - name: Shopify/bootsnap
     workflows: [ci.yaml]
   - name: mikel/mail
     workflows: [test.yml]
+  - name: discourse/mini_mime
+    workflows: [ci.yml]
+  - name: flavorjones/loofah
+    workflows: [ci.yml]
+  - name: rails/rails-html-sanitizer
+    workflows: [ci.yml]
+  - name: sparklemotion/nokogiri
+    workflows: [ci.yml]
+  - name: rails/sprockets
+    workflows: [ci.yml]
+
+  # Database adapters
+  - name: sparklemotion/sqlite3-ruby
+    workflows: [ci.yml]
+  - name: ged/ruby-pg
+    workflows: [source-gem.yml]
+  - name: kubo/ruby-oci8
+    workflows: [tests.yml]
+  - name: rsim/ruby-plsql
+    workflows: [test.yml]
+  - name: rsim/oracle-enhanced
+    workflows: [test.yml]
+
+  # async-related
+  - name: socketry/async-container
+    workflows: [test.yaml]
+  - name: socketry/async-io
+    workflows: [test.yaml]
+  - name: socketry/console
+    workflows: [test.yaml]
+  - name: test-unit/test-unit
+    workflows: [test.yml]
+
+  # Other
+  - name: omniauth/omniauth-oauth2
+    workflows: [main.yml]
+  - name: bcrypt-ruby/bcrypt-ruby
+    workflows: [ruby.yml]
   - name: sporkmonger/addressable
     workflows: [test.yml]
   # - name: freerange/mocha
@@ -85,12 +127,8 @@ gems:
     workflows: [ruby.yml]
   - name: whitequark/parser
     workflows: [test.yml]
-  - name: halostatue/diff-lcs
-    workflows: [ci.yml]
-  - name: rubygems/rubygems
-    workflows: [daily-rubygems.yml, rubygems.yml]
-  - name: socketry/async-container
-    workflows: [test.yaml]
+  - name: rubocop/rubocop-ast
+    workflows: [rubocop.yml]
   - name: ruby-next/ruby-next
     workflows: [truffle-test.yml]
     pattern: truffle
@@ -101,10 +139,6 @@ gems:
     pattern: truffle
   # - name: meineerde/rackstash
   #   workflows: [ci.yml] # no recent run, workflow disabled
-  - name: test-unit/test-unit
-    workflows: [test.yml]
-  - name: fxn/zeitwerk
-    workflows: [ci.yml]
   - name: rubyzip/rubyzip
     workflows: [tests.yml]
   - name: davishmcclurg/json_schemer
@@ -136,8 +170,6 @@ gems:
   #   workflows: [test.yml] # no truffleruby
   - name: steveklabnik/request_store
     workflows: [ci.yml]
-  - name: omniauth/omniauth-oauth2
-    workflows: [main.yml]
   - name: faker-ruby/faker
     workflows: [ruby.yml]
   - name: CanCanCommunity/cancancan
@@ -153,8 +185,6 @@ gems:
     workflows: [truffle_ruby.yml]
   # - name: athityakumar/colorls
   #   workflows: [ruby.yml] # no truffleruby
-  - name: bcrypt-ruby/bcrypt-ruby
-    workflows: [ruby.yml]
   - name: cgriego/active_attr
     workflows: [test.yaml]
   - name: moiristo/deep_cloneable
@@ -187,21 +217,15 @@ gems:
     workflows: [tests.yml]
   - name: RubyCrypto/ed25519
     workflows: [ci.yml]
-  - name: jeremyevans/erubi
-    workflows: [ci.yml]
   - name: brandonhilkert/sucker_punch
     workflows: [build.yml]
   - name: rmosolgo/graphql-ruby
     workflows: [ci.yaml]
-  - name: rubocop/rubocop-ast
-    workflows: [rubocop.yml]
   - name: savonrb/savon
     workflows: [ci.yml]
   - name: typhoeus/ethon
     workflows: [ruby.yml]
   - name: typhoeus/typhoeus
-    workflows: [ci.yml]
-  - name: discourse/mini_mime
     workflows: [ci.yml]
   # - name: tpitale/mail_room
   #   ci: none
@@ -216,12 +240,6 @@ gems:
     workflows: [ci.yml, upstream.yml]
   - name: thoughtbot/factory_bot
     workflows: [build.yml]
-  - name: kubo/ruby-oci8
-    workflows: [tests.yml]
-  - name: rsim/ruby-plsql
-    workflows: [test.yml]
-  - name: rsim/oracle-enhanced
-    workflows: [test.yml]
   - name: floraison/fugit
     workflows: [test.yaml]
   - name: aasm/aasm
@@ -229,10 +247,6 @@ gems:
   - name: KineticCafe/marlowe
     workflows: [ruby.yml]
     pattern: truffleruby-head # https://github.com/oracle/truffleruby/issues/2441
-  - name: flavorjones/loofah
-    workflows: [ci.yml]
-  - name: rails/rails-html-sanitizer
-    workflows: [ci.yml]
   - name: hsanson/asciidoctor-plantuml
     workflows: [ruby.yml]
   - name: KnapsackPro/knapsack
@@ -267,23 +281,17 @@ gems:
     workflows: [test.yml]
   - name: ohler55/oj
     workflows: [CI.yml]
-  - name: sparklemotion/nokogiri
-    workflows: [ci.yml]
   - name: hellostealth/stealth
     workflows: [ci.yml]
   - name: redis/redis-rb
     workflows: [test.yaml]
   - name: cookpad/grpc_kit
     workflows: [ci.yml]
-  - name: sparklemotion/sqlite3-ruby
-    workflows: [ci.yml]
   - name: ruby-syntax-tree/syntax_tree
     workflows: [main.yml]
   - name: SeleniumHQ/selenium
     workflows: [ci-ruby.yml]
   - name: bazel-contrib/rules_ruby
-    workflows: [ci.yml]
-  - name: rails/sprockets
     workflows: [ci.yml]
   - name: halostatue/minitar
     workflows: [ruby.yml]
