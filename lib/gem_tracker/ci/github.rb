@@ -54,7 +54,7 @@ class GemTracker::GitHubActions < GemTracker::CI
                      else
                        :unknown
                      end
-            statuses << GemTracker::Status.new(gem: gem, result: result, job_name: j["name"], url: url, time: Time.iso8601(j["started_at"]), job_url: j["url"])
+            statuses << GemTracker::Status.new(gem: gem, result: result, job_name: j["name"].gsub("\n", " "), url: url, time: Time.iso8601(j["started_at"]), job_url: j["url"])
           end
         end
         break unless statuses.empty?
