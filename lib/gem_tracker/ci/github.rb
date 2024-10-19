@@ -13,6 +13,7 @@ class GemTracker::GitHubActions < GemTracker::CI
     statuses = []
     repo = get_repository()
     branch = gem.branch || repo.fetch("default_branch")
+    any_run = false
 
     gem.workflows.each do |w|
       workflow = get_workflow(w)
@@ -25,7 +26,9 @@ class GemTracker::GitHubActions < GemTracker::CI
       end
 
       runs = get_workflow_runs(w, branch)
+
       runs.each do |r|
+        any_run = true
         # p r['created_at']
         jobs = get_run_jobs(r["jobs_url"])
         jobs.each do |j|
@@ -56,7 +59,13 @@ class GemTracker::GitHubActions < GemTracker::CI
       end
     end
 
-    raise "no github run jobs found, workflows: #{gem.workflows.inspect}" if statuses.empty?
+    if statuses.empty?
+      if any_run
+        raise "no github run jobs found, workflows: #{gem.workflows.inspect}"
+      else
+        statuses << GemTracker::Status.new(gem: gem, result: :no_recent_run, job_name: "in workflows: #{gem.workflows.inspect}", url: nil, time: nil, job_url: nil)
+      end
+    end
     statuses
   end
 

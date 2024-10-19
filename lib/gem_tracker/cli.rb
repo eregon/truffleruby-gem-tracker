@@ -57,23 +57,29 @@ module GemTracker
       parallel = options[:parallel]
 
       longest_name_size = gems.max_by { |g| g.repo_name.size }.repo_name.size
-      failing = []
+      results = { true => [], false => [], nil => [] }
       map(gems, parallel) { |gem|
         begin
           latest_ci_statuses = gem.latest_ci_statuses
         rescue => e
           latest_ci_statuses = [
-            GemTracker::Status.new(gem: gem, job_name: "", result: e, url: nil, time: nil, job_url: nil)
+            GemTracker::Status.new(gem: gem, result: e, job_name: "", url: nil, time: nil, job_url: nil)
           ]
         end
 
         [gem, latest_ci_statuses]
       }.each do |gem, statuses|
-        success = print_statuses(gem, statuses, longest_name_size)
-        failing << gem.name unless success
+        ok = print_statuses(gem, statuses, longest_name_size)
+        results[ok] << gem.name
       end
 
-      abort "Failing CIs: #{failing.join(', ')}" unless failing.empty?
+      failing = results[false]
+      unknown = results[nil]
+
+      puts
+      puts "Unknown CIs: #{unknown.join(', ')}" unless unknown.empty?
+      puts "Failing CIs: #{failing.join(', ')}" unless failing.empty?
+      abort unless unknown.empty? and failing.empty?
     end
 
     LONGEST_JOB_NAME = 40
@@ -123,8 +129,11 @@ module GemTracker
             ok = false
             say "✗ ", :red, false
           end
+        when :no_recent_run
+          say "✓ ", :green, false
+          say "no recent CI run ", nil, false
         else
-          ok = false
+          ok = nil
           say "? #{status.result.inspect}", nil, false
         end
 
