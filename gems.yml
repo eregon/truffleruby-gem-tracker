@@ -117,10 +117,6 @@ gems:
     workflows: [ruby.yml]
   - name: sporkmonger/addressable
     workflows: [test.yml]
-  # - name: freerange/mocha
-  #   ci: circleci
-  # - name: copiousfreetime/launchy
-  #   ci: semaphore
   - name: guard/listen
     workflows: [development.yml]
   - name: datawraith/ascii85gem
@@ -137,8 +133,6 @@ gems:
   - name: clowne-rb/clowne
     workflows: [rspec-truffle.yml]
     pattern: truffle
-  # - name: meineerde/rackstash
-  #   workflows: [ci.yml] # no recent run, workflow disabled
   - name: rubyzip/rubyzip
     workflows: [tests.yml]
   - name: davishmcclurg/json_schemer
@@ -147,10 +141,8 @@ gems:
     workflows: [test.yml]
   - name: ruby-gettext/locale
     workflows: [test.yml]
-  # - name: serradura/u-attributes
-  #   workflows: [ci.yml] # no truffleruby
-  # - name: AvnerCohen/http-headers-verifier
-  #   ci: none https://github.com/AvnerCohen/http-headers-verifier/issues/2
+  - name: AvnerCohen/http-headers-verifier
+    workflows: [ruby-rspec.yml]
   - name: mime-types/ruby-mime-types
     workflows: [ci.yml]
   - name: jwt/ruby-jwt
@@ -164,10 +156,6 @@ gems:
   - name: jeremyevans/sequel
     workflows: [ci.yml]
     expect: fail # see https://github.com/oracle/truffleruby/issues/2230
-  # - name: febeling/rb-libsvm
-  #   ci: none
-  # - name: namusyaka/gammo
-  #   workflows: [test.yml] # no truffleruby
   - name: steveklabnik/request_store
     workflows: [ci.yml]
   - name: faker-ruby/faker
@@ -176,15 +164,10 @@ gems:
     workflows: [test.yml]
   - name: asciidoctor/asciidoctor
     workflows: [ci.yml]
-    # search_last_n_builds: 10 # daily
-  # - name: BetterErrors/better_errors
-  #   workflows: [ci.yml]
   - name: ms-ati/docile
     workflows: [main.yml]
   - name: omniauth/omniauth
     workflows: [truffle_ruby.yml]
-  # - name: athityakumar/colorls
-  #   workflows: [ruby.yml] # no truffleruby
   - name: cgriego/active_attr
     workflows: [test.yaml]
   - name: moiristo/deep_cloneable
@@ -195,14 +178,10 @@ gems:
     workflows: [build.yml]
   - name: fog/fog-google
     workflows: [unit.yml]
-  # - name: nahi/httpclient
-  #   ci: none # https://github.com/nahi/httpclient/issues/452
   - name: joshbuddy/jsonpath
     workflows: [test.yml]
   - name: geemus/shindo
     workflows: [ruby.yml]
-  # - name: brianmario/charlock_holmes
-  #   ci: none
   - name: ruby-git/ruby-git
     workflows: [continuous_integration.yml]
   - name: leejarvis/slop
@@ -227,15 +206,8 @@ gems:
     workflows: [ruby.yml]
   - name: typhoeus/typhoeus
     workflows: [ci.yml]
-  # - name: tpitale/mail_room
-  #   ci: none
   - name: stripe/stripe-ruby
     workflows: [ci.yml]
-  # Removed in https://github.com/rails/sdoc/pull/314
-  # - name: rails/sdoc
-  #   workflows: [test.yml]
-  # - name: gazay/gon
-  #   ci: none
   - name: sparklemotion/mechanize
     workflows: [ci.yml, upstream.yml]
   - name: thoughtbot/factory_bot
@@ -246,7 +218,6 @@ gems:
     workflows: [build.yml]
   - name: KineticCafe/marlowe
     workflows: [ruby.yml]
-    pattern: truffleruby-head # https://github.com/oracle/truffleruby/issues/2441
   - name: hsanson/asciidoctor-plantuml
     workflows: [ruby.yml]
   - name: KnapsackPro/knapsack
@@ -269,12 +240,10 @@ gems:
     workflows: [ci.yml]
   - name: ronin-rb/ronin
     workflows: [ruby.yml]
-    expect: fail # Coverage.running?
   - name: ronin-rb/ronin-vulns
     workflows: [ruby.yml]
   - name: ronin-rb/ronin-exploits
     workflows: [ruby.yml]
-    expect: fail # Coverage.running?
   - name: sinatra/mustermann
     workflows: [test.yml]
   - name: sinatra/sinatra
@@ -295,8 +264,6 @@ gems:
     workflows: [ci.yml]
   - name: halostatue/minitar
     workflows: [ruby.yml]
-  # - name: kwilczynski/ruby-magic
-  #   ci: none https://github.com/kwilczynski/ruby-magic/issues/15
   - name: piotrmurach/tty-option
     workflows: [ci.yml]
   - name: phlex-ruby/phlex
