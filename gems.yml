@@ -103,8 +103,8 @@ gems:
   #   workflows: [ci.yml] # no recent run, workflow disabled
   - name: test-unit/test-unit
     workflows: [test.yml]
-  # - name: fxn/zeitwerk
-  #   workflows: [ci.yml] # no truffleruby
+  - name: fxn/zeitwerk
+    workflows: [ci.yml]
   - name: rubyzip/rubyzip
     workflows: [tests.yml]
   - name: davishmcclurg/json_schemer
