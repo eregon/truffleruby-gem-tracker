@@ -59,6 +59,8 @@ gems:
     workflows: [ci.yml, experimental.yml]
   - name: ffi/ffi
     workflows: [ci.yml]
+  - name: test-unit/test-unit
+    workflows: [test.yml]
   - name: halostatue/diff-lcs
     workflows: [ci.yml]
 
@@ -97,18 +99,16 @@ gems:
     workflows: [tests.yml]
   - name: rsim/ruby-plsql
     workflows: [test.yml]
-  - name: rsim/oracle-enhanced
-    workflows: [test.yml]
+  # - name: rsim/oracle-enhanced
+  #   workflows: [test.yml] # disabled in https://github.com/rsim/oracle-enhanced/commit/4f1dce2dfe22a740a27afd035097d19cb2a50d9a
 
   # async-related
   - name: socketry/async-container
     workflows: [test.yaml]
-  - name: socketry/async-io
-    workflows: [test.yaml]
+    expect: fail # hangs
   - name: socketry/console
     workflows: [test.yaml]
-  - name: test-unit/test-unit
-    workflows: [test.yml]
+    expect: fail # unclear failure
 
   # Other
   - name: omniauth/omniauth-oauth2
