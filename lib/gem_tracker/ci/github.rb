@@ -22,10 +22,12 @@ class GemTracker::GitHubActions < GemTracker::CI
         raise "GitHub workflow #{w} no longer exists on #{branch}"
       end
       if workflow["state"] == "deleted"
-        raise "GitHub workflow #{w} is deleted"
+        # raise "GitHub workflow #{w} is deleted"
+        runs = []
+      else
+        runs = get_workflow_runs(w, branch)
       end
 
-      runs = get_workflow_runs(w, branch)
 
       runs.each do |r|
         any_run = true
