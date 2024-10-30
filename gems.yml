@@ -35,6 +35,8 @@ gems:
     workflows: [test.yml]
   - name: ruby/rdoc
     workflows: [test.yml]
+  - name: ruby/reline
+    workflows: [reline.yml]
   - name: ruby/ruby2_keywords
     workflows: [test.yml]
   - name: ruby/stringio
