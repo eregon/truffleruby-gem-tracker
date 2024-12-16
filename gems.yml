@@ -18,7 +18,7 @@ gems:
   - name: ruby/io-nonblock
     workflows: [test.yml]
   - name: ruby/irb
-    workflows: [test.yml]
+    workflows: [truffle-ruby-test.yml]
   - name: ruby/json
     workflows: [ci.yml]
   - name: ruby/mspec
@@ -36,7 +36,7 @@ gems:
   - name: ruby/rdoc
     workflows: [test.yml]
   - name: ruby/reline
-    workflows: [reline.yml]
+    workflows: [truffle-ruby-test.yml]
   - name: ruby/ruby2_keywords
     workflows: [test.yml]
   - name: ruby/stringio
