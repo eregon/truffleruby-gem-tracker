@@ -5,6 +5,8 @@ gems:
     workflows: [ci.yml]
   - name: ruby/cgi
     workflows: [test.yml]
+  - name: ruby/date
+    workflows: [test.yml]
   - name: ruby/debug
     workflows: [truffleruby.yml]
   - name: ruby/etc
@@ -21,6 +23,8 @@ gems:
     workflows: [truffle-ruby-test.yml]
   - name: ruby/json
     workflows: [ci.yml]
+  - name: ruby/logger
+    workflows: [test.yml]
   - name: ruby/mspec
     workflows: [ci.yml]
   - name: ruby/net-pop
