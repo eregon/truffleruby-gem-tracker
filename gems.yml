@@ -69,6 +69,8 @@ gems:
     workflows: [test.yml]
   - name: halostatue/diff-lcs
     workflows: [ci.yml]
+  - name: oxidize-rb/rb-sys
+    workflows: [ci.yml]
 
   # Rails dependencies
   - name: rack/rack
