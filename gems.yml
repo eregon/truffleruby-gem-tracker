@@ -271,7 +271,7 @@ gems:
   - name: bazel-contrib/rules_ruby
     workflows: [ci.yml]
   - name: halostatue/minitar
-    workflows: [ruby.yml]
+    workflows: [ci.yml]
   - name: piotrmurach/tty-option
     workflows: [ci.yml]
   # - name: phlex-ruby/phlex
