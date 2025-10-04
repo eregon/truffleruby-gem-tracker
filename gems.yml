@@ -27,6 +27,8 @@ gems:
     workflows: [test.yml]
   - name: ruby/mspec
     workflows: [ci.yml]
+  - name: ruby/net-imap
+    workflows: [test.yml]
   - name: ruby/net-pop
     workflows: [test.yml]
   - name: ruby/openssl
