@@ -4,7 +4,7 @@ The TruffleRuby Gem Tracker is designed to track the status of gems CIs testing 
 
 ## Status
 
-See [GitHub Actions runs](https://github.com/eregon/truffleruby-gem-tracker/actions).
+See [GitHub Actions runs](https://github.com/truffleruby/truffleruby-gem-tracker/actions).
 
 ## Usage
 
